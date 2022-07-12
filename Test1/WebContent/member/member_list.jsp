@@ -25,7 +25,7 @@
 				<tr>
 					<td><a href="memberViewAction.me?id=${member.MEMBER_ID}">
 							${member.MEMBER_ID} </a></td>
-					<td><a href="memberDeleteAction.me?id =${member.MEMBER_ID}">
+					<td><a href="memberDeleteAction.me?id=${member.MEMBER_ID}">
 							삭제</a></td>
 				</tr>
 			</c:forEach>

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.MemberDeleteAction;
 import action.MemberJoinAction;
 import action.MemberListAction;
 import action.MemberLoginAction;
@@ -151,10 +152,10 @@ extends javax.servlet.http.HttpServlet{ // HttpServelet 클래스를 상속받�
 				}
 			}
 		
-		//-------------------- 로그인 후 회원상세정보 MemberViewAction 페이지 생성 ---------------------------				
-		 else if (command.equals("/member/MemberViewAction.me")) {
+		//-------------------- 회원상세정보 memberViewAction 페이지 생성 ---------------------------				
+		 else if (command.equals("/member/memberViewAction.me")) {
 				action = new MemberViewAction();
-				// MemberListAction, 로그인 후의 페이지 표시.
+				// MemberViewAction, 로그인 후의 페이지 표시.
 				try {
 					forward = action.execute(req, resp);
 					System.out.println("회원상세정보 표시");
@@ -163,7 +164,17 @@ extends javax.servlet.http.HttpServlet{ // HttpServelet 클래스를 상속받�
 				}
 			}
 		
-		
+		//-------------------- 회원정보삭제하는 memberDeleteAction 페이지 생성 ---------------------------				
+		 else if (command.equals("/member/memberDeleteAction.me")) {
+				action = new MemberDeleteAction();
+				// MemberListAction, 로그인 후의 페이지 표시.
+				try {
+					forward = action.execute(req, resp);
+					System.out.println("회원정보삭제");
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
 		
 		
 		

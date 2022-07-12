@@ -183,6 +183,28 @@ public class MemberDAO {
 		}
 		return mb;
 	}
+
+	//=========================== 회원정보 삭제하는 SQL로직 ===============================
+	// MemberDeleteService에서 회원정보 삭제 시 DB와 JSP를 연결할 때 인자로 쓰임.
+	public int deleteMember(String deleteId) { //우클릭 Create method
+		// 디비에 저장된 모든 한 회원정보를 확인하는 SQL문(DB 이름 확인하기***)
+		String sql = "delete from memberinfo where MEM_ID=?";
+	      int mb = 0;
+	      
+	      try {
+	         pstmt = con.prepareStatement(sql);
+	         pstmt.setString(1, deleteId);
+	        pstmt.executeUpdate();
+	         mb = 1;
+	      }catch(Exception ex) {
+	         System.out.println("삭제 안됨");
+	         mb = 0;
+	      }finally {
+	         close(rs);
+	         close(pstmt);
+	      }
+	      return mb;
+	}
 	
 	
 	
