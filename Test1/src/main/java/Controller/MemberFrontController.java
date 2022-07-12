@@ -12,6 +12,7 @@ import action.Action;
 import action.MemberJoinAction;
 import action.MemberListAction;
 import action.MemberLoginAction;
+import action.MemberViewAction;
 import vo.ActionForward;
 
 
@@ -142,9 +143,21 @@ extends javax.servlet.http.HttpServlet{ // HttpServelet 클래스를 상속받�
 		 else if (command.equals("/member/memberListAction.me")) {
 				action = new MemberListAction();
 				// MemberListAction, 로그인 후의 페이지 표시.
-				System.out.println("여기인가?");
 				try {
 					forward = action.execute(req, resp);
+					System.out.println("로그인 후 회원정보리스트 표시");
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		
+		//-------------------- 로그인 후 회원상세정보 MemberViewAction 페이지 생성 ---------------------------				
+		 else if (command.equals("/member/MemberViewAction.me")) {
+				action = new MemberViewAction();
+				// MemberListAction, 로그인 후의 페이지 표시.
+				try {
+					forward = action.execute(req, resp);
+					System.out.println("회원상세정보 표시");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -153,6 +166,9 @@ extends javax.servlet.http.HttpServlet{ // HttpServelet 클래스를 상속받�
 		
 		
 		
+		
+		
+		//-------------------- 페이지 이동시키는 부분 ---------------------------
 		if(forward != null ) {
 			//forward 객체가 null이 아니라면(= forward객체가 있다면)
 			if(forward.isRedirect()) { 

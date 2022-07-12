@@ -32,7 +32,7 @@ th, td {
 			<!-- section은 body를 나눔 -->
 			<form name="joinform" action="./memberJoinAction.me" method="post">
 
-				<table class='joinTable'>
+				<table class='joinTable'> 
 					<tr>
 						<td>아이디</td>
 						<td><input type="text" name="MEMBER_ID" id="MEMBER_ID"></td>

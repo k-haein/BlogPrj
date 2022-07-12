@@ -106,7 +106,7 @@ public class MemberDAO {
 	}
 	
 
-	//=========================== 로그인된 후 회원정보리스트를 가져와 저장하는 SQL로직 ===============================
+	//=========================== 로그인된 후 회원정보리스트를 가져와 보여주는 SQL로직 ===============================
 	// MemberListService에서 로그인한 후 DB와 JSP를 연결해서 회원정보리스트를 배열로 가져와 저장할 때 인자로 쓰임.
 	public ArrayList<MemberBean> selectMemberList() {
 		// 객체 배열 비슷, 컬렉션 프로임워크
@@ -150,8 +150,39 @@ public class MemberDAO {
 
 	}
 	
-	
-	
+
+	//=========================== 회원상세정보를 가져와 보여주는 SQL로직 ===============================
+	// MemberViewService에서 회원상세정보를 볼때 DB와 JSP를 연결할 때 인자로 쓰임.
+	public MemberBean selectMember(String id) {
+		// 디비에 저장된 모든 한 회원정보를 확인하는 SQL문(DB 이름 확인하기***)
+		String sql ="select * from memberinfo where MEM_ID=?";
+		MemberBean mb=null;
+		
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1,id);
+			rs=pstmt.executeQuery();
+
+			System.out.println("여긴 왔니?");
+			if(rs.next()) {
+				
+				mb=new MemberBean();
+			
+				//고객 1명의 정보를 저장할 수 있는 MemberBean 객체 생성.
+				mb.setMEMBER_ID(rs.getString("MEM_ID"));
+				//조회된 결과 중, 첫 번째 회원에 해당하는 아이디를 가져와서
+				//Member객체에 저장.
+				mb.setMEMBER_PW(rs.getString("MEM_PWD"));
+			}
+		}catch(Exception ex){
+			System.out.println("getSelectMember 에러: " + ex);
+			
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return mb;
+	}
 	
 	
 	
