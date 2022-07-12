@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Context>
+	<Resource name="jdbc/myora" 
+	auth="Container"
+    type="javax.sql.DataSource"
+    driverClassName="oracle.jdbc.driver.OracleDriver"
+    url="jdbc:oracle:thin:@localhost:1521:XE"
+    username="BlogDB"
+    password="1234"
+    maxActive="500"
+    maxIdle="100"
+	maxWait="-1"  />
+
+</Context>
+

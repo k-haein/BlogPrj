@@ -1,0 +1,59 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원가입</title>
+
+<style>
+.joinTable { /*클래스로 설정*/
+	width: 400px;
+	height: 200px;
+	border: 5px solid grey; /*solid는 테두리*/
+	border-collapse: collapse; /*테두리 사이의 간격 없애기*/
+}
+
+#pwdConfirm { /*id로 설정하면 한번만 사용함*/
+	padding: 10px;
+}
+
+th, td {
+	padding: 10px !important; /*important는 0순위 의미 im>id>Class>Tag 순*/
+}
+</style>
+
+
+</head>
+<body>
+	<span>회원가입</span>
+	<div>
+		<section id="joinformArea">
+			<!-- section은 body를 나눔 -->
+			<form name="joinform" action="./memberJoinAction.me" method="post">
+
+				<table class='joinTable'>
+					<tr>
+						<td>아이디</td>
+						<td><input type="text" name="MEMBER_ID" id="MEMBER_ID"></td>
+					</tr>
+					<tr>
+						<td>비밀번호</td>
+						<td><input type="password" name="MEMBER_PW" id="MEMBER_PW"></td>
+					</tr>
+					<tr>
+						<td id='pwdConfirm'>비밀번호 확인</td>
+						<td><input type="password" name="MEMBER_PW_cfm" id="MEMBER_PW_cfm"></td>
+					</tr>
+					<tr>
+						<td colspan="2"><button href="javascript:joinUs.submit()">회원가입</button>
+						<a href="javascript:joinform.reset()">다시작성</a></td>
+					</tr>
+				</table>
+				<br> <span><input type="checkBox"><a
+					href="https://www.naver.com" target='_blank'>이용약관</a>에 동의합니다.</span>
+			</form>
+		</section>
+	</div>
+</body>
+</html>
