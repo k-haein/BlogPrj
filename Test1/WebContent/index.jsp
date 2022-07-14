@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<button onclick="location.href='member/joinUs.jsp'">회원가입 페이지</button>
+<button onclick="location.href='member/before_joinUs.jsp'">회원가입 페이지</button>
 <button onclick="location.href='member/login.jsp'">로그인 페이지</button>
 
 

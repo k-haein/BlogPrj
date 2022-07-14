@@ -1049,7 +1049,7 @@ p {
 									role="button">취소</a>
 								</span> <span>
 									<!-- tg-text=terms_button_agree -->
-									<a href="#" id="btnAgree" class="btn_type btn_primary"
+									<a href="./memberJoin.me" id="btnAgree" class="btn_type btn_primary"
 									role="button">확인</a>
 								</span>
 							</div>
