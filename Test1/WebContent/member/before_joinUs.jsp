@@ -6,12 +6,10 @@
 <meta charset="UTF-8">
 <title>회원가입</title>
 
-<link rel="stylesheet" href="../asset/style/css/member.css">
-
-<style>
 
 
-
+<style type="text/css">
+    @import url("./member.css");
 </style>
 </head>
 <body>
@@ -35,7 +33,7 @@
 			</h1>
 			
 		</div>
-		
+		 
 		<!-- ------------------ header ------------------ -->
 		<!-- ------------------ container ------------------ -->
 		<div id="container" role="main">
