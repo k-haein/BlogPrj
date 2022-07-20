@@ -5,6 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Main Page</title>
+
+<link href="${pageContext.request.contextPath}/resources/css/member.css" rel="stylesheet" type="text/css">
+
 </head>
 <body>
 
