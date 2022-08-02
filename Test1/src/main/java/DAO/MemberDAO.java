@@ -46,7 +46,7 @@ public class MemberDAO {
 	// MemberJoinService에서 회원가입할 때 DB와 JSP를 연결할 때 인자로 쓰임.
 	public int insertMember(MemberBean member) {
 		//회원가입 시 DB에 member 정보를 넣는 SQL문(DB 이름 확인하기***)
-		String sql = "insert into memberinfo values (?,?,?)";
+		String sql = "insert into memberinfo values (?,?,?,?,?,?,?,?,?)";
 		int insertCount=0;
 
 		try {
@@ -54,7 +54,13 @@ public class MemberDAO {
 			//prepareStatement : SQL문 실행하는 기능을 갖는 객체(변수는 ?로, setString으로 아래에 지정함.)
 			pstmt.setString(1, member.getMEMBER_ID());
 			pstmt.setString(2, member.getMEMBER_PW());
-			pstmt.setString(3, member.getMEMBER_PW_cfm());
+			pstmt.setString(3, member.getMEMBER_NAME());
+			pstmt.setString(4, member.getMEMBER_BIR_YY());
+			pstmt.setString(5, member.getMEMBER_BIR_MM());
+			pstmt.setString(6, member.getMEMBER_BIR_DD());
+			pstmt.setString(7, member.getMEMBER_GENDER());
+			pstmt.setString(8, member.getMEMBER_MAIL());
+			pstmt.setString(9, member.getMEMBER_PHONE());
 			insertCount=pstmt.executeUpdate(); //executeUpdate : 데이터베이스 변경할 때
 			//select는 executeQuery()를 사용한다.
 			// insert, update, delete는 executeUpdate()를 사용한다.

@@ -81,16 +81,16 @@
                     <!-- lang = ko_KR -->
 
                     <div class="join_row join_birthday">
-                        <h3 class="join_title"><label for="yy">생년월일</label></h3>
+                        <h3 class="join_title"><label for="MEMBER_BIR_YY">생년월일</label></h3>
                         <div class="bir_wrap">
                             <div class="bir_yy">
 								<span class="ps_box">
-									<input type="text" id="yy" placeholder="년(4자)" aria-label="년(4자)" class="int" maxlength="4">
+									<input type="text" name="MEMBER_BIR_YY" id="MEMBER_BIR_YY" placeholder="년(4자)" aria-label="년(4자)" class="int" maxlength="4">
 								</span>
                             </div>
                             <div class="bir_mm"> 
 								<span class="ps_box">
-									<select id="mm" class="sel" aria-label="월">
+									<select id="MEMBER_BIR_MM" name="MEMBER_BIR_MM" class="sel" aria-label="월">
 										<option value="">월</option>
 										  	 			<option value="01">
                                                             1
@@ -133,7 +133,7 @@
                             </div>
                             <div class=" bir_dd">
 								<span class="ps_box">
-									<input type="text" id="dd" placeholder="일" aria-label="일" class="int" maxlength="2">
+									<input type="text" id="MEMBER_BIR_DD" name="MEMBER_BIR_DD" placeholder="일" aria-label="일" class="int" maxlength="2">
 									<label for="dd" class="lbl"></label>
 								</span>
                             </div>
@@ -142,9 +142,9 @@
                     </div>
 
                     <div class="join_row join_sex">
-                        <h3 class="join_title"><label for="gender">성별</label></h3>
+                        <h3 class="join_title"><label for="MEMBER_GENDER">성별</label></h3>
                         <div class="ps_box gender_code">
-                            <select id="gender" name="gender" class="sel" aria-label="성별">
+                            <select id="MEMBER_GENDER" name="MEMBER_GENDER" class="sel" aria-label="성별">
                                 <option value="" selected>성별</option>
                                         <option value="M">남자</option>
                                         <option value="F">여자</option>
@@ -155,9 +155,9 @@
                     <span class="error_next_box" id="genderMsg" style="display:none" aria-live="assertive"></span>
 
                     <div class="join_row join_email">
-                        <h3 class="join_title"><label for="email">본인 확인 이메일<span class="terms_choice">(선택)</span></label></h3>
+                        <h3 class="join_title"><label for="MEMBER_MAIL">본인 확인 이메일<span class="terms_choice">(선택)</span></label></h3>
                         <span class="ps_box int_email box_right_space">
-							<input type="text" id="email" name="email" placeholder="선택입력" aria-label="선택입력" class="int" maxlength="100">
+							<input type="text" id="MEMBER_MAIL" name="MEMBER_MAIL" placeholder="선택입력" aria-label="선택입력" class="int" maxlength="100">
 						</span>
                     </div>
                     <span class="error_next_box" id="emailMsg" style="display:none" aria-live="assertive"></span>
@@ -815,8 +815,8 @@
                     </div>
                     <div class="int_mobile_area">
 						<span class="ps_box int_mobile">
-							<input type="tel" id="phoneNo" name="phoneNo" placeholder="전화번호 입력" aria-label="전화번호 입력" class="int" maxlength="16">
-							<label for="phoneNo" class="lbl"></label>
+							<input type="tel" id="MEMBER_PHONE" name="MEMBER_PHONE" placeholder="전화번호 입력" aria-label="전화번호 입력" class="int" maxlength="16">
+							<label for="MEMBER_PHONE" class="lbl"></label>
 						</span>
                         <a href="#" class="btn_verify btn_primary" id="btnSend" role="button">
                             <span class="">인증번호 받기</span>
@@ -984,7 +984,7 @@
                 </div>
                 <!-- tg-display -->
 
-                <!-- tg-display=>{"보호자 아이핀 인증": [], "오류 메시지": []} -->
+                <!-- tg-display=>{"보호자 아이핀 인증": [], "오류 메시지": []} 
                 <div class="join_minor tab" id="pipinDiv" style="display:none">
                     <ul class="tab_m" role="tablist">
                         <li class="m1" role="presentation"><a href="#" id="tabPrtsMobile" role="tab" aria-selected="false" aria-controls="wa_tab_phone">휴대전화인증</a></li>
@@ -1029,10 +1029,11 @@
                             <span class="error_next_box" id="ijoinMsg" style="display:none" aria-live="assertive">필수 정보입니다.</span>
                         </div>
                     </div>
-                </div>
+                </div>-->
 
                 <div class="btn_area">
-                    <button type="button" id="btnJoin" class="btn_type btn_primary"><span>가입하기</span></button>
+                <!--  type="button" id="btnJoin" 제거함 -->
+                    <button class="btn_type btn_primary" href="javascript:joinUs.submit()"><span>가입하기</span></button>
                 </div>
             </div>
         </div>
@@ -1040,12 +1041,12 @@
     <!-- // container -->
 </form>
 
-<!--가상주민번호-아이핀 팝업페이지 호출시 필요한 form-->
+<!--가상주민번호-아이핀 팝업페이지 호출시 필요한 form
 <form name="form_ipin" method="post" action="">
     <input type="hidden" name="m" value="pubmain">
     <input type="hidden" name="enc_data" value="AgEER0Q0NijBa68qzwbPgFHU41bMd0AOfMnULaZopngC3L0vP99NVDcwpU7+LXl1tLkx5LnMBvCt17uIDUrPEcu66CpyIz4qyNlzs1VhI9/FfUp7WxVUUFlilSQZB3tNcIF4QUi03yyW8oSG9K7xNGagQHlpqxbnDeMh7uLAcLJ04XhV/crngCMaIISO3lPtJgke1NY9G8xFn1RvuDUzLzlFEjmcf3OrViOoEbH6BV4v1rh6dGRRPJTJ3ndBhtHOihMh0API0kz/dxOK1ZZhIDMKhUi/8JRW9tcrcmeEgNSji3LMwYoCmzGV8aMl23bsxb2xHCUtMA==">
 </form>
-
+-->
 	<!-- footer -->
 	<div id="footer" role="contentinfo">
 		<ul>
@@ -1064,12 +1065,14 @@
 	</div>
 	<!-- //footer -->
 </div>
-
+<!-- 
 <script type="text/javascript" src="https://nid.naver.com/inc/common/js/rsaAll.js"></script>
 <script type="text/javascript" src="/inc/common/js/lua.js?r=20220411"></script>
 <script type="text/javascript" src="/inc/common/js/jquery.min.js"></script>
-<script type="text/javascript" src="/inc/common/js/bvsd.1.3.6.js"></script>
+<script type="text/javascript" src="/inc/common/js/bvsd.1.3.6.js"></script> -->
 <script type="text/JavaScript">
+
+/*
     //region define, setter
     var idFlag = false;
     var pwFlag = false;
@@ -2204,7 +2207,7 @@
             return false;
         }
 
-        /* check whether input value is included space or not */
+        // check whether input value is included space or not
         var retVal = checkSpace(str);
         if (retVal) {
             return false;
@@ -2462,13 +2465,12 @@
         return win;
     }
     //endregion
+    
+    */
 </script>
 </body>
 
 <!-- ------------------- 메모 부분 ------------------- 
-
-1. label태그에는 <label>태그를 클릭하면, 동일한 아이디값을 가진 <input>태그에 자동으로 포커스가 되는 기능이 포함되어 있습니다. 
-저는 이 기능을 사용하기 위해서 <input>태그의 아이디값과 <label>태그의 아이디값을 "id"로 동일하게 설정했습니다.
 
 
 

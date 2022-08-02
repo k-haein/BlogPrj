@@ -26,7 +26,13 @@ public class MemberJoinAction implements Action { //Action을 implements 해줌
 		//입력 목록 적어주기(vo에서 받아옴.)
 		member.setMEMBER_ID(req.getParameter("MEMBER_ID"));
 		member.setMEMBER_PW(req.getParameter("MEMBER_PW"));
-		member.setMEMBER_PW_cfm(req.getParameter("MEMBER_PW_cfm"));
+		member.setMEMBER_NAME(req.getParameter("MEMBER_NAME"));
+		member.setMEMBER_BIR_YY(req.getParameter("MEMBER_BIR_YY"));
+		member.setMEMBER_BIR_MM(req.getParameter("MEMBER_BIR_MM"));
+		member.setMEMBER_BIR_DD(req.getParameter("MEMBER_BIR_DD"));
+		member.setMEMBER_GENDER(req.getParameter("MEMBER_GENDER"));
+		member.setMEMBER_MAIL(req.getParameter("MEMBER_MAIL"));
+		member.setMEMBER_PHONE(req.getParameter("MEMBER_PHONE"));
 		
 
 		MemberJoinService memberJoinService = new MemberJoinService();
