@@ -42,24 +42,24 @@
                 <!-- 아이디, 비밀번호 입력 -->
                 <div class="row_group">
                     <div class="join_row">
-                        <h3 class="join_title"><label for="MEMBER_ID">아이디</label></h3>
+                        <h3 class="join_title"><label for="id">아이디</label></h3>
                         <span class="ps_box int_id">
-							<input type="text" id="MEMBER_ID" name="MEMBER_ID" class="int" title="ID" maxlength="20">
+							<input type="text" id="id" name="MEMBER_ID" class="int" title="ID" maxlength="20">
                             <span class="step_url">@naver.com</span></span>
                         <span class="error_next_box" id="idMsg" style="display:none" aria-live="assertive"></span>
                     </div>
 
                     <div class="join_row">
-                        <h3 class="join_title"><label for="MEMBER_PW">비밀번호</label></h3>
+                        <h3 class="join_title"><label for="pswd1">비밀번호</label></h3>
                         <span class="ps_box int_pass" id="pswd1Img">
-							<input type="password" id="MEMBER_PW" name="MEMBER_PW" class="int" title="비밀번호 입력" aria-describedby="pswd1Msg" maxlength="20">
+							<input type="password" id="pswd1" name="MEMBER_PW" class="int" title="비밀번호 입력" aria-describedby="pswd1Msg" maxlength="20">
                             <span class="lbl"><span id="pswd1Span" class="step_txt"></span></span>
 						</span>
                         <span class="error_next_box" id="pswd1Msg" style="display:none" aria-live="assertive">5~12자의 영문 소문자, 숫자와 특수기호(_)만 사용 가능합니다.</span>
 
-                        <h3 class="join_title"><label for="MEMBER_PW_cfm">비밀번호 재확인</label></h3>
+                        <h3 class="join_title"><label for="pswd2">비밀번호 재확인</label></h3>
                         <span class="ps_box int_pass_check" id="pswd2Img">
-							<input type="password" id="MEMBER_PW_cfm" name="MEMBER_PW_cfm" class="int" title="비밀번호 재확인 입력" aria-describedby="pswd2Blind" maxlength="20">
+							<input type="password" id="pswd2" name="MEMBER_PW_cfm" class="int" title="비밀번호 재확인 입력" aria-describedby="pswd2Blind" maxlength="20">
 							<span id="pswd2Blind" class="wa_blind">설정하려는 비밀번호가 맞는지 확인하기 위해 다시 입력 해주세요.</span>
 						</span>
                         <span class="error_next_box" id="pswd2Msg" style="display:none" aria-live="assertive"></span>
@@ -72,25 +72,25 @@
 
                     <!-- lang = ko_KR -->
                     <div class="join_row">
-                        <h3 class="join_title"><label for="MEMBER_NAME">이름</label></h3>
+                        <h3 class="join_title"><label for="name">이름</label></h3>
                         <span class="ps_box box_right_space">
-							<input type="text" id="MEMBER_NAME" name="MEMBER_NAME" title="이름" class="int" maxlength="40">
+							<input type="text" id="name" name="MEMBER_NAME" title="이름" class="int" maxlength="40">
 						</span>
                         <span class="error_next_box" id="nameMsg" style="display:none" aria-live="assertive"></span>
                     </div>
                     <!-- lang = ko_KR -->
 
                     <div class="join_row join_birthday">
-                        <h3 class="join_title"><label for="MEMBER_BIR_YY">생년월일</label></h3>
+                        <h3 class="join_title"><label for="yy">생년월일</label></h3>
                         <div class="bir_wrap">
                             <div class="bir_yy">
 								<span class="ps_box">
-									<input type="text" name="MEMBER_BIR_YY" id="MEMBER_BIR_YY" placeholder="년(4자)" aria-label="년(4자)" class="int" maxlength="4">
+									<input type="text" name="yy" id="MEMBER_BIR_YY" placeholder="년(4자)" aria-label="년(4자)" class="int" maxlength="4">
 								</span>
                             </div>
                             <div class="bir_mm"> 
 								<span class="ps_box">
-									<select id="MEMBER_BIR_MM" name="MEMBER_BIR_MM" class="sel" aria-label="월">
+									<select id="mm" name="MEMBER_BIR_MM" class="sel" aria-label="월">
 										<option value="">월</option>
 										  	 			<option value="01">
                                                             1
@@ -133,7 +133,7 @@
                             </div>
                             <div class=" bir_dd">
 								<span class="ps_box">
-									<input type="text" id="MEMBER_BIR_DD" name="MEMBER_BIR_DD" placeholder="일" aria-label="일" class="int" maxlength="2">
+									<input type="text" id="dd" name="MEMBER_BIR_DD" placeholder="일" aria-label="일" class="int" maxlength="2">
 									<label for="dd" class="lbl"></label>
 								</span>
                             </div>
@@ -142,9 +142,9 @@
                     </div>
 
                     <div class="join_row join_sex">
-                        <h3 class="join_title"><label for="MEMBER_GENDER">성별</label></h3>
+                        <h3 class="join_title"><label for="gender">성별</label></h3>
                         <div class="ps_box gender_code">
-                            <select id="MEMBER_GENDER" name="MEMBER_GENDER" class="sel" aria-label="성별">
+                            <select id="gender" name="MEMBER_GENDER" class="sel" aria-label="성별">
                                 <option value="" selected>성별</option>
                                         <option value="M">남자</option>
                                         <option value="F">여자</option>
@@ -155,9 +155,9 @@
                     <span class="error_next_box" id="genderMsg" style="display:none" aria-live="assertive"></span>
 
                     <div class="join_row join_email">
-                        <h3 class="join_title"><label for="MEMBER_MAIL">본인 확인 이메일<span class="terms_choice">(선택)</span></label></h3>
+                        <h3 class="join_title"><label for="email">본인 확인 이메일<span class="terms_choice">(선택)</span></label></h3>
                         <span class="ps_box int_email box_right_space">
-							<input type="text" id="MEMBER_MAIL" name="MEMBER_MAIL" placeholder="선택입력" aria-label="선택입력" class="int" maxlength="100">
+							<input type="text" id="email" name="MEMBER_MAIL" placeholder="선택입력" aria-label="선택입력" class="int" maxlength="100">
 						</span>
                     </div>
                     <span class="error_next_box" id="emailMsg" style="display:none" aria-live="assertive"></span>
@@ -815,8 +815,8 @@
                     </div>
                     <div class="int_mobile_area">
 						<span class="ps_box int_mobile">
-							<input type="tel" id="MEMBER_PHONE" name="MEMBER_PHONE" placeholder="전화번호 입력" aria-label="전화번호 입력" class="int" maxlength="16">
-							<label for="MEMBER_PHONE" class="lbl"></label>
+							<input type="tel" id="phoneNo" name="MEMBER_PHONE" placeholder="전화번호 입력" aria-label="전화번호 입력" class="int" maxlength="16">
+							<label for="phoneNo" class="lbl"></label>
 						</span>
                         <a href="#" class="btn_verify btn_primary" id="btnSend" role="button">
                             <span class="">인증번호 받기</span>
@@ -1070,7 +1070,104 @@
 <script type="text/javascript" src="/inc/common/js/lua.js?r=20220411"></script>
 <script type="text/javascript" src="/inc/common/js/jquery.min.js"></script>
 <script type="text/javascript" src="/inc/common/js/bvsd.1.3.6.js"></script> -->
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script type="text/JavaScript">
+
+//region define, setter
+//필요한 플래그들을 세운다.
+var idFlag = false;
+var pwFlag = false;
+var authFlag = false;
+var submitFlag = false;
+
+
+
+//id = 'id' 인 input에 플래그가 있다. checkId 함수를 시행한다.
+$("#id").blur(function() {
+    idFlag = false;
+    checkId("first");
+});
+
+
+//id 체크 함수 시행
+function checkId(event) {
+    if(idFlag) return true;
+
+    var id = $("#id").val();
+    var oMsg = $("#idMsg");
+    var oInput = $("#id");
+
+    if ( id == "") {
+        showErrorMsg(oMsg,"필수 정보입니다."); //에러메시지 출력
+        setFocusToInputObject(oInput); //전송 플래그 조절
+        return false;
+    }
+
+    var isID = /^[a-z0-9][a-z0-9_\-]{4,19}$/;
+    if (!isID.test(id)) { 
+        showErrorMsg(oMsg,"5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다."); //에러메시지 출력
+        setFocusToInputObject(oInput); //전송 플래그 조절
+        return false;
+    }
+
+    
+    idFlag = false;
+    var key = $("#token_sjoin").val();
+    /* 맨 상단에 숨겨져있는 input 들에 value 값이 있다. 해당 값을 포함해서 ajax로 서버에 전송해준다.
+    	id의 경우 토큰키를 포함해서 보내는 모양.*/
+            
+    	
+    $.ajax({
+        type:"GET",
+        url: "/user2/joinAjax?m=checkId&id=" + id + "&key=" + key,
+        success : function(data) {
+            var result = data.substr(4); //키 뭔지 모르곘지만 5자리부터 뒤에까지 결과
+
+            if (result == "Y") { //돌려받은 결과가 Y이면
+                if (event == "first") { //그리고 #id라면
+                    showSuccessMsg(oMsg, "멋진 아이디네요!"); //에러메시지 출력
+                } else {
+                    hideMsg(oMsg); //메시지 숨김
+                }
+                idFlag = true; //id 플래그 1로 변경. 더이상 id alert 발생 x
+            } else {
+                showErrorMsg(oMsg, "이미 사용중이거나 탈퇴한 아이디입니다."); //에러메시지 출력
+                setFocusToInputObject(oInput); //전송 플래그 조절
+            }
+        }
+    });
+    return true;
+}
+
+// id 유효성 검증을 하고 전송 플래그를 조절한다. 완료 후 다시 input에 포커스.
+function setFocusToInputObject(obj) {
+    if(submitFlag) {
+        submitFlag = false;
+        obj.focus();
+    }
+}
+
+// 경고 메시지 숨기는 함수
+function hideMsg(obj) {
+    obj.hide();
+}
+
+
+// 에러 메시지 발생
+function showErrorMsg(obj, msg) {
+    obj.attr("class", "error_next_box");
+    obj.html(msg);
+    obj.show();
+}
+
+// 성공 메시지 발생
+function showSuccessMsg(obj, msg) {
+    obj.attr("class", "error_next_box green");
+    obj.html(msg);
+    obj.show();
+}
+
 
 /*
     //region define, setter
@@ -1094,11 +1191,7 @@
             checkBirthday();
         }
 
-        //region unreal id
-        $("#id").blur(function() {
-            idFlag = false;
-            checkId("first");
-        });
+        
 
         $("#pswd1").blur(function() {
             pwFlag = false;
@@ -1367,51 +1460,7 @@
     }
     //endregion
 
-    //region unreal 가입
-    function checkId(event) {
-        if(idFlag) return true;
-
-        var id = $("#id").val();
-        var oMsg = $("#idMsg");
-        var oInput = $("#id");
-
-        if ( id == "") {
-            showErrorMsg(oMsg,"필수 정보입니다.");
-            setFocusToInputObject(oInput);
-            return false;
-        }
-
-        var isID = /^[a-z0-9][a-z0-9_\-]{4,19}$/;
-        if (!isID.test(id)) {
-            showErrorMsg(oMsg,"5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.");
-            setFocusToInputObject(oInput);
-            return false;
-        }
-
-        idFlag = false;
-        var key = $("#token_sjoin").val();
-                
-        $.ajax({
-            type:"GET",
-            url: "/user2/joinAjax?m=checkId&id=" + id + "&key=" + key,
-            success : function(data) {
-                var result = data.substr(4);
-
-                if (result == "Y") {
-                    if (event == "first") {
-                        showSuccessMsg(oMsg, "멋진 아이디네요!");
-                    } else {
-                        hideMsg(oMsg);
-                    }
-                    idFlag = true;
-                } else {
-                    showErrorMsg(oMsg, "이미 사용중이거나 탈퇴한 아이디입니다.");
-                    setFocusToInputObject(oInput);
-                }
-            }
-        });
-        return true;
-    }
+   
 
     function checkPswd1() {
         if(pwFlag) return true;
@@ -2305,24 +2354,9 @@
         $("#btnJoin").attr("disabled",false);
     }
 
-    function setFocusToInputObject(obj) {
-        if(submitFlag) {
-            submitFlag = false;
-            obj.focus();
-        }
-    }
 
-    function showErrorMsg(obj, msg) {
-        obj.attr("class", "error_next_box");
-        obj.html(msg);
-        obj.show();
-    }
 
-    function showSuccessMsg(obj, msg) {
-        obj.attr("class", "error_next_box green");
-        obj.html(msg);
-        obj.show();
-    }
+   
 
     function showAuthDefaultBox(oBox, oCode) {
         oBox.attr("class", "ps_box");
@@ -2342,9 +2376,7 @@
         oCode.show();
     }
 
-    function hideMsg(obj) {
-        obj.hide();
-    }
+  
 
     function showPasswd1ImgByStep(oImg, oSpan, step) {
         if("IE8" == "") {
@@ -2466,14 +2498,15 @@
     }
     //endregion
     
-    */
+  */
 </script>
 </body>
 
 <!-- ------------------- 메모 부분 ------------------- 
 
 
-
+1. 라벨값은 id 값과 같은걸 쓴다. label for=
+2. DB와 소통하는 것은 name값이다.
 
 
 
