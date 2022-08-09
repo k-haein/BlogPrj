@@ -43,6 +43,10 @@
                 <div class="row_group">
                     <div class="join_row">
                         <h3 class="join_title"><label for="id">아이디</label></h3>
+                        
+							<button type="button" onclick="fn_ChkId()" name="ChkId" class="btn_verify btn_primary">중복확인</button>
+							<!-- id 중복 체크 여부 -->
+							<input type="hidden" name="idDuplication" value="idUncheck"/>
                         <span class="ps_box int_id">
 							<input type="text" id="id" name="MEMBER_ID" class="int" title="ID" maxlength="20">
                             <span class="step_url">@naver.com</span></span>
@@ -1135,6 +1139,15 @@ function checkId(event) {
         return false;
     }
 
+    
+    //추가) id 중복체크 안했을 경우
+    var joinform = document.joinform;
+    if (joinform.idDuplication.value!="idCheck") { //hidden으로 idUncheck 해놓고 체크하면 idCheck로 바뀌게 한다.
+        showErrorMsg(oMsg,"아이디 중복체크를 해주세요"); //에러메시지 출력
+        setFocusToInputObject(oInput); //전송 플래그 조절
+        return false; 
+    }
+    
     var isID = /^[a-z0-9][a-z0-9_\-]{4,19}$/;
     if (!isID.test(id)) { 
         showErrorMsg(oMsg,"5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다."); //에러메시지 출력
@@ -1171,7 +1184,15 @@ function checkId(event) {
     return true;
 }
 
-
+// 추가) id 중복 체크하는 함수
+function fn_ChkId(){
+	var joinform = document.joinform;
+	var id = document.id.value; //id칸에 입력한 내용
+	if(id.length!=0 || id!=""){ //위에서 id 빈값은 alert를 냈으니까 만약 id입력했다면
+		window.open("${contextPath}/member/membercheckAction.me?user_id="+id,"","width=500,height=500");
+	}
+	
+}
 
 
 /*================ 제이쿼리 ================*/

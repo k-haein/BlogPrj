@@ -255,6 +255,7 @@ p {
 .ps_box.int_id, .ps_box.int_id input { /* id박스 input태그까지 */
     background: #fff;
     outline: 0;
+    
 }
 
 .step_url { /* @naver.com 아이디의 span 태그 */

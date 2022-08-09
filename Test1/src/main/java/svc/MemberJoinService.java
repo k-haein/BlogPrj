@@ -1,11 +1,15 @@
 package svc;
 
+//이렇게 하면 MemberJoinService 클래스에서는 db.JdbcUtil의 기능을 모두 사용 가능.
+import static db.JdbcUtil.close;
+import static db.JdbcUtil.commit;
+import static db.JdbcUtil.getConnection;
+import static db.JdbcUtil.rollback;
+
 import java.sql.Connection;
 
 import DAO.MemberDAO;
 import vo.MemberBean;
-
-import static db.JdbcUtil.*; //이렇게 하면 MemberJoinService 클래스에서는 db.JdbcUtil의 기능을 모두 사용 가능.
 
 /* 회원가입 진행 시 DB와 JSP를 연결해주며 가입완료와 가입불가를 확인하는 역할을 담당하는 클래스(Service) */
 public class MemberJoinService {
@@ -35,4 +39,16 @@ public class MemberJoinService {
 
 		return joinSuccess;
 	}
+	
+	//=================== 추가) id 중복체크 하는 service ==============================
+	
+	public int idCheck(String id) {
+		int result = MemberDAO.selectAllId(id); //selectAllId는 MemberDAO에서 받아온다.
+		return result; //원래 id 중복검사 시 popup 호출인데 문장으로 썼더니 꼬여버림/
+		
+	}
+	
+	
+	
+	
 }

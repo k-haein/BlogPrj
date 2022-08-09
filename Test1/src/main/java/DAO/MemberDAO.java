@@ -213,7 +213,39 @@ public class MemberDAO {
 	}
 	
 	
-	
+	//=========================== id 중복확인하는 SQL로직 ===============================
+	// MemberDeleteService에서 회원정보 삭제 시 DB와 JSP를 연결할 때 인자로 쓰임.
+	public int selectAllId(String id) { 
+		// 디비에 저장된 모든 한 회원정보를 확인하는 SQL문(DB 이름 확인하기***)
+		String sql = "SELECT MEM_ID from memberinfo where MEM_ID=?";
+	      int result = -1;//오류발생
+	      
+	      try {
+	         pstmt = con.prepareStatement(sql); //sql 시행
+	         pstmt.setString(1, id);
+	         rs = pstmt.executeQuery();
+				//select는 executeQuery()를 사용한다.
+				// insert, update, delete는 executeUpdate()를 사용한다.
+				//쿼리문 처리결과 ResultSet의 객체인 rs에 저장.
+				
+				if (rs.next()) { 
+					//rs객체에서 첫 번째 값 가져오기
+					result = 1;//중복된 id가 존재하는 경우
+					System.out.println("중복검사 결과 : "+result);
+				}else {
+					result = 0;//중복된 id가 존재하지않는 경우
+					System.out.println("중복검사 결과 : "+result);
+				}
+
+			} catch (Exception ex) {
+				System.out.println("LoginMember 에러: " + ex);
+			} finally {
+				close(rs);
+				close(pstmt);//마지막으로 연결 다 끊어주자. conn은 위에서 다 함.
+			}
+
+			return result; //id 중복검사한 결과를 전달해줌.
+			}
 	
 	
 }
