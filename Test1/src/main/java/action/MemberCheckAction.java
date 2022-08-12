@@ -44,7 +44,7 @@ public class MemberCheckAction implements Action { //Action을 implements 해줌
 		
 		int result = memberJoinService.idCheck(id);
 	 	session.setAttribute("result", result);
-	 	nextPage="/member/dbCheckid.jsp";
+	 	//nextPage="/member/dbCheckid.jsp";
 		
 		
 		
