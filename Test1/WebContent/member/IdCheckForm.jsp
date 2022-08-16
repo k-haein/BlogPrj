@@ -50,8 +50,8 @@
 		return httpRequest;            
 	}                        
 	// 회원가입창의 아이디 입력란의 값을 가져온다.        
-	function pValue(){            
-		document.getElementById("userId").value = opener.document.joinUs.id.value;
+	function pValue(){
+		document.getElementById("userId").value = opener.document.joinform.id.value;
 	}                
 		// 아이디 중복체크        
 		function idCheck(){             
@@ -92,9 +92,9 @@
 		// 사용하기 클릭 시 부모창으로 값 전달         
 		function sendCheckValue(){            
 			// 중복체크 결과인 idCheck 값을 전달한다.            
-			opener.document.userInfo.idDuplication.value ="idCheck";            
+			opener.document.joinform.idDuplication.value ="idCheck";            
 			// 회원가입 화면의 ID입력란에 값을 전달            
-			opener.document.userInfo.id.value = document.getElementById("userId").value;                        
+			opener.document.joinform.id.value = document.getElementById("userId").value;                        
 			if (opener != null) {                
 				opener.chkForm = null;                
 				self.close();            

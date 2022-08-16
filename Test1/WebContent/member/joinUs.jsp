@@ -1188,10 +1188,16 @@ function checkId(event) {
 // 추가) id 중복 체크하는 함수
 function openIdChk(){
 	window.name = "parentForm";
-	window.open("member/IdCheckForm.jsp",
+	window.open("IdCheckForm.jsp",
 			"chkForm","width=500, height=300, resizable=no, scrollbars=no");
 }
 
+// 아이디 입력창에 값 입력시 hidden에 idUncheck를 세팅한다.        
+// 이렇게 하는 이유는 중복체크 후 다시 아이디 창이 새로운 아이디를 입력했을 때        
+// 다시 중복체크를 하도록 한다.        
+function inputIdChk(){
+	document.joinform.idDuplication.value ="idUncheck";
+}
 
 
 /*================ 제이쿼리 ================*/

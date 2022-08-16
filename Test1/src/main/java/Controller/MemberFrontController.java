@@ -2,7 +2,6 @@ package Controller;
 
 import java.io.IOException;
 
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import action.MemberDeleteAction;
+import action.MemberIdCheckAction;
 import action.MemberJoinAction;
 import action.MemberListAction;
 import action.MemberLoginAction;
@@ -178,19 +178,19 @@ extends javax.servlet.http.HttpServlet{ // HttpServelet 클래스를 상속받�
 			}
 		
 		//-------------------- id중복검사하는 membercheckAction 페이지 생성 ---------------------------				
-//		 else if (command.equals("/member/memberCheckAction.me")) {
-//				
-//			 action = new MemberCheckAction();
-//				// memberCheckAction 페이지 만듬
-//				try {
-//					forward = action.execute(req, resp);
-//					System.out.println("id 중복검사");
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			
-//		 
-//		 }		
+		 else if (command.equals("/member/memberIdCheckAction.me")) {
+				
+			 action = new MemberIdCheckAction();
+				// memberCheckAction 페이지 만듬
+				try {
+					forward = action.execute(req, resp);
+					System.out.println("id 중복검사");
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			
+		 
+		 }		
 		
 		
 		
