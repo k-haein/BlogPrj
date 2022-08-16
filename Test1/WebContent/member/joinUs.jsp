@@ -44,11 +44,12 @@
                     <div class="join_row">
                         <h3 class="join_title"><label for="id">아이디</label></h3>
                         
-							<button type="button" onclick="fn_ChkId()" name="ChkId" class="btn_verify btn_primary">중복확인</button>
-							<!-- id 중복 체크 여부 -->
+                        	<!-- 버튼 클릭 시 중복확인창을 띄운다. -->
+							<button type="button" onclick="openIdChk()"  class="btn_verify btn_primary">중복확인</button>
+							<!-- id 중복 체크 했는지 여부를 판단한다. value가 idUncheck면 중복체크 안한거임. -->
 							<input type="hidden" name="idDuplication" value="idUncheck"/>
                         <span class="ps_box int_id">
-							<input type="text" id="id" name="MEMBER_ID" class="int" title="ID" maxlength="20">
+							<input type="text" id="id" name="MEMBER_ID" class="int" title="ID" maxlength="20" onkeydown="inputIdChk()">
                             <span class="step_url">@naver.com</span></span>
                         <span class="error_next_box" id="idMsg" style="display:none" aria-live="assertive"></span>
                     </div>
@@ -1185,14 +1186,12 @@ function checkId(event) {
 }
 
 // 추가) id 중복 체크하는 함수
-function fn_ChkId(){
-	var joinform = document.joinform;
-	var id = document.id.value; //id칸에 입력한 내용
-	if(id.length!=0 || id!=""){ //위에서 id 빈값은 alert를 냈으니까 만약 id입력했다면
-		window.open("${contextPath}/member/membercheckAction.me?user_id="+id,"","width=500,height=500");
-	}
-	
+function openIdChk(){
+	window.name = "parentForm";
+	window.open("member/IdCheckForm.jsp",
+			"chkForm","width=500, height=300, resizable=no, scrollbars=no");
 }
+
 
 
 /*================ 제이쿼리 ================*/
@@ -2607,7 +2606,9 @@ $(document).ready(function() {
 
 1. 라벨값은 id 값과 같은걸 쓴다. label for=
 2. DB와 소통하는 것은 name값이다.
-
+3. 아이디 입력란에는 키보드 입력시 발생하는 onkeydown 이벤트를 추가했다. 
+이 이벤트를 사용하는 것은 만약 사용자가 중복체크를 하고 난 뒤 아이디 입력란에 사용 가능한 아이디를 지우고 
+새로운 아이디를 입력했을 경우에 대처하기 위함이다. 이렇게 하면 중복체크가 되지 않은 것으로 처리되도록 한다.
 
 
 

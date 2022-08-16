@@ -42,17 +42,6 @@ public class MemberJoinService {
 	
 	//=================== 추가) id 중복체크 하는 service ==============================
 	
-	public int idCheck(String id) {
-		int result;
-		try {
-			result = MemberDAO.selectAllId(id);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} //selectAllId는 MemberDAO에서 받아온다.
-		return result; //원래 id 중복검사 시 popup 호출인데 문장으로 썼더니 꼬여버림/
-		
-	}
 	
 	
 	
