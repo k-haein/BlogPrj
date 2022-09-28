@@ -1,4 +1,4 @@
-package action;
+ package action;
 
 import java.io.PrintWriter;
 
@@ -73,6 +73,7 @@ public class MemberLoginAction implements Action { //Action을 implements 해줌
 		//자바 코드에서 문자열을 만들어내서 결과적으로 자바 스크립트로 생성하여 console.log에 표시함.
 
 		return forward; //null이 아니라 forward로 가야지.
+		//ActionForward를 null로 리턴하면 이미 response에 응답을 끝냈다는 의미가 된다. 다른 어떤 페이지로도 이동하지 않는다.
 	}
 
 }

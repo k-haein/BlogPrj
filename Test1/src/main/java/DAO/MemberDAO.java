@@ -228,7 +228,8 @@ public class MemberDAO {
 	        pstmt.setString(1, id);
 	        rs = pstmt.executeQuery();
 	        
-	        if(rs.next()) x=true; //해당 아이디가 존재한다.
+	        if(rs.next()) 
+	        	x=true; //해당 아이디가 존재한다.
 		
 		
 		
@@ -251,19 +252,23 @@ public class MemberDAO {
 		회원가입 JSP에서 받아온 ID값과 기존 테이블의 ID값이 일치하는지 여부를
 		확인하기 위해 Select명령어를 사용해 DAO를 만들었습니다. Select값이 없는 경우 0을 출력하고,
 		Select값이 있는 경우 1을 출력하도록 설정했습니다.*/
-		String sql = "select * from memberinfo where MEM_ID = ?"; // 입력값이 테이블에 있는지 확인
+		String sql = "select * from memberinfo where MEM_ID=?"; // 입력값이 테이블에 있는지 확인
 		
 		int idCheck = 0;
 	    try {
-	    	pstmt = con.prepareStatement(sql);
-	    	pstmt.setString(1, id);
+	    	pstmt = con.prepareStatement(sql); // pstmt에 위의 query 저장 후 DB에 연결 준비
+	    	pstmt.setString(1, id); //첫번째 ?에 id 변수 셋팅
+			System.out.println("DAO 내부) DB에 검색하는 id값(input에 쓴 값) : "+ id);
 			
-			rs = pstmt.executeQuery();
+			rs = pstmt.executeQuery(); // query 실행 후 그 결과값을 rs에 저장
 					
+			
 			if(rs.next() || id.equals("")) {
 				idCheck = 0;  // 이미 존재하는 경우, 생성 불가능
+				System.out.println("DAO 내부) id 중복됨");
 			} else {
 				idCheck = 1;  // 존재하지 않는 경우, 생성 가능
+				System.out.println("DAO 내부) id 안중복");
 			}
 			
 		} catch (Exception e) {
@@ -272,7 +277,7 @@ public class MemberDAO {
 			close(rs);
 			close(pstmt);//마지막으로 연결 다 끊어주자. conn은 위에서 다 함.
 		}
-		
+
 		return idCheck;
 	}
 	
