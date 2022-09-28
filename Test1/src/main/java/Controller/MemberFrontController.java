@@ -39,7 +39,7 @@ extends javax.servlet.http.HttpServlet{ // HttpServelet 클래스를 상속받�
 	private static final long serialVersionUID = 1L;
 
 
-
+	/* Get 방식일 때 사용할껀데 doProcess에 그냥 때려박아줌. */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
@@ -49,8 +49,6 @@ extends javax.servlet.http.HttpServlet{ // HttpServelet 클래스를 상속받�
 		//Response : 응답
 	}
 
-	
-	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
@@ -63,11 +61,16 @@ extends javax.servlet.http.HttpServlet{ // HttpServelet 클래스를 상속받�
 	
 	
 
-	//=============== 여기가 로그인이랑 회원가입을 하게 해주는 컨트롤러  ===============
+	//=============== 여기부터 로그인이랑 회원가입을 하게 해주는 기능들 때려박은 컨트롤러  ===============
 	
-	protected void doProcess(HttpServletRequest req, HttpServletResponse resp) throws ServletException,
-	IOException {
-		
+	protected void doProcess(HttpServletRequest req, HttpServletResponse resp) throws ServletException,IOException {
+	
+/*
+* protected : java 접근자, 같은 폴더(패키지)및 그 클래스를 상속(extends)해서 구현하는 경우 접근이 가능 
+* void : return 되는 타입이 없음을 의미 
+* HttpServletRequest,HttpServletResponse : 웹브라우저 URL로 servlet이 요청할 시 요청,응답을 받기 위해 만드는 객체. 매개변수로 가지고 있는거임. WAS가 웹브라우저로부터 Servlet 요청을 받으면 req객체 생성해서 저장하고 resp 객체를 생성해 응답을 담아 servlet에게 반환한다. 
+* throws ServletException,IOException : java.io.IOException 과 javax.servlet.ServletException 예외를 던져야 합니다. 그냥 서블릿 규칙임.
+*/
 		String RequestURI = req.getRequestURI();
 		//전체 주소를 가져오고. (http:icia.co.kr/list.me)
 		String contextPath = req.getContextPath();
@@ -194,14 +197,9 @@ extends javax.servlet.http.HttpServlet{ // HttpServelet 클래스를 상속받�
 		 else if (command.equals("/member/IdCheckService/idcheckAjax")) {
 				action = new MemberIdCheckAction();
 				try {
-					forward = action.execute(req, resp); //받은 action을 뜯어서 SQL로 보내준다.
+					forward = action.execute(req, resp); //받은 action을 뜯어서 SQL로 보내준다.(서버요청)
 					System.out.printf("MemberFrontController : idCheck - SQL DB로 보내는 로직 실행 \n",req, resp);
 					
-					
-					//메인페이지로 이동하자.
-					//forward.setRedirect(true);
-					//forward.setPath("../index.jsp");
-
 				} catch (Exception e) {
 					e.printStackTrace();
 					System.out.println("MemberFrontController : idCheck - SQL DB로 보내는 로직 실패(위에 에러)");

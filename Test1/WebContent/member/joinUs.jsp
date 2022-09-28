@@ -43,10 +43,7 @@
                 <div class="row_group">
                     <div class="join_row">
                         <h3 class="join_title"><label for="id">아이디</label></h3>
-                        
-                        	<!-- id 중복 체크 했는지 여부를 판단한다. value가 idUncheck면 중복체크 안한거임. -->
-							<input type="hidden" name="idDuplication" value="idUncheck"/>
-							
+                        	
                         <span class="ps_box int_id">
                         	<!-- ID 입력 및 포커스아웃되면 중복검사도 함. -->
 							<input type="text" id="id" name="MEMBER_ID" class="int" title="ID" maxlength="20">

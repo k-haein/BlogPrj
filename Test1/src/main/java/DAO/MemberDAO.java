@@ -217,36 +217,6 @@ public class MemberDAO {
 	
 
 	//=========================== id 중복확인하는 SQL로직 ===============================
-	public boolean duplicateIdCheck(String id) {
-		boolean x = false;
-		
-		try {
-			StringBuffer query = new StringBuffer();
-			query.append("SELECT MEM_ID from memberinfo where MEM_ID=?");
-			
-			pstmt = con.prepareStatement(query.toString()); //sql 시행
-	        pstmt.setString(1, id);
-	        rs = pstmt.executeQuery();
-	        
-	        if(rs.next()) 
-	        	x=true; //해당 아이디가 존재한다.
-		
-		
-		
-	        return x;
-		
-		} catch (Exception ex) {
-			System.out.println("LoginMember 에러: " + ex);
-		} finally {
-			close(rs);
-			close(pstmt);//마지막으로 연결 다 끊어주자. conn은 위에서 다 함.
-		}
-		
-		return x;
-	}
-	
-	
-	
 	public int checkId(String id) {  // 유저가 입력한 값을 매개변수로 한다
 		/*
 		회원가입 JSP에서 받아온 ID값과 기존 테이블의 ID값이 일치하는지 여부를

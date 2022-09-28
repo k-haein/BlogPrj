@@ -42,7 +42,6 @@ public class MemberJoinService {
 	
 	//=================== 추가) id 중복체크 하는 service ==============================
 	public int checkIdService(String id) {
-		//boolean joinSuccess = false; //중복체크완료 기본값 false
 		MemberDAO memberDAO = MemberDAO.getInstance();
 		// 객체에 저장된 고객 정보를 DB로 전달하는 클래스.
 		// DAO : Data Access Object

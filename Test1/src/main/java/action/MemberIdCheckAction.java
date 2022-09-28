@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import svc.MemberJoinService;
 import vo.ActionForward;
 
-/* 인터페이스를 함께 추가했다. 로그인 처리를 위한 클래스이다.*/
+/* 인터페이스를 함께 추가했다. id 중복체크 처리를 위한 클래스이다.*/
 public class MemberIdCheckAction implements Action { // Action을 implements 해줌
 
 	@Override
