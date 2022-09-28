@@ -245,6 +245,38 @@ public class MemberDAO {
 	}
 	
 	
+	
+	public int checkId(String id) {  // 유저가 입력한 값을 매개변수로 한다
+		/*
+		회원가입 JSP에서 받아온 ID값과 기존 테이블의 ID값이 일치하는지 여부를
+		확인하기 위해 Select명령어를 사용해 DAO를 만들었습니다. Select값이 없는 경우 0을 출력하고,
+		Select값이 있는 경우 1을 출력하도록 설정했습니다.*/
+		String sql = "select * from memberinfo where MEM_ID = ?"; // 입력값이 테이블에 있는지 확인
+		
+		int idCheck = 0;
+	    try {
+	    	pstmt = con.prepareStatement(sql);
+	    	pstmt.setString(1, id);
+			
+			rs = pstmt.executeQuery();
+					
+			if(rs.next() || id.equals("")) {
+				idCheck = 0;  // 이미 존재하는 경우, 생성 불가능
+			} else {
+				idCheck = 1;  // 존재하지 않는 경우, 생성 가능
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);//마지막으로 연결 다 끊어주자. conn은 위에서 다 함.
+		}
+		
+		return idCheck;
+	}
+	
+	
 	// MemberDeleteService에서 회원정보 삭제 시 DB와 JSP를 연결할 때 인자로 쓰임.
 //	public int selectAllId(String id) { 
 //		// 디비에 저장된 모든 한 회원정보를 확인하는 SQL문(DB 이름 확인하기***)

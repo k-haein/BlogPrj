@@ -31,6 +31,7 @@
 }
     
 </style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script type="text/javascript">
 	var httpRequest = null; // httpRequest 객체 생성        
 	function getXMLHttpRequest(){            

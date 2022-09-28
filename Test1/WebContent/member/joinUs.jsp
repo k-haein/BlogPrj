@@ -46,6 +46,7 @@
                         
                         	<!-- 버튼 클릭 시 중복확인창을 띄운다. -->
 							<button type="button" onclick="openIdChk()"  class="btn_verify btn_primary">중복확인</button>
+							<font id = "chkId" size = "2">123dfsfdsf</font> <!-- 중복인지 글씨 써주기 -->
 							<!-- id 중복 체크 했는지 여부를 판단한다. value가 idUncheck면 중복체크 안한거임. -->
 							<input type="hidden" name="idDuplication" value="idUncheck"/>
                         <span class="ps_box int_id">
@@ -1186,18 +1187,46 @@ function checkId(event) {
 }
 
 // 추가) id 중복 체크하는 함수
-function openIdChk(){
+/* function openIdChk(){
 	window.name = "parentForm";
 	window.open("IdCheckForm.jsp",
 			"chkForm","width=500, height=300, resizable=no, scrollbars=no");
-}
+} */
 
 // 아이디 입력창에 값 입력시 hidden에 idUncheck를 세팅한다.        
 // 이렇게 하는 이유는 중복체크 후 다시 아이디 창이 새로운 아이디를 입력했을 때        
-// 다시 중복체크를 하도록 한다.        
+// 다시 중복체크를 하도록 한다.       
 function inputIdChk(){
 	document.joinform.idDuplication.value ="idUncheck";
-}
+} 
+
+//추가) id 중복 체크하는 함수(본화면에서) - name값
+$('input[name=MEMBER_ID]').focusout(function(){
+	let userId = $('input[name=MEMBER_ID]').val(); // input_id에 입력되는 값
+	console.log(userId);
+	
+	$.ajax({
+		url : "IdCheckService/idcheckAjax", 
+		type : "post",
+		data : {userId: userId},
+		dataType : 'json',
+		success : function(result){
+			if(result == 0){
+				$("#chkId").html('사용할 수 없는 아이디입니다.');
+				$("#chkId").attr('color','red');
+			} else{
+				$("#chkId").html('사용할 수 있는 아이디입니다.');
+				$("#chkId").attr('color','green');
+			} 
+		},
+		error : function(){
+			alert("서버요청실패");
+		}
+	})
+	 
+})
+
+
 
 
 /*================ 제이쿼리 ================*/

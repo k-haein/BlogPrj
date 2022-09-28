@@ -188,9 +188,26 @@ extends javax.servlet.http.HttpServlet{ // HttpServelet 클래스를 상속받�
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			
-		 
 		 }		
+		
+		//-------------------- id중복검사하는 membercheckAction 페이지 생성 ---------------------------				
+		 else if (command.equals("/member/IdCheckService/idcheckAjax")) {
+				action = new MemberIdCheckAction();
+				try {
+					forward = action.execute(req, resp); //받은 action을 뜯어서 SQL로 보내준다.
+					System.out.printf("MemberFrontController : idCheck - SQL DB로 보내는 로직 실행 \n",req, resp);
+					
+					
+					//메인페이지로 이동하자.
+					//forward.setRedirect(true);
+					//forward.setPath("../index.jsp");
+
+				} catch (Exception e) {
+					e.printStackTrace();
+					System.out.println("MemberFrontController : idCheck - SQL DB로 보내는 로직 실패(위에 에러)");
+				}
+		} //회원가입을 하면 회원 가입이 되어야하는데 이를 DB에 저장도 할 수 있어야함. -> jdbcUtil에서 연결하고 DB로 보냄.
+		 
 		
 		
 		

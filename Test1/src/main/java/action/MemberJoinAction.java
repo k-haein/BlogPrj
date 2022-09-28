@@ -34,8 +34,12 @@ public class MemberJoinAction implements Action { //Action을 implements 해줌
 		member.setMEMBER_MAIL(req.getParameter("MEMBER_MAIL"));
 		member.setMEMBER_PHONE(req.getParameter("MEMBER_PHONE"));
 		
+		
+
+		
 
 		MemberJoinService memberJoinService = new MemberJoinService();
+		
 		//서비스 svc에서 만들어준다. 아래에 회원가입 처리를 해주자.
 		
 		//=========================== 회원가입 처리 ================================
@@ -44,7 +48,7 @@ public class MemberJoinAction implements Action { //Action을 implements 해줌
 		ActionForward forward = null;
 		if (joinResult == false) { //회원가입 실패 시
 			resp.setContentType("text/html;charset=UTF-8");
-			PrintWriter out = resp.getWriter();
+			PrintWriter out = resp.getWriter(); //위에 있음
 			out.println("<script>");
 			out.println("alert('회원등록실패')");
 			out.println("history.back()");
