@@ -16,6 +16,7 @@ public class MemberIdCheckAction implements Action { // Action을 implements 해
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 
 
+		//참고했던 내용들...이건 서비스 안가도 될듯?
 //	 	String id = req.getParameter("MEMBER_ID");
 //	 	System.out.println("id 정보 : "+id);
 //	 	MemberDAO dao = MemberDAO.getInstance();

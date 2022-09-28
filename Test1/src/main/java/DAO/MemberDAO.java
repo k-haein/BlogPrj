@@ -250,7 +250,8 @@ public class MemberDAO {
 	public int checkId(String id) {  // 유저가 입력한 값을 매개변수로 한다
 		/*
 		회원가입 JSP에서 받아온 ID값과 기존 테이블의 ID값이 일치하는지 여부를
-		확인하기 위해 Select명령어를 사용해 DAO를 만들었습니다. Select값이 없는 경우 0을 출력하고,
+		확인하기 위해 Select명령어를 사용해 DAO를 만들었습니다. 
+		Select값이 없는 경우 0을 출력하고,
 		Select값이 있는 경우 1을 출력하도록 설정했습니다.*/
 		String sql = "select * from memberinfo where MEM_ID=?"; // 입력값이 테이블에 있는지 확인
 		

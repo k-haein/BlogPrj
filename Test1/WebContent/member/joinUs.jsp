@@ -44,13 +44,12 @@
                     <div class="join_row">
                         <h3 class="join_title"><label for="id">아이디</label></h3>
                         
-                        	<!-- 버튼 클릭 시 중복확인창을 띄운다. -->
-							<button type="button" onclick="openIdChk()"  class="btn_verify btn_primary">중복확인</button>
-							<font id = "chkId" size = "2">123dfsfdsf</font> <!-- 중복인지 글씨 써주기 -->
-							<!-- id 중복 체크 했는지 여부를 판단한다. value가 idUncheck면 중복체크 안한거임. -->
+                        	<!-- id 중복 체크 했는지 여부를 판단한다. value가 idUncheck면 중복체크 안한거임. -->
 							<input type="hidden" name="idDuplication" value="idUncheck"/>
+							
                         <span class="ps_box int_id">
-							<input type="text" id="id" name="MEMBER_ID" class="int" title="ID" maxlength="20" onkeydown="inputIdChk()">
+                        	<!-- ID 입력 및 포커스아웃되면 중복검사도 함. -->
+							<input type="text" id="id" name="MEMBER_ID" class="int" title="ID" maxlength="20">
                             <span class="step_url">@naver.com</span></span>
                         <span class="error_next_box" id="idMsg" style="display:none" aria-live="assertive"></span>
                     </div>
@@ -1117,8 +1116,9 @@ function showSuccessMsg(obj, msg) {
  obj.show();
 }
 
-/*================ id ================*/
-
+/*=================================================
+ 	id 필수입력 / 유효성검사 / 중복체크 기능 (220928 id 완료)
+=================================================*/
 
 //id = 'id' 인 input에 플래그가 있다. checkId 함수를 시행한다.
 $("#id").blur(function() {
@@ -1129,152 +1129,97 @@ $("#id").blur(function() {
 
 //id 체크 함수 시행
 function checkId(event) {
-    if(idFlag) return true;
-
+    if (idFlag) 
+        return true;
+    
     var id = $("#id").val();
     var oMsg = $("#idMsg");
     var oInput = $("#id");
-
-    if ( id == "") {
-        showErrorMsg(oMsg,"필수 정보입니다."); //에러메시지 출력
+	
+  	//============ [id 필수입력] ============
+    if (id == "") {
+        showErrorMsg(oMsg, "필수 정보입니다."); //에러메시지 출력
         setFocusToInputObject(oInput); //전송 플래그 조절
         return false;
     }
-
-    
- 
-    
+	
+  //============ [id 유효성검사] ============
     var isID = /^[a-z0-9][a-z0-9_\-]{4,19}$/;
-    if (!isID.test(id)) { 
-        showErrorMsg(oMsg,"5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다."); //에러메시지 출력
+    if (!isID.test(id)) {
+        showErrorMsg(oMsg, "5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다."); //에러메시지 출력
         setFocusToInputObject(oInput); //전송 플래그 조절
         return false;
     }
 
-    
-    idFlag = false;
-  //  var key = $("#token_sjoin").val();
-    /* 맨 상단에 숨겨져있는 input 들에 value 값이 있다. 해당 값을 포함해서 ajax로 서버에 전송해준다.
-    	id의 경우 토큰키를 포함해서 보내는 모양.*/
-          
-    	
-    	
-  	   //id 중복체크를 위해 input에 입력한 id값을 가져와서 ajax data로 반드시 보내줘야한다.
-    	let userId = $('input[name=MEMBER_ID]').val(); // input_id에 입력되는 값
-    	console.log("입력한 id값 : " + userId);
-    
-    	$.ajax({
-    		url : "IdCheckService/idcheckAjax",
-    		type : "post",
-    		data : {userId: userId},
-    		dataType : 'json',
-    		success : function(result){
-				//Action에서 받은 result값 : 1이면 사용가능, 0이면 중복됨
-    			if(result == 0){ //돌려받은 결과가 중복이 존재한다는 0이면
-    				$("#chkId").html('사용할 수 없는 아이디입니다.');
-    				$("#chkId").attr('color','red');
-    				
-    				showErrorMsg(oMsg, "이미 사용중이거나 탈퇴한 아이디입니다."); //에러메시지 출력
-                    setFocusToInputObject(oInput); //전송 플래그 조절
-    				
-    			} else{ //돌려받은 결과가 중복이 없다는 false이면
-    				$("#chkId").html('사용할 수 있는 아이디입니다.');
-    				$("#chkId").attr('color','green');
-    				
-    				
-                    
-                    if (event == "first") { //그리고 #id라면
-                        showSuccessMsg(oMsg, "멋진 아이디네요!"); //에러메시지 출력
-                    } else {
-                        hideMsg(oMsg); //메시지 숨김
-                    }
-                    idFlag = true; //id 플래그 1로 변경. 더이상 id alert 발생 x
-    			} 
-    		},
-    		error : function(){
-    			alert("서버요청실패");
-    		}
-    	})	
-    	
-   //추가) id 중복체크 안했을 경우
-        var joinform = document.joinform;
-        if (joinform.idDuplication.value!="idCheck") { //hidden으로 idUncheck 해놓고 체크하면 idCheck로 바뀌게 한다.
-            showErrorMsg(oMsg,"아이디 중복체크를 해주세요"); //에러메시지 출력
-            setFocusToInputObject(oInput); //전송 플래그 조절
-            return false; 
-        }
-   /*  $.ajax({
-        type:"GET",
-        url: "/user2/joinAjax?m=checkId&id=" + id + "&key=" + key,
-        success : function(data) {
-            var result = data.substr(4); //키 뭔지 모르곘지만 5자리부터 뒤에까지 결과
+  //============ [id 중복체크] ============
+   /* 
+   //기존 네이버 방식 : get
+   	idFlag = false;
+      var key = $("#token_sjoin").val();
+     기존 Naver에서는 맨 상단에 숨겨져있는 input 들에 value 값이 있다. 해당 값을 포함해서 ajax로 서버에 전송해준다.
+    	id의 경우 토큰키를 포함해서 보내는 모양. 하지만 나는 그렇게는 하지 않을 예정.
 
-            if (result == "Y") { //돌려받은 결과가 Y이면
+    	//기존 get 방식으로 보내는 naver 중복검사
+    	$.ajax({
+            type:"GET",
+            url: "/user2/joinAjax?m=checkId&id=" + id + "&key=" + key,
+            success : function(data) {
+                var result = data.substr(4);
+
+                if (result == "Y") {
+                    if (event == "first") {
+                        showSuccessMsg(oMsg, "멋진 아이디네요!");
+                    } else {
+                        hideMsg(oMsg);
+                    }
+                    idFlag = true;
+                } else {
+                    showErrorMsg(oMsg, "이미 사용중이거나 탈퇴한 아이디입니다.");
+                    setFocusToInputObject(oInput);
+                }
+            }
+        });
+
+    	*/
+	
+    // 추가) ajax 통신으로 DB 데이터 조회해서 중복확인하기!!!(post 방식) 
+    idFlag = false; //검사 flag
+    let userId = $('input[name=MEMBER_ID]').val(); // input_id에 입력되는 값
+    console.log("입력한 id값 : " + userId);
+	
+  	//id 중복체크를 위해 input에 입력한 id값을 가져와서 ajax data로 반드시 보내줘야한다.
+    $.ajax({
+        url: "IdCheckService/idcheckAjax",
+        type: "post",
+        data: {
+            userId: userId 
+        },
+        dataType: 'json',
+        success: function (result) {
+            //Action에서 받은 result값 : 1이면 사용가능, 0이면 중복됨
+            if (result == 0) { //돌려받은 결과가 중복이 존재한다는 0이면
+
+                showErrorMsg(oMsg, "이미 사용중이거나 탈퇴한 아이디입니다."); //에러메시지 출력
+                setFocusToInputObject(oInput); //전송 플래그 조절
+
+            } else { //돌려받은 결과가 중복이 없다는 false이면
+
                 if (event == "first") { //그리고 #id라면
                     showSuccessMsg(oMsg, "멋진 아이디네요!"); //에러메시지 출력
                 } else {
                     hideMsg(oMsg); //메시지 숨김
                 }
                 idFlag = true; //id 플래그 1로 변경. 더이상 id alert 발생 x
-            } else {
-                showErrorMsg(oMsg, "이미 사용중이거나 탈퇴한 아이디입니다."); //에러메시지 출력
-                setFocusToInputObject(oInput); //전송 플래그 조절
             }
+        },
+        error: function () {
+            alert("서버요청실패");
         }
-    }); */
+    })
     return true;
-}
+} //function checkId(event) { 끝
 
-// 추가) id 중복 체크하는 함수
-/* function openIdChk(){
-	window.name = "parentForm";
-	window.open("IdCheckForm.jsp",
-			"chkForm","width=500, height=300, resizable=no, scrollbars=no");
-} */
 
-// 아이디 입력창에 값 입력시 hidden에 idUncheck를 세팅한다.        
-// 이렇게 하는 이유는 중복체크 후 다시 아이디 창이 새로운 아이디를 입력했을 때        
-// 다시 중복체크를 하도록 한다.       
-function inputIdChk(){
-	document.joinform.idDuplication.value ="idUncheck";
-} 
-
-//추가) id 중복 체크하는 함수(본화면에서) - name값
-$('input[name=MEMBER_ID]').focusout(function(){
-	/* let userId = $('input[name=MEMBER_ID]').val(); // input_id에 입력되는 값
-	console.log(userId);
-	
-	$.ajax({
-		url : "IdCheckService/idcheckAjax", 
-		type : "post",
-	//	data : {userId: userId},
-		dataType : 'json',
-		success : function(result){
-			if(result == true){ //돌려받은 결과가 존재한다는 true이면
-				$("#chkId").html('사용할 수 없는 아이디입니다.');
-				$("#chkId").attr('color','red');
-				
-				if (event == "first") { //그리고 #id라면
-                    showSuccessMsg(oMsg, "멋진 아이디네요!"); //에러메시지 출력
-                } else {
-                    hideMsg(oMsg); //메시지 숨김
-                }
-                idFlag = true; //id 플래그 1로 변경. 더이상 id alert 발생 x
-				
-			} else{ //돌려받은 결과가 false이면
-				$("#chkId").html('사용할 수 있는 아이디입니다.');
-				$("#chkId").attr('color','green');
-				
-				showErrorMsg(oMsg, "이미 사용중이거나 탈퇴한 아이디입니다."); //에러메시지 출력
-                setFocusToInputObject(oInput); //전송 플래그 조절
-			} 
-		},
-		error : function(){
-			alert("서버요청실패");
-		}
-	}) */
-	 
-})
 
 
 
