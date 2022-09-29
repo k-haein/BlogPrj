@@ -206,6 +206,19 @@ extends javax.servlet.http.HttpServlet{ // HttpServelet 클래스를 상속받�
 				}
 		} //회원가입을 하면 회원 가입이 되어야하는데 이를 DB에 저장도 할 수 있어야함. -> jdbcUtil에서 연결하고 DB로 보냄.
 		 
+		//-------------------- id중복검사하는 membercheckAction 페이지 생성 ---------------------------				
+		 else if (command.equals("/member/IdCheckService/pwdcheckAjax")) {
+			//	action = new MemberPwdCheckAction(); //여기서부터 고치기
+				try {
+					forward = action.execute(req, resp); //받은 action을 뜯어서 SQL로 보내준다.(서버요청)
+					System.out.printf("MemberFrontController : idCheck - SQL DB로 보내는 로직 실행 \n",req, resp);
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+					System.out.println("MemberFrontController : idCheck - SQL DB로 보내는 로직 실패(위에 에러)");
+				}
+		} //회원가입을 하면 회원 가입이 되어야하는데 이를 DB에 저장도 할 수 있어야함. -> jdbcUtil에서 연결하고 DB로 보냄.
+		 
 		
 		
 		

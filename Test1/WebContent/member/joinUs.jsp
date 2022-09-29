@@ -1417,8 +1417,11 @@ $(document).ready(function() {
         });
     }
 /*================ 비밀번호 ================*/    
-    
-   //비밀번호1 체크 함수 시행 
+/*=================================================
+ 	비밀번호 필수입력 / 유효성검사 / 중복체크 기능
+=================================================*/    
+
+//비밀번호1 체크 함수 시행 
    function checkPswd1() {
         if(pwFlag) return true;
 
@@ -1429,11 +1432,14 @@ $(document).ready(function() {
         var oMsg = $("#pswd1Msg");
         var oInput = $("#pswd1");
 
+      	//============ [pwd1 필수입력] ============
         if (pw == "") { //공백제한
             showErrorMsg(oMsg,"필수 정보입니다.");
             setFocusToInputObject(oInput); //유효성 검증을 하고 전송 플래그를 조절한다.
             return false;
         }
+      	
+      	//============ [pwd1 유효성검사] ============
         if (isValidPasswd(pw) != true) { //유효성검사
             showPasswd1ImgByStep(oImg, oSpan, 1); //비밀번호 괜찮은지 오른쪽 자물쇠 이미지
             showErrorMsg(oMsg,"8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.");
@@ -1441,7 +1447,8 @@ $(document).ready(function() {
             return false;
         }
 
-        pwFlag = false;
+      	//============ [pwd1 중복체크] ============
+       /*  pwFlag = false;
         $.ajax({
             type:"GET",
             url: "/user2/joinAjax?m=checkPswd&id=" + escape(encodeURIComponent(id)) + "&pw=" + escape(encodeURIComponent(pw)) ,
@@ -1470,8 +1477,67 @@ $(document).ready(function() {
                 createRsaKey();
             }
         });
+        return true; */
+        
+        
+     // 추가) ajax 통신으로 DB 데이터 조회해서 중복확인하기!!!(post 방식) 
+        pwFlag = false; //검사 flag
+        let userPwd = $('input[name=MEMBER_PW]').val(); // input_id에 입력되는 값
+        console.log("입력한 id값 : " + userPwd);
+     	
+      	//id 중복체크를 위해 input에 입력한 id값을 가져와서 ajax data로 반드시 보내줘야한다.
+        $.ajax({
+            url: "IdCheckService/pwdcheckAjax",
+            type: "post",
+            data: {
+            	userPwd: userPwd 
+            },
+            dataType: 'json',
+            success: function (result) {
+              //===========================================
+                if (result == 1) {
+                    showPasswd1ImgByStep(oImg, oSpan, 1); //비밀번호 괜찮은지 오른쪽 자물쇠 이미지
+                    showErrorMsg(oMsg,"8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.");
+                    setFocusToInputObject(oInput);//유효성 검증을 하고 전송 플래그를 조절한다.
+                    return false;
+                } else if (result == 2) {
+                    showPasswd1ImgByStep(oImg, oSpan, 2);//비밀번호 괜찮은지 오른쪽 자물쇠 이미지
+                    showErrorMsg(oMsg,"8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.");
+                    setFocusToInputObject(oInput);
+                } else if (result == 3) {
+                    showPasswd1ImgByStep(oImg, oSpan, 3);//비밀번호 괜찮은지 오른쪽 자물쇠 이미지
+                    oMsg.hide();
+                } else if (result == 4) {
+                    showPasswd1ImgByStep(oImg, oSpan, 4);//비밀번호 괜찮은지 오른쪽 자물쇠 이미지
+                    oMsg.hide();
+                } else {
+                    showPasswd1ImgByStep(oImg, oSpan, 0);//비밀번호 괜찮은지 오른쪽 자물쇠 이미지
+                    oMsg.hide();
+                }
+                pwFlag = true;
+                createRsaKey();            
+            //===========================================
+            
+            	
+            },
+            error: function () {
+                alert("서버요청실패");
+            }
+        })
         return true;
-    }
+        
+        
+        
+        
+        
+    } //function checkPswd1() { 끝
+    
+    
+  
+    
+    
+    
+    
     
    //비밀번호 괜찮은지 오른쪽 자물쇠 이미지
    function showPasswd1ImgByStep(oImg, oSpan, step) {
