@@ -1483,11 +1483,11 @@ $(document).ready(function() {
      // 추가) ajax 통신으로 DB 데이터 조회해서 중복확인하기!!!(post 방식) 
         pwFlag = false; //검사 flag
         let userPwd = $('input[name=MEMBER_PW]').val(); // input_id에 입력되는 값
-        console.log("입력한 id값 : " + userPwd);
+        console.log("입력한 Pwd값 : " + userPwd);
      	
-      	//id 중복체크를 위해 input에 입력한 id값을 가져와서 ajax data로 반드시 보내줘야한다.
+      	
         $.ajax({
-            url: "IdCheckService/pwdcheckAjax",
+            url: "PwdCheckService/pwdcheckAjax",
             type: "post",
             data: {
             	userPwd: userPwd 
@@ -1495,6 +1495,11 @@ $(document).ready(function() {
             dataType: 'json',
             success: function (result) {
               //===========================================
+            	  
+            	  //왜 굳이 컨트롤러로 보내나? 이유는 보안상의 이유.
+            		// 백단에서 1004 이런거 안되게 한다던지, 그런 비밀번호 검증 쿼리가 있을듯.
+            		//그리고 감추기도 좋으니까. controller에서 직접 하려는데 안되면 action으로 보내자.
+            		//https://lky1.tistory.com/17
                 if (result == 1) {
                     showPasswd1ImgByStep(oImg, oSpan, 1); //비밀번호 괜찮은지 오른쪽 자물쇠 이미지
                     showErrorMsg(oMsg,"8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.");
