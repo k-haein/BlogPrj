@@ -14,6 +14,7 @@ import action.MemberIdCheckAction;
 import action.MemberJoinAction;
 import action.MemberListAction;
 import action.MemberLoginAction;
+import action.MemberPwdCheckAction;
 import action.MemberViewAction;
 import vo.ActionForward;
 
@@ -206,17 +207,19 @@ extends javax.servlet.http.HttpServlet{ // HttpServelet 클래스를 상속받�
 				}
 		} //회원가입을 하면 회원 가입이 되어야하는데 이를 DB에 저장도 할 수 있어야함. -> jdbcUtil에서 연결하고 DB로 보냄.
 		 
-		//-------------------- 비밀번호 검증하는 로직 ---------------------------				
-		 else if (command.equals("/member/IdCheckService/pwdcheckAjax")) {
-			 action = new MemberIdCheckAction();
-			 //큐칙은 보기 쉽게 자물쇠 아이콘에 tip을 달자!
+		//-------------------- 비밀번호를 검증하는 MemberPwdCheckAction 페이지 생성 ---------------------------				
+		 else if (command.equals("/member/PwdCheckService/pwdcheckAjax")) {
+			 action = new MemberPwdCheckAction();
+			 //규칙은 보기 쉽게 자물쇠 아이콘에 tip을 달자!
 				try {
-					forward = action.execute(req, resp); //받은 action을 뜯어서 SQL로 보내준다.(서버요청)
-					System.out.printf("MemberFrontController : idCheck - SQL DB로 보내는 로직 실행 \n",req, resp);
+					
+					
+					forward = action.execute(req, resp); //???
+					System.out.printf("MemberFrontController : pwdCheck 성공",req, resp);
 					
 				} catch (Exception e) {
 					e.printStackTrace();
-					System.out.println("MemberFrontController : idCheck - SQL DB로 보내는 로직 실패(위에 에러)");
+					System.out.println("MemberFrontController : pwdCheck 실패");
 				}
 		} 
 		

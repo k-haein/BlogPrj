@@ -1494,7 +1494,12 @@ $(document).ready(function() {
             },
             dataType: 'json',
             success: function (result) {
-              //===========================================
+            	
+
+            	console.log(result);
+            	console.log(typeof(result));
+            
+               //===========================================
             	  
             	  //왜 굳이 컨트롤러로 보내나? 이유는 보안상의 이유.
             		// 백단에서 1004 이런거 안되게 한다던지, 그런 비밀번호 검증 쿼리가 있을듯.
@@ -1524,7 +1529,7 @@ $(document).ready(function() {
             //===========================================
             
             	
-            },
+            }, 
             error: function () {
                 alert("서버요청실패");
             }
