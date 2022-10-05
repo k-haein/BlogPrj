@@ -1439,14 +1439,20 @@ $(document).ready(function() {
             return false;
         }
       	
-      	//============ [pwd1 유효성검사] ============
+      	//============ [pwd1 기본 유효성검사] ============
         if (isValidPasswd(pw) != true) { //유효성검사
             showPasswd1ImgByStep(oImg, oSpan, 1); //비밀번호 괜찮은지 오른쪽 자물쇠 이미지
-            showErrorMsg(oMsg,"8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.");
+            showErrorMsg(oMsg,"8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.(1)");
+            setFocusToInputObject(oInput); //유효성 검증을 하고 전송 플래그를 조절한다.
+            return false;
+        }else if(checkpswd1_sameNum(pw) == true){ //비밀번호 연속동일숫자가 맞으면
+        	showPasswd1ImgByStep(oImg, oSpan, 2); //비밀번호 괜찮은지 오른쪽 자물쇠 이미지
+            showErrorMsg(oMsg,"보안상 연속된 숫자는 제한합니다.");
             setFocusToInputObject(oInput); //유효성 검증을 하고 전송 플래그를 조절한다.
             return false;
         }
-
+        	
+        
       	//============ [pwd1 중복체크] ============
        /*  pwFlag = false;
         $.ajax({
@@ -1496,36 +1502,34 @@ $(document).ready(function() {
             success: function (result) {
             	
 
-            	console.log(result);
-            	console.log(typeof(result));
-            
                //===========================================
             	  
             	  //왜 굳이 컨트롤러로 보내나? 이유는 보안상의 이유.
             		// 백단에서 1004 이런거 안되게 한다던지, 그런 비밀번호 검증 쿼리가 있을듯.
             		//그리고 감추기도 좋으니까. controller에서 직접 하려는데 안되면 action으로 보내자.
             		//https://lky1.tistory.com/17
-                if (result == 1) {
+                if (result == 1) { //사용불가
                     showPasswd1ImgByStep(oImg, oSpan, 1); //비밀번호 괜찮은지 오른쪽 자물쇠 이미지
                     showErrorMsg(oMsg,"8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.");
                     setFocusToInputObject(oInput);//유효성 검증을 하고 전송 플래그를 조절한다.
                     return false;
-                } else if (result == 2) {
+                } else if (result == 2) { //위험
                     showPasswd1ImgByStep(oImg, oSpan, 2);//비밀번호 괜찮은지 오른쪽 자물쇠 이미지
-                    showErrorMsg(oMsg,"8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.");
+                    showErrorMsg(oMsg,"보안상 특정문구 및 숫자는 사용불가합니다.(1004, 8282, iloveyou, abc123 등)");
                     setFocusToInputObject(oInput);
-                } else if (result == 3) {
+                } else if (result == 3) { //보통
                     showPasswd1ImgByStep(oImg, oSpan, 3);//비밀번호 괜찮은지 오른쪽 자물쇠 이미지
-                    oMsg.hide();
-                } else if (result == 4) {
+                    showErrorMsg(oMsg,"영문자, 숫자, 특수문자 2가지 이상 섞어서 사용하세요.");
+                    setFocusToInputObject(oInput);
+                } else if (result == 4) { //안전
                     showPasswd1ImgByStep(oImg, oSpan, 4);//비밀번호 괜찮은지 오른쪽 자물쇠 이미지
                     oMsg.hide();
-                } else {
+                } else { //빈 자물쇠
                     showPasswd1ImgByStep(oImg, oSpan, 0);//비밀번호 괜찮은지 오른쪽 자물쇠 이미지
                     oMsg.hide();
                 }
                 pwFlag = true;
-                createRsaKey();            
+               // createRsaKey();            
             //===========================================
             
             	
@@ -1542,12 +1546,7 @@ $(document).ready(function() {
         
     } //function checkPswd1() { 끝
     
-    
-  
-    
-    
-    
-    
+ 
     
    //비밀번호 괜찮은지 오른쪽 자물쇠 이미지
    function showPasswd1ImgByStep(oImg, oSpan, step) {
@@ -1653,28 +1652,27 @@ $(document).ready(function() {
         }
     }
 
+  	//============ [pwd1 패스워드 검증] ============
     function isValidPasswd(str) {
-        var cnt = 0;
+    	console.log("입력한 Pwd값 검증1 : " + str);
         if (str == "") {
             return false;
         }
 
-        // check whether input value is included space or not
+        // 공백 걸러내기
         var retVal = checkSpace(str);
         if (retVal) {
             return false;
         }
+        
+     	// 8자리 미만 불가
         if (str.length < 8) {
             return false;
         }
-        for (var i = 0; i < str.length; ++i) {
-            if (str.charAt(0) == str.substring(i, i + 1))
-                ++cnt;
-        }
-        if (cnt == str.length) {
-            return false;
-        }
-
+     	
+     
+     	
+        //8~12자의 영문 소문자, 숫자, 특수문자만 사용 가능
         var isPW = /^[A-Za-z0-9`\-=\\\[\];',\./~!@#\$%\^&\*\(\)_\+|\{\}:"<>\?]{8,16}$/;
         if (!isPW.test(str)) {
             return false;
@@ -1682,6 +1680,24 @@ $(document).ready(function() {
 
         return true;
     }
+    	
+	//  연속된 숫자 불가
+  	function checkpswd1_sameNum(str){
+  		
+	
+    	var cnt = 0;
+  		 //연속된 숫자 불가
+        for (var i = 0; i < str.length; ++i) {
+            if (str.charAt(0) == str.substring(i, i + 1))
+                ++cnt;
+        }
+        if (cnt == str.length) {
+        	console.log("연속된 숫자");
+        	console.log("입력한 Pwd값 검증2 : " + str);
+           return true;
+        }
+    }
+  //============ [pwd1 패스워드 검증 끝] ============	   
 
     var isShift = false;
     function checkShiftUp(e) {
