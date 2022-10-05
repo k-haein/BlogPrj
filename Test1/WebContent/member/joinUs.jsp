@@ -1547,8 +1547,9 @@ $(document).ready(function() {
     } //function checkPswd1() { 끝
     
  
-    
-   //비밀번호 괜찮은지 오른쪽 자물쇠 이미지
+
+  	//============ [비밀번호 괜찮은지 오른쪽 자물쇠 이미지] ============
+
    function showPasswd1ImgByStep(oImg, oSpan, step) {
        if("IE8" == "") {
            return false;
@@ -1569,6 +1570,14 @@ $(document).ready(function() {
            oImg.attr("class", "ps_box int_pass_step4");
            oSpan.attr("class", "step_txt txt_green");
            oSpan.html("안전");
+       } else if(step == 5) { //pwd2 일치함 표시
+           oImg.attr("class", "ps_box int_pass_step4");
+           oSpan.attr("class", "step_txt txt_green");
+           oSpan.html("일치");
+       } else if(step == 6) { //pwd2 불일치 표시
+           oImg.attr("class", "ps_box int_pass_step1");
+           oSpan.attr("class", "step_txt txt_red");
+           oSpan.html("불일치");
        } else {
            oImg.attr("class", "ps_box int_pass");
            oSpan.attr("class", "step_txt");
@@ -1576,7 +1585,7 @@ $(document).ready(function() {
        }
    }
 
-   //비밀번호2 체크 함수 시행 
+ 	//============ [비밀번호2 체크 함수 시행 ] ============
     function checkPswd2() {
         var pswd1 = $("#pswd1");
         var pswd2 = $("#pswd2");
@@ -1595,7 +1604,7 @@ $(document).ready(function() {
         if (pswd1.val() != pswd2.val()) {
             showPasswd2ImgByDiff(oImg, false);
             showErrorMsg(oMsg,"비밀번호가 일치하지 않습니다.");
-            oBlind.html("설정하려는 비밀번호가 맞는지 확인하기 위해 다시 입력 해주세요.");
+            showPasswd1ImgByStep(oImg, oSpan, 3);//비밀번호 괜찮은지 오른쪽 자물쇠 이미지
             setFocusToInputObject(oInput);
             return false;
         } else {
@@ -1608,7 +1617,8 @@ $(document).ready(function() {
         return true;
     }
    
-   
+
+  	//============ [비밀번호2 괜찮은지 오른쪽 자물쇠 이미지] ============
     function showPasswd2ImgByDiff(oImg, diff) {
         if("IE8" == "") {
             return false;
@@ -1620,7 +1630,11 @@ $(document).ready(function() {
         }
     }
 
-   
+
+    
+    
+    
+    
     /* 비밀번호에서 키보드 키 관련 이벤트들 */
         //region 공통 함수
     function getLenChar(texts) {
