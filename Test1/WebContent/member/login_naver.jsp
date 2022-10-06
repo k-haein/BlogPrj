@@ -1,18 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-<meta charset="UTF-8">
-<title>로그인</title>
-
-
-<link rel="stylesheet" href='../resources/css/login.css' />
-
-
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="[네이버: 로그인]">
+    <meta property="og:description" content="안전한 로그인을 위해 주소창의 URL과 자물쇠 마크를 확인하세요!">
+    <meta property="og:image" content="https://ssl.pstatic.net/sstatic/search/common/og_v3.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="1200">
+    <title>네이버 : 로그인</title>
+    <link rel="stylesheet" type="text/css" href="/login/css/global/desktop/w_20220216.css?20210812">
 </head>
 <body>
-	<div id="wrap" class="wrap">
+<div id="wrap" class="wrap">
     <div class="u_skip"><a href="https://www.naver.com">본문 바로가기</a></div>
     <header class="header" role="banner" >
         <div class="header_inner">

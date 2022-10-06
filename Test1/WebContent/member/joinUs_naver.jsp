@@ -1,13 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-<meta charset="UTF-8">
-<title>회원가입</title>
-
-<link rel="stylesheet" href='../resources/css/member.css' />
-
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>네이버 : 회원가입</title>
+	<link rel="stylesheet" href="/inc/user/css/V2Join.css?20220511">
+	<script type="text/javascript" src="https://nid.naver.com/js/clickcr.js"></script>
+	<script type="text/javascript" src="/inc/common/js/lcs_nclicks.js?r=20220411"></script>
+	<script type="text/javascript">lcs_do();</script>
+	<meta name="decorator" content="V2_JOIN">
 </head>
 <body>
 <div id="wrap">
@@ -23,15 +26,15 @@
 </div>
 <!-- // header -->
 
-<form name="joinform" action="./memberJoinAction.me" method="post">
-  <!--  <input type="hidden" id="token_sjoin" name="token_sjoin" value="cKVHbTTyCMCAj2s3">
+<form id="join_form" method="post" action="/user2/V2Join?m=end">
+    <input type="hidden" id="token_sjoin" name="token_sjoin" value="SxU7bg3AGM1hPfO2">
     <input type="hidden" id="encPswd" name="encPswd" value="">
     <input type="hidden" id="encKey" name="encKey" value="">
     <input type="hidden" id="birthday" name="birthday" value="">
     <input type="hidden" id="joinMode" name="joinMode" value="unreal">
     <input type="hidden" id="pbirthday" name="pbirthday" value="">
     <input type="hidden" id="ipinFlag" name="ipinFlag" value="">
-    <input type="hidden" id="nid_kb2" name="nid_kb2" value=""> -->  
+    <input type="hidden" id="nid_kb2" name="nid_kb2" value="">
 
     <!-- container -->
     <div id="container" role="main">
@@ -43,10 +46,8 @@
                 <div class="row_group">
                     <div class="join_row">
                         <h3 class="join_title"><label for="id">아이디</label></h3>
-                        	
                         <span class="ps_box int_id">
-                        	<!-- ID 입력 및 포커스아웃되면 중복검사도 함. -->
-							<input type="text" id="id" name="MEMBER_ID" class="int" title="ID" maxlength="20">
+							<input type="text" id="id" name="id" class="int" title="ID" maxlength="20">
                             <span class="step_url">@naver.com</span></span>
                         <span class="error_next_box" id="idMsg" style="display:none" aria-live="assertive"></span>
                     </div>
@@ -54,14 +55,14 @@
                     <div class="join_row">
                         <h3 class="join_title"><label for="pswd1">비밀번호</label></h3>
                         <span class="ps_box int_pass" id="pswd1Img">
-							<input type="password" id="pswd1" name="MEMBER_PW" class="int" title="비밀번호 입력" aria-describedby="pswd1Msg" maxlength="20">
+							<input type="password" id="pswd1" name="pswd1" class="int" title="비밀번호 입력" aria-describedby="pswd1Msg" maxlength="20">
                             <span class="lbl"><span id="pswd1Span" class="step_txt"></span></span>
 						</span>
                         <span class="error_next_box" id="pswd1Msg" style="display:none" aria-live="assertive">5~12자의 영문 소문자, 숫자와 특수기호(_)만 사용 가능합니다.</span>
 
                         <h3 class="join_title"><label for="pswd2">비밀번호 재확인</label></h3>
                         <span class="ps_box int_pass_check" id="pswd2Img">
-							<input type="password" id="pswd2" name="MEMBER_PW_cfm" class="int" title="비밀번호 재확인 입력" aria-describedby="pswd2Blind" maxlength="20">
+							<input type="password" id="pswd2" name="pswd2" class="int" title="비밀번호 재확인 입력" aria-describedby="pswd2Blind" maxlength="20">
 							<span id="pswd2Blind" class="wa_blind">설정하려는 비밀번호가 맞는지 확인하기 위해 다시 입력 해주세요.</span>
 						</span>
                         <span class="error_next_box" id="pswd2Msg" style="display:none" aria-live="assertive"></span>
@@ -76,7 +77,7 @@
                     <div class="join_row">
                         <h3 class="join_title"><label for="name">이름</label></h3>
                         <span class="ps_box box_right_space">
-							<input type="text" id="name" name="MEMBER_NAME" title="이름" class="int" maxlength="40">
+							<input type="text" id="name" name="name" title="이름" class="int" maxlength="40">
 						</span>
                         <span class="error_next_box" id="nameMsg" style="display:none" aria-live="assertive"></span>
                     </div>
@@ -87,12 +88,12 @@
                         <div class="bir_wrap">
                             <div class="bir_yy">
 								<span class="ps_box">
-									<input type="text" name="MEMBER_BIR_YY" id="yy" placeholder="년(4자)" aria-label="년(4자)" class="int" maxlength="4">
+									<input type="text" id="yy" placeholder="년(4자)" aria-label="년(4자)" class="int" maxlength="4">
 								</span>
                             </div>
-                            <div class="bir_mm"> 
+                            <div class="bir_mm">
 								<span class="ps_box">
-									<select id="mm" name="MEMBER_BIR_MM" class="sel" aria-label="월">
+									<select id="mm" class="sel" aria-label="월">
 										<option value="">월</option>
 										  	 			<option value="01">
                                                             1
@@ -135,7 +136,7 @@
                             </div>
                             <div class=" bir_dd">
 								<span class="ps_box">
-									<input type="text" id="dd" name="MEMBER_BIR_DD" placeholder="일" aria-label="일" class="int" maxlength="2">
+									<input type="text" id="dd" placeholder="일" aria-label="일" class="int" maxlength="2">
 									<label for="dd" class="lbl"></label>
 								</span>
                             </div>
@@ -146,7 +147,7 @@
                     <div class="join_row join_sex">
                         <h3 class="join_title"><label for="gender">성별</label></h3>
                         <div class="ps_box gender_code">
-                            <select id="gender" name="MEMBER_GENDER" class="sel" aria-label="성별">
+                            <select id="gender" name="gender" class="sel" aria-label="성별">
                                 <option value="" selected>성별</option>
                                         <option value="M">남자</option>
                                         <option value="F">여자</option>
@@ -159,7 +160,7 @@
                     <div class="join_row join_email">
                         <h3 class="join_title"><label for="email">본인 확인 이메일<span class="terms_choice">(선택)</span></label></h3>
                         <span class="ps_box int_email box_right_space">
-							<input type="text" id="email" name="MEMBER_MAIL" placeholder="선택입력" aria-label="선택입력" class="int" maxlength="100">
+							<input type="text" id="email" name="email" placeholder="선택입력" aria-label="선택입력" class="int" maxlength="100">
 						</span>
                     </div>
                     <span class="error_next_box" id="emailMsg" style="display:none" aria-live="assertive"></span>
@@ -817,7 +818,7 @@
                     </div>
                     <div class="int_mobile_area">
 						<span class="ps_box int_mobile">
-							<input type="tel" id="phoneNo" name="MEMBER_PHONE" placeholder="전화번호 입력" aria-label="전화번호 입력" class="int" maxlength="16">
+							<input type="tel" id="phoneNo" name="phoneNo" placeholder="전화번호 입력" aria-label="전화번호 입력" class="int" maxlength="16">
 							<label for="phoneNo" class="lbl"></label>
 						</span>
                         <a href="#" class="btn_verify btn_primary" id="btnSend" role="button">
@@ -986,7 +987,7 @@
                 </div>
                 <!-- tg-display -->
 
-                <!-- tg-display=>{"보호자 아이핀 인증": [], "오류 메시지": []} 
+                <!-- tg-display=>{"보호자 아이핀 인증": [], "오류 메시지": []} -->
                 <div class="join_minor tab" id="pipinDiv" style="display:none">
                     <ul class="tab_m" role="tablist">
                         <li class="m1" role="presentation"><a href="#" id="tabPrtsMobile" role="tab" aria-selected="false" aria-controls="wa_tab_phone">휴대전화인증</a></li>
@@ -1031,11 +1032,10 @@
                             <span class="error_next_box" id="ijoinMsg" style="display:none" aria-live="assertive">필수 정보입니다.</span>
                         </div>
                     </div>
-                </div>-->
+                </div>
 
                 <div class="btn_area">
-                <!--  type="button" id="btnJoin" 제거함 -->
-                    <button class="btn_type btn_primary" href="javascript:joinUs.submit()"><span>가입하기</span></button>
+                    <button type="button" id="btnJoin" class="btn_type btn_primary"><span>가입하기</span></button>
                 </div>
             </div>
         </div>
@@ -1043,197 +1043,44 @@
     <!-- // container -->
 </form>
 
-<!--가상주민번호-아이핀 팝업페이지 호출시 필요한 form
+<!--가상주민번호-아이핀 팝업페이지 호출시 필요한 form-->
 <form name="form_ipin" method="post" action="">
     <input type="hidden" name="m" value="pubmain">
-    <input type="hidden" name="enc_data" value="AgEER0Q0NijBa68qzwbPgFHU41bMd0AOfMnULaZopngC3L0vP99NVDcwpU7+LXl1tLkx5LnMBvCt17uIDUrPEcu66CpyIz4qyNlzs1VhI9/FfUp7WxVUUFlilSQZB3tNcIF4QUi03yyW8oSG9K7xNGagQHlpqxbnDeMh7uLAcLJ04XhV/crngCMaIISO3lPtJgke1NY9G8xFn1RvuDUzLzlFEjmcf3OrViOoEbH6BV4v1rh6dGRRPJTJ3ndBhtHOihMh0API0kz/dxOK1ZZhIDMKhUi/8JRW9tcrcmeEgNSji3LMwYoCmzGV8aMl23bsxb2xHCUtMA==">
+    <input type="hidden" name="enc_data" value="AgEER0Q0NgowCRbVkK76xE2Zrly+FpstjdlAN3+TI110CvvKXDoOVDcwpU7+LXl1tLkx5LnMBvCt17uIDUrPEcu66CpyIz7+vbbIvQYLPFe/cYGpKH0C95zsRKhAZKJ2kNfV/u8Smx9N/QtOuPS4DDZmlFM5sKb5Szv9De3lqe7pRxtmx0XgsUtSAqnhpulubwBF+laRVHlzw1A1hh9xEvLR/jhAe3QF7cFi3YwWQtlqwggCzWYe4L9h8G6C7TfKuKyPH1J+/NdHtqHrEnRugOfKhY0KOyPfSxswnG4eHuc8lq6g/Ksq7ITj2M2nDqx3nLbTF4g19Q==">
 </form>
--->
-	<!-- footer -->
-	<div id="footer" role="contentinfo">
-		<ul>
-			<li><a href="http://policy.naver.com/rules/service.html">이용약관</a></li>
-			<li><strong><a href="http://policy.naver.com/policy/privacy.html">개인정보처리방침</a></strong></li>
-			<li><a href="http://policy.naver.com/rules/disclaimer.html">책임의 한계와 법적고지</a></li>
-			<li><a href="https://help.naver.com/support/alias/membership/p.membership/p.membership_26.naver" target="_blank" >회원정보 고객센터 </a></li>
-		</ul>
-		<address>
-			<em><a href="https://www.navercorp.com/" target="_blank" class="logo"><span class="blind">naver</span></a></em>
-			<em class="copy">Copyright</em>
-			<em class="u_cri">&copy;</em>
-			<a href="https://www.navercorp.com/" target="_blank" class="u_cra">NAVER Corp.</a>
-			<span class="all_r">All Rights Reserved.</span>
-		</address>
-	</div>
-	<!-- //footer -->
-</div>
-<!-- 
+
 <script type="text/javascript" src="https://nid.naver.com/inc/common/js/rsaAll.js"></script>
 <script type="text/javascript" src="/inc/common/js/lua.js?r=20220411"></script>
 <script type="text/javascript" src="/inc/common/js/jquery.min.js"></script>
-<script type="text/javascript" src="/inc/common/js/bvsd.1.3.6.js"></script> -->
-
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="/inc/common/js/bvsd.1.3.7.js"></script>
 <script type="text/JavaScript">
+    //region define, setter
+    var idFlag = false;
+    var pwFlag = false;
+    var authFlag = false;
+    var submitFlag = false;
 
-//region define, setter
-//필요한 플래그들을 세운다.
-var idFlag = false;
-var pwFlag = false;
-var authFlag = false;
-var submitFlag = false;
-
-/*================ 공통 작용 부분 ================*/
-
-//유효성 검증을 하고 전송 플래그를 조절한다. 완료 후 다시 input에 포커스.
-function setFocusToInputObject(obj) {
- if(submitFlag) {
-     submitFlag = false;
-     obj.focus();
- }
-}
-
-//경고 메시지 숨기는 함수
-function hideMsg(obj) {
- obj.hide();
-}
-
-
-//에러 메시지 발생
-function showErrorMsg(obj, msg) {
- obj.attr("class", "error_next_box");
- obj.html(msg);
- obj.show();
-}
-
-//성공 메시지 발생
-function showSuccessMsg(obj, msg) {
- obj.attr("class", "error_next_box green");
- obj.html(msg);
- obj.show();
-}
-
-/*=================================================
- 	id 필수입력 / 유효성검사 / 중복체크 기능 (220928 id 완료)
-=================================================*/
-
-//id = 'id' 인 input에 플래그가 있다. checkId 함수를 시행한다.
-$("#id").blur(function() {
-    idFlag = false;
-    checkId("first");
-});
-
-
-//id 체크 함수 시행
-function checkId(event) {
-    if (idFlag) 
-        return true;
-    
-    var id = $("#id").val();
-    var oMsg = $("#idMsg");
-    var oInput = $("#id");
-	
-  	//============ [id 필수입력] ============
-    if (id == "") {
-        showErrorMsg(oMsg, "필수 정보입니다."); //에러메시지 출력
-        setFocusToInputObject(oInput); //전송 플래그 조절
-        return false;
-    }
-	
-  //============ [id 유효성검사] ============
-    var isID = /^[a-z0-9][a-z0-9_\-]{4,19}$/;
-    if (!isID.test(id)) {
-        showErrorMsg(oMsg, "5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다."); //에러메시지 출력
-        setFocusToInputObject(oInput); //전송 플래그 조절
-        return false;
-    }
-
-  //============ [id 중복체크] ============
-   /* 
-   //기존 네이버 방식 : get
-   	idFlag = false;
-      var key = $("#token_sjoin").val();
-     기존 Naver에서는 맨 상단에 숨겨져있는 input 들에 value 값이 있다. 해당 값을 포함해서 ajax로 서버에 전송해준다.
-    	id의 경우 토큰키를 포함해서 보내는 모양. 하지만 나는 그렇게는 하지 않을 예정.
-
-    	//기존 get 방식으로 보내는 naver 중복검사
-    	$.ajax({
-            type:"GET",
-            url: "/user2/joinAjax?m=checkId&id=" + id + "&key=" + key,
-            success : function(data) {
-                var result = data.substr(4);
-
-                if (result == "Y") {
-                    if (event == "first") {
-                        showSuccessMsg(oMsg, "멋진 아이디네요!");
-                    } else {
-                        hideMsg(oMsg);
-                    }
-                    idFlag = true;
-                } else {
-                    showErrorMsg(oMsg, "이미 사용중이거나 탈퇴한 아이디입니다.");
-                    setFocusToInputObject(oInput);
-                }
-            }
-        });
-
-    	*/
-	
-    // 추가) ajax 통신으로 DB 데이터 조회해서 중복확인하기!!!(post 방식) 
-    idFlag = false; //검사 flag
-    let userId = $('input[name=MEMBER_ID]').val(); // input_id에 입력되는 값
-    console.log("입력한 id값 : " + userId);
-	
-  	//id 중복체크를 위해 input에 입력한 id값을 가져와서 ajax data로 반드시 보내줘야한다.
-    $.ajax({
-        url: "IdCheckService/idcheckAjax",
-        type: "post",
-        data: {
-            userId: userId 
-        },
-        dataType: 'json',
-        success: function (result) {
-            //Action에서 받은 result값 : 1이면 사용가능, 0이면 중복됨
-            if (result == 0) { //돌려받은 결과가 중복이 존재한다는 0이면
-
-                showErrorMsg(oMsg, "이미 사용중이거나 탈퇴한 아이디입니다."); //에러메시지 출력
-                setFocusToInputObject(oInput); //전송 플래그 조절
-
-            } else { //돌려받은 결과가 중복이 없다는 false이면
-
-                if (event == "first") { //그리고 #id라면
-                    showSuccessMsg(oMsg, "멋진 아이디네요!"); //에러메시지 출력
-                } else {
-                    hideMsg(oMsg); //메시지 숨김
-                }
-                idFlag = true; //id 플래그 1로 변경. 더이상 id alert 발생 x
-            }
-        },
-        error: function () {
-            alert("서버요청실패");
+    var properties = {
+        keyboard: [{id:"id"}, {id:"pswd1", secureMode:true}, {id:"pswd2", secureMode:true}],
+        modeProperties: {
+            mode: 4
         }
-    })
-    return true;
-} //function checkId(event) { 끝
+    };
+    var desk = new sofa.Koop(properties);
 
+    $(document).ready(function() {
+        defaultScript();
 
-
-
-
-
-/*================ 제이쿼리 ================*/
-
-// 비밀번호 체크 제이쿼리
-$(document).ready(function() {
-        defaultScript(); //span 영역 클릭하면 포커스 가게 하는 함수
-
-        if ($("#yy").val() != "") { //년도 비어있는지 먼저 체크
-        	
+        if ($("#yy").val() != "") {
             checkBirthday();
         }
 
-        
-		//비밀번호 1 체크 함수 시행
+        //region unreal id
+        $("#id").blur(function() {
+            idFlag = false;
+            checkId("first");
+        });
+
         $("#pswd1").blur(function() {
             pwFlag = false;
             checkPswd1();
@@ -1292,7 +1139,7 @@ $(document).ready(function() {
         });
 
         $("#btnSend").click(function() {
-            sendSmsButton(); //이게 핸드폰 인증 버튼 클릭
+            sendSmsButton();
             return false;
         });
 
@@ -1357,8 +1204,8 @@ $(document).ready(function() {
         });
 
         $("#btnPrtsSend").click(function() {
-            sendPrtsSmsButton(); //얜 아님 모바일이네.
-          //  return false;
+            sendPrtsSmsButton();
+            return false;
         })
 
         $("#pauthNo").blur(function() {
@@ -1406,23 +1253,148 @@ $(document).ready(function() {
     });
     //endregion
 
-    
- function defaultScript() {
-        $('.ps_box').click(function() {
-            $(this).children('input').focus();
-            $(this).addClass('focus');
-        }).focusout(function() {
-            var welInputText = $('.ps_box');
-            welInputText.removeClass('focus');
-        });
-    }
-/*================ 비밀번호 ================*/    
-/*=================================================
- 	비밀번호 필수입력 / 유효성검사 / 중복체크 기능
-=================================================*/    
+    //region mainSubmit
+    function mainSubmit() {
+        var joinMode = $("#joinMode").val();
 
-//비밀번호1 체크 함수 시행 
-   function checkPswd1() {
+        if(joinMode == "juniverMobile") {
+            if (!checkPrtsMobileInput()) {
+                submitOpen();
+                return false;
+            }
+        } else if(joinMode == "juniverIpin") {
+            if (!checkPrtsIpinInput()) {
+                submitOpen();
+                return false;
+            }
+        } else {
+            if (!checkUnrealInput()) {
+                submitOpen();
+                return false;
+            }
+        }
+
+        if(idFlag && pwFlag && authFlag) {
+            try {
+                desk.f(function(a) {
+                    $("#nid_kb2").val(a);
+                    $("#join_form").submit();
+                });
+            } catch (e) {
+                $("#nid_kb2").val("join v2 error: " + e.name + ", " + e.message);
+                $("#join_form").submit();
+            }
+        } else {
+            submitOpen();
+            return false;
+        }
+    }
+
+    function checkUnrealInput() {
+        if (checkId('join')
+                & checkPswd1()
+                & checkPswd2()
+                & checkName()
+                & checkBirthday()
+                & checkGender()
+                & checkEmail()
+                & checkPhoneNo()
+                & checkAuthNo()
+        ) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function checkPrtsMobileInput() {
+        if (checkId('join')
+                & checkPswd1()
+                & checkPswd2()
+                & checkName()
+                & checkBirthday()
+                & checkGender()
+                & checkEmail()
+                & checkPrtsAgree()
+                & checkPrtsName()
+                & checkPrtsBirthday()
+                & checkPrtsGender()
+                & checkPrtsPhoneNo()
+                & checkPrtsAuthNo()
+        ) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function checkPrtsIpinInput() {
+        if (checkId('join')
+                & checkPswd1()
+                & checkPswd2()
+                & checkName()
+                & checkBirthday()
+                & checkGender()
+                & checkEmail()
+                & checkIpinAgree()
+                & checkIpinPopup()
+                & checkIpinPhoneNo()
+                & checkIpinAuthNo()
+        ) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    //endregion
+
+    //region unreal 가입
+    function checkId(event) {
+        if(idFlag) return true;
+
+        var id = $("#id").val();
+        var oMsg = $("#idMsg");
+        var oInput = $("#id");
+
+        if ( id == "") {
+            showErrorMsg(oMsg,"필수 정보입니다.");
+            setFocusToInputObject(oInput);
+            return false;
+        }
+
+        var isID = /^[a-z0-9][a-z0-9_\-]{4,19}$/;
+        if (!isID.test(id)) {
+            showErrorMsg(oMsg,"5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.");
+            setFocusToInputObject(oInput);
+            return false;
+        }
+
+        idFlag = false;
+        var key = $("#token_sjoin").val();
+                
+        $.ajax({
+            type:"GET",
+            url: "/user2/joinAjax?m=checkId&id=" + id + "&key=" + key,
+            success : function(data) {
+                var result = data.substr(4);
+
+                if (result == "Y") {
+                    if (event == "first") {
+                        showSuccessMsg(oMsg, "멋진 아이디네요!");
+                    } else {
+                        hideMsg(oMsg);
+                    }
+                    idFlag = true;
+                } else {
+                    showErrorMsg(oMsg, "이미 사용중이거나 탈퇴한 아이디입니다.");
+                    setFocusToInputObject(oInput);
+                }
+            }
+        });
+        return true;
+    }
+
+    function checkPswd1() {
         if(pwFlag) return true;
 
         var id = $("#id").val();
@@ -1432,152 +1404,50 @@ $(document).ready(function() {
         var oMsg = $("#pswd1Msg");
         var oInput = $("#pswd1");
 
-      	//============ [pwd1 필수입력] ============
-        if (pw == "") { //공백제한
+        if (pw == "") {
             showErrorMsg(oMsg,"필수 정보입니다.");
-            setFocusToInputObject(oInput); //유효성 검증을 하고 전송 플래그를 조절한다.
+            setFocusToInputObject(oInput);
             return false;
         }
-      	
-      	//============ [pwd1 기본 유효성검사] ============
-        if (isValidPasswd(pw) != true) { //유효성검사
-            showPasswd1ImgByStep(oImg, oSpan, 1); //비밀번호 괜찮은지 오른쪽 자물쇠 이미지
+        if (isValidPasswd(pw) != true) {
+            showPasswd1ImgByStep(oImg, oSpan, 1);
             showErrorMsg(oMsg,"8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.");
-            setFocusToInputObject(oInput); //유효성 검증을 하고 전송 플래그를 조절한다.
-            return false;
-        }else if(checkpswd1_sameNum(pw) == true){ //비밀번호 연속동일숫자가 맞으면
-        	showPasswd1ImgByStep(oImg, oSpan, 2); //비밀번호 괜찮은지 오른쪽 자물쇠 이미지
-            showErrorMsg(oMsg,"보안상 연속된 숫자는 제한합니다.");
-            setFocusToInputObject(oInput); //유효성 검증을 하고 전송 플래그를 조절한다.
+            setFocusToInputObject(oInput);
             return false;
         }
-        	
-        
-      	//============ [pwd1 중복체크] ============
-       /*  pwFlag = false;
+
+        pwFlag = false;
         $.ajax({
             type:"GET",
             url: "/user2/joinAjax?m=checkPswd&id=" + escape(encodeURIComponent(id)) + "&pw=" + escape(encodeURIComponent(pw)) ,
             success : function(data) {
                 var result = data.substr(4);
                 if (result == 1) {
-                    showPasswd1ImgByStep(oImg, oSpan, 1); //비밀번호 괜찮은지 오른쪽 자물쇠 이미지
+                    showPasswd1ImgByStep(oImg, oSpan, 1);
                     showErrorMsg(oMsg,"8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.");
-                    setFocusToInputObject(oInput);//유효성 검증을 하고 전송 플래그를 조절한다.
+                    setFocusToInputObject(oInput);
                     return false;
                 } else if (result == 2) {
-                    showPasswd1ImgByStep(oImg, oSpan, 2);//비밀번호 괜찮은지 오른쪽 자물쇠 이미지
+                    showPasswd1ImgByStep(oImg, oSpan, 2);
                     showErrorMsg(oMsg,"8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.");
                     setFocusToInputObject(oInput);
                 } else if (result == 3) {
-                    showPasswd1ImgByStep(oImg, oSpan, 3);//비밀번호 괜찮은지 오른쪽 자물쇠 이미지
+                    showPasswd1ImgByStep(oImg, oSpan, 3);
                     oMsg.hide();
                 } else if (result == 4) {
-                    showPasswd1ImgByStep(oImg, oSpan, 4);//비밀번호 괜찮은지 오른쪽 자물쇠 이미지
+                    showPasswd1ImgByStep(oImg, oSpan, 4);
                     oMsg.hide();
                 } else {
-                    showPasswd1ImgByStep(oImg, oSpan, 0);//비밀번호 괜찮은지 오른쪽 자물쇠 이미지
+                    showPasswd1ImgByStep(oImg, oSpan, 0);
                     oMsg.hide();
                 }
                 pwFlag = true;
-                createRsaKey(); //보안키 생성
+                createRsaKey();
             }
         });
-        return true; */
-        
-        
-     // 추가) ajax 통신으로 DB 데이터 조회해서 중복확인하기!!!(post 방식) 
-        pwFlag = false; //검사 flag
-        let userPwd = $('input[name=MEMBER_PW]').val(); // input_id에 입력되는 값
-        console.log("입력한 Pwd값 : " + userPwd);
-     	
-      	
-        $.ajax({
-            url: "PwdCheckService/pwdcheckAjax",
-            type: "post",
-            data: {
-            	userPwd: userPwd 
-            },
-            dataType: 'json',
-            success: function (result) {
-            	
-
-               //===========================================
-            	  
-            	  //왜 굳이 컨트롤러로 보내나? 이유는 보안상의 이유.
-            		// 백단에서 1004 이런거 안되게 한다던지, 그런 비밀번호 검증 쿼리가 있을듯.
-            		//그리고 감추기도 좋으니까. controller에서 직접 하려는데 안되면 action으로 보내자.
-            		//https://lky1.tistory.com/17
-                if (result == 1) { //사용불가
-                    showPasswd1ImgByStep(oImg, oSpan, 1); //비밀번호 괜찮은지 오른쪽 자물쇠 이미지
-                    showErrorMsg(oMsg,"8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.");
-                    setFocusToInputObject(oInput);//유효성 검증을 하고 전송 플래그를 조절한다.
-                    return false;
-                } else if (result == 2) { //위험
-                    showPasswd1ImgByStep(oImg, oSpan, 2);//비밀번호 괜찮은지 오른쪽 자물쇠 이미지
-                    showErrorMsg(oMsg,"보안상 특정문구 및 숫자는 사용불가합니다.(1004, 8282, iloveyou, abc123 등)");
-                    setFocusToInputObject(oInput);
-                } else if (result == 3) { //보통
-                    showPasswd1ImgByStep(oImg, oSpan, 3);//비밀번호 괜찮은지 오른쪽 자물쇠 이미지
-                    showErrorMsg(oMsg,"영문자, 숫자, 특수문자 2가지 이상 섞어서 사용하세요.");
-                    setFocusToInputObject(oInput);
-                } else if (result == 4) { //안전
-                    showPasswd1ImgByStep(oImg, oSpan, 4);//비밀번호 괜찮은지 오른쪽 자물쇠 이미지
-                    oMsg.hide();
-                } else { //빈 자물쇠
-                    showPasswd1ImgByStep(oImg, oSpan, 0);//비밀번호 괜찮은지 오른쪽 자물쇠 이미지
-                    oMsg.hide();
-                }
-                pwFlag = true;
-                        
-            //===========================================
-            
-            	
-            }, 
-            error: function () {
-                alert("서버요청실패");
-            }
-        })
         return true;
-        
-        
-        
-        
-        
-    } //function checkPswd1() { 끝
-    
- 
+    }
 
-  	//============ [비밀번호 괜찮은지 오른쪽 자물쇠 이미지] ============
-
-   function showPasswd1ImgByStep(oImg, oSpan, step) {
-       if("IE8" == "") {
-           return false;
-       }
-       if(step == 1) {
-           oImg.attr("class", "ps_box int_pass_step1");
-           oSpan.attr("class", "step_txt txt_red");
-           oSpan.html("사용불가");
-       } else if(step == 2) {
-           oImg.attr("class", "ps_box int_pass_step2");
-           oSpan.attr("class", "step_txt txt_orange");
-           oSpan.html("위험");
-       } else if(step == 3) {
-           oImg.attr("class", "ps_box int_pass_step3");
-           oSpan.attr("class", "step_txt txt_yellow");
-           oSpan.html("보통");
-       } else if(step == 4) {
-           oImg.attr("class", "ps_box int_pass_step4");
-           oSpan.attr("class", "step_txt txt_green");
-           oSpan.html("안전");
-       } else {
-           oImg.attr("class", "ps_box int_pass");
-           oSpan.attr("class", "step_txt");
-           oSpan.html("");
-       }
-   }
-
- 	//============ [비밀번호2 체크 함수 시행 -> 자물쇠 말고 아래 글씨로만 표현] ============
     function checkPswd2() {
         var pswd1 = $("#pswd1");
         var pswd2 = $("#pswd2");
@@ -1587,166 +1457,28 @@ $(document).ready(function() {
         var oInput = $("#pswd2");
 
         if (pswd2.val() == "") {
-     
+            showPasswd2ImgByDiff(oImg, false);
             showErrorMsg(oMsg,"필수 정보입니다.");
             oBlind.html("설정하려는 비밀번호가 맞는지 확인하기 위해 다시 입력 해주세요.");
             setFocusToInputObject(oInput);
             return false;
         }
         if (pswd1.val() != pswd2.val()) {
+            showPasswd2ImgByDiff(oImg, false);
             showErrorMsg(oMsg,"비밀번호가 일치하지 않습니다.");
+            oBlind.html("설정하려는 비밀번호가 맞는지 확인하기 위해 다시 입력 해주세요.");
             setFocusToInputObject(oInput);
             return false;
         } else {
-            showSuccessMsg(oMsg,"일치합니다");
+            showPasswd2ImgByDiff(oImg, true);
             oBlind.html("일치합니다");
-            
-            //2초뒤 천천히 사라지게 하기
-            setTimeout(() => hideMsg(oMsg), 2000);
-            
+            hideMsg(oMsg);
             return true;
         }
 
         return true;
     }
-   
 
-  //============ [비밀번호2 체크 함수 시행 끝] ============
-    
-    
-     
-/*=================================================
-					키보드 관련 이벤트들
-=================================================*/    
-     
-    //region 공통 함수
-    function getLenChar(texts) {
-        texts = texts + '';
-        return String.fromCharCode(texts.length);
-    }
-
-
-
-    function checkSpace(str) { //스페이스 제거
-        if (str.search(/\s/) != -1) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-  	//============ [pwd1 패스워드 검증] ============
-    function isValidPasswd(str) {
-    	console.log("입력한 Pwd값 검증1 : " + str);
-        if (str == "") {
-            return false;
-        }
-
-        // 공백 걸러내기
-        var retVal = checkSpace(str);
-        if (retVal) {
-            return false;
-        }
-        
-     	// 8자리 미만 불가
-        if (str.length < 8) {
-            return false;
-        }
-     	
-     
-     	
-        //8~12자의 영문 소문자, 숫자, 특수문자만 사용 가능
-        var isPW = /^[A-Za-z0-9`\-=\\\[\];',\./~!@#\$%\^&\*\(\)_\+|\{\}:"<>\?]{8,16}$/;
-        if (!isPW.test(str)) {
-            return false;
-        }
-
-        return true;
-    }
-    	
-	//  연속된 숫자 불가
-  	function checkpswd1_sameNum(str){
-  		
-	
-    	var cnt = 0;
-  		 //연속된 숫자 불가
-        for (var i = 0; i < str.length; ++i) {
-            if (str.charAt(0) == str.substring(i, i + 1))
-                ++cnt;
-        }
-        if (cnt == str.length) {
-        	console.log("연속된 숫자");
-        	console.log("입력한 Pwd값 검증2 : " + str);
-           return true;
-        }
-    }//============ [pwd1 패스워드 검증 끝] ============	   
-
-	  
-	
-  	//============ [pwd1,2 패스워드 키보드 제한] ============	
-    var isShift = false;
-    function checkShiftUp(e) {
-        if (e.which && e.which == 16) {
-            isShift = false;
-        }
-    }
-
-    function checkShiftDown(e) {
-        if (e.which && e.which == 16) {
-            isShift = true;
-        }
-    }
-
-    function checkCapslock(e) {
-        var myKeyCode = 0;
-        var myShiftKey = false;
-        if (window.event) { // IE
-            myKeyCode = e.keyCode;
-            myShiftKey = e.shiftKey;
-        } else if (e.which) { // netscape ff opera
-            myKeyCode = e.which;
-            myShiftKey = isShift;
-        }
-
-        var oMsg = $("#pswd1Msg");
-        if ((myKeyCode >= 65 && myKeyCode <= 90) && !myShiftKey) {
-            showErrorMsg(oMsg,"Caps Lock이 켜져 있습니다.");
-        } else if ((myKeyCode >= 97 && myKeyCode <= 122) && myShiftKey) {
-            showErrorMsg(oMsg,"Caps Lock이 켜져 있습니다.");
-        } else {
-            hideMsg(oMsg);
-        }
-    }
-
-    function checkCapslock2(e) {
-        var myKeyCode = 0;
-        var myShiftKey = false;
-        if (window.event) { // IE
-            myKeyCode = e.keyCode;
-            myShiftKey = e.shiftKey;
-        } else if (e.which) { // netscape ff opera
-            myKeyCode = e.which;
-            myShiftKey = isShift;
-        }
-
-        var oMsg = $("#pswd2Msg");
-        if ((myKeyCode >= 65 && myKeyCode <= 90) && !myShiftKey) {
-            showErrorMsg(oMsg,"Caps Lock이 켜져 있습니다.");
-        } else if ((myKeyCode >= 97 && myKeyCode <= 122) && myShiftKey) {
-            showErrorMsg(oMsg,"Caps Lock이 켜져 있습니다.");
-        } else {
-            hideMsg(oMsg);
-        }
-    }//============ [pwd1,2 패스워드 키보드 제한 끝] ============	
-    	
-    	
-    	
-    
-    /* 이름, 생일, 성별, 이메일, 휴대전화 */
-    
-
-/*================ 이름 빈값, 유효성검사 ================*/
-    //이름 체크 함수 시행 
     function checkName() {
         var oMsg = $("#nameMsg");
         var nonchar = /[^가-힣a-zA-Z0-9]/gi;
@@ -1758,7 +1490,7 @@ $(document).ready(function() {
             setFocusToInputObject(oInput);
             return false;
         }
-        if (name != "" && nonchar.test(name)) { //이름 유효성검사
+        if (name != "" && nonchar.test(name)) {
             showErrorMsg(oMsg,"한글과 영문 대 소문자를 사용하세요. (특수기호, 공백 사용 불가)");
             setFocusToInputObject(oInput);
             return false;
@@ -1767,12 +1499,7 @@ $(document).ready(function() {
         hideMsg(oMsg);
         return true;
     }
-    
-    
-    
 
-    /*================ 생일 ================*/
-    //생일 체크 함수 시행 
     function checkBirthday() {
         var birthday;
         var yy = $("#yy").val();
@@ -1860,7 +1587,6 @@ $(document).ready(function() {
         return true;
     }
 
-    //성별 체크 함수 시행 
     function checkGender() {
         var gender = $("#gender").val();
         var oMsg = $("#genderMsg");
@@ -1875,7 +1601,6 @@ $(document).ready(function() {
         return true;
     }
 
-    //메일 체크 함수 시행 
     function checkEmail() {
         var id = $("#id").val();
         var email = $("#email").val();
@@ -1901,7 +1626,6 @@ $(document).ready(function() {
         return true;
     }
 
-    //핸드폰 체크 함수 시행 
     function checkPhoneNo() {
         var phoneNo = $("#phoneNo").val();
         var oMsg = $("#phoneNoMsg");
@@ -1916,18 +1640,45 @@ $(document).ready(function() {
         hideMsg(oMsg);
         return true;
     }
-	
 
-    //인증번호받기 버튼 함수 시행
     function sendSmsButton() {
-   	 var userName = prompt("인증번호를 입력하세요.", "0000");
-   	 document.getElementById('authNo').value = userName;
+        var nationNo = $("#nationNo").val();
+        var phoneNo = $("#phoneNo").val();
+        var key = $("#token_sjoin").val();
+        var oMsg = $("#phoneNoMsg");
+        var lang = "ko_KR";
+        var id = $("#id").val();
+
+        phoneNo = phoneNo.replace(/ /gi, "").replace(/-/gi, "");
+        $("#phoneNo").val(phoneNo);
+        authFlag = false;
+
+        $("#authNoMsg").hide();
+        if(nationNo == "82" && !isCellPhone(phoneNo)) {
+            showErrorMsg(oMsg,"형식에 맞지 않는 번호입니다.");
+            return false;
+        }
+        $.ajax({
+            type:"GET",
+            url: "/user2/joinAjax?m=sendAuthno&nationNo=" + nationNo + "&mobno=" + phoneNo + "&lang=" + lang + "&key=" + key + "&id=" + id,
+            success : function(data) {
+                var result = data.substr(4);
+                if (result == "S") {
+                    showSuccessMsg(oMsg,"인증번호를 발송했습니다.(유효시간 30분)<br>인증번호가 오지 않으면 입력하신 정보가 정확한지 확인하여 주세요.<br>이미 가입된 번호이거나, 가상전화번호는 인증번호를 받을 수 없습니다.");
+                    $("#authNo").attr("disabled", false);
+                    var oBox = $("#authNoBox");
+                    var oCode = $("#authNoCode");
+                    showAuthDefaultBox(oBox, oCode);
+                } else {
+                    showErrorMsg(oMsg,"전화번호를 다시 확인해주세요.");
+                }
+            }
+        });
+        return false;
     }
 
-
-    //인증 함수 시행
     function checkAuthNo() {
-     /*    var authNo = $("#authNo").val();
+        var authNo = $("#authNo").val();
         var oMsg = $("#authNoMsg");
         var oBox = $("#authNoBox");
         var oCode = $("#authNoCode");
@@ -1947,12 +1698,11 @@ $(document).ready(function() {
         } else {
             checkAuthnoByAjax();
         }
-        return true; */
+        return true;
     }
 
-    //인증 함수 시행
     function checkAuthnoByAjax() {
-       /*  var authNo = $("#authNo").val();
+        var authNo = $("#authNo").val();
         var key = $("#token_sjoin").val();
         var oMsg = $("#authNoMsg");
         var oBox = $("#authNoBox");
@@ -1980,607 +1730,9 @@ $(document).ready(function() {
                 }
             }
         });
-        return true; */
-    }    
-    
-    
-    
-    /* 메인함수? */
-    //region mainSubmit
-    function mainSubmit() {
-        var joinMode = $("#joinMode").val();
-
-        if(joinMode == "juniverMobile") {
-            if (!checkPrtsMobileInput()) {
-                submitOpen();
-                return false;
-            }
-        } else if(joinMode == "juniverIpin") {
-            if (!checkPrtsIpinInput()) {
-                submitOpen();
-                return false;
-            }
-        } else {
-            if (!checkUnrealInput()) {
-                submitOpen();
-                return false;
-            }
-        }
-
-        if(idFlag && pwFlag && authFlag) {
-            try {
-                desk.f(function(a) {
-                    $("#nid_kb2").val(a);
-                    $("#join_form").submit();
-                });
-            } catch (e) {
-                $("#nid_kb2").val("join v2 error: " + e.name + ", " + e.message);
-                $("#join_form").submit();
-            }
-        } else {
-            submitOpen();
-            return false;
-        }
-    }
-    
-    
-    //메인 아래 뭐 필요한 체크사항들
-    
-    
-    function checkUnrealInput() {
-        if (checkId('join')
-                & checkPswd1()
-                & checkPswd2()
-                & checkName()
-                & checkBirthday()
-                & checkGender()
-                & checkEmail()
-                & checkPhoneNo()
-                & checkAuthNo()
-        ) {
-            return true;
-        } else {
-            return false;
-        }
+        return true;
     }
 
-    function checkPrtsMobileInput() {
-        if (checkId('join')
-                & checkPswd1()
-                & checkPswd2()
-                & checkName()
-                & checkBirthday()
-                & checkGender()
-                & checkEmail()
-                & checkPrtsAgree()
-                & checkPrtsName()
-                & checkPrtsBirthday()
-                & checkPrtsGender()
-                & checkPrtsPhoneNo()
-                & checkPrtsAuthNo()
-        ) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    function checkPrtsIpinInput() {
-        if (checkId('join')
-                & checkPswd1()
-                & checkPswd2()
-                & checkName()
-                & checkBirthday()
-                & checkGender()
-                & checkEmail()
-                & checkIpinAgree()
-                & checkIpinPopup()
-                & checkIpinPhoneNo()
-                & checkIpinAuthNo()
-        ) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    //endregion
-    
-    /*======================== 기타 등등 유효성검사 ================================*/
-    
-    
-    
-    //이름 체크
-    function checkPrtsName() {
-      /*   var pname = $("#pname").val();
-        var oMsg = $("#pnameMsg");
-        if (pname == "") {
-            showErrorMsg(oMsg,"필수 정보입니다.");
-            return false;
-        }
-        hideMsg(oMsg);
-        return true; */
-    }
-    //생일 체크
-    function checkPrtsBirthday() {
-      /*   var birthday = $("#birthday").val();
-        var pyy = $("#pyy").val();
-        var pmm = $("#pmm").val();
-        var pdd = $("#pdd").val();
-        var oMsg = $("#pbirthdayMsg");
-
-        if (pyy == "" && pmm == "" && pdd == "") {
-            showErrorMsg(oMsg,"필수 정보입니다.");
-            return false;
-        }
-        if (pyy == "" || pmm == "" || pdd == "" || pdd.indexOf('e') != -1 || pdd.indexOf('E') != -1) {
-            showErrorMsg(oMsg,"생년월일을 다시 확인해주세요.");
-            return false;
-        }
-        if (pmm.length == 1) {
-            pmm = "0" + pmm;
-        }
-        if (pdd.length == 1) {
-            pdd = "0" + pdd;
-        }
-
-        var pbirthday = pyy + pmm + pdd;
-        if (!isValidDate(pbirthday)) { //윤년 등 날짜체크
-            showErrorMsg(oMsg,"생년월일을 다시 확인해주세요.");
-            return false;
-        }
-        $("#pbirthday").val(pbirthday);
-		
-        
-        //나이에 따라 메시지 출력
-        var age = calcAge(birthday);
-        var page = calcAge(pbirthday);
-        if (page < 0) {
-            showErrorMsg(oMsg,"미래에서 오셨군요. ^^");
-            return false;
-        } else if (page >= 100) {
-            showErrorMsg(oMsg,"정말이세요?");
-            return false;
-        } else if (page - age < 19) {
-            showErrorMsg(oMsg,"보호자(법정대리인) 동의 기준이 맞지 않습니다.");
-            return false;
-        } else {
-            hideMsg(oMsg);
-            return true;
-        }
-        return true; */
-    }
-    //성별 체크
-    function checkPrtsGender() {
-/*         var pgender = $("#pgender").val();
-        var oMsg = $("#pgenderMsg");
-
-        if (pgender == "") {
-            showErrorMsg(oMsg,"필수 정보입니다.");
-            return false;
-        }
-        hideMsg(oMsg);
-        return true; */
-    }
-    //폰번호 체크
-    function checkPrtsPhoneNo() {
-    /*     var pphoneNo = $("#pphoneNo").val();
-        var oMsg = $("#pphoneNoMsg");
-        if (pphoneNo == "") {
-            showErrorMsg(oMsg,"필수 정보입니다.");
-            return false;
-        }
-        hideMsg(oMsg);
-        return true; */
-    }
-    //인증번호 받기 누르기
-    function sendPrtsSmsButton() {
-    	
-   
-       /*  var pname = $("#pname").val();
-        var pForeign;
-        if($("#pforeign").val() == 0) {
-            pForeign = "N";
-        } else {
-            pForeign = "Y";
-        }
-        var pGender;
-        if( $("#pgender").val() == 0) {
-            pGender = "M";
-        } else {
-            pGender = "F";
-        }
-        var pbirthday = $("#pbirthday").val();
-        var ptelecom = $("#ptelecom").val();
-        var pphoneNo = $("#pphoneNo").val();
-        var key = $("#token_sjoin").val();
-        var oMsg = $("#pphoneNoMsg");
-
-        $("#pauthNoMsg").hide();
-        $.ajax({
-            type:"GET",
-            url: "/user2/joinAjax?m=sendPrtsAuthno&psex=" + pGender + "&pForeign=" + pForeign
-                                    + "&pbirthday=" + pbirthday + "&ptelecom=" + ptelecom
-                                    + "&pmobno=" + pphoneNo
-                                    + "&key=" + key + "&pnm=" + escape(encodeURIComponent(pname)) ,
-            success : function(data) {
-                var result = data.substr(4);
-                if (result == "S") {
-                    showSuccessMsg(oMsg,"인증번호를 발송했습니다.(유효시간 30분)<br>인증번호가 오지 않으면 입력하신 정보가 정확한지 확인하여 주세요.<br>이미 가입된 번호이거나, 가상전화번호는 인증번호를 받을 수 없습니다.");
-                    $("#pauthNo").attr("disabled", false);
-                    var oBox = $("#pauthNoBox");
-                    var oCode = $("#pauthNoCode");
-                    showAuthDefaultBox(oBox, oCode);
-                } else {
-                    showErrorMsg(oMsg,"전화번호를 다시 확인해주세요.");
-                }
-            }
-        });
-        return false; */
-    }
-
-    //인증번호 입력하세요 란
-    function checkPrtsAuthNo() {
-      /*   var pauthNo = $("#pauthNo").val();
-        var oMsg = $("#pauthNoMsg");
-        var oBox = $("#pauthNoBox");
-        var oCode = $("#pauthNoCode");
-
-        if (pauthNo == "") {
-            showErrorMsg(oMsg,"인증이 필요합니다.");
-            return false;
-        }
-
-        if(authFlag) {
-            showSuccessMsg(oMsg,"인증이 성공했습니다.");
-            showAuthSuccessBox(oBox, oCode, "일치");
-            $("#pphoneNoMsg").hide();
-            return true;
-        } else {
-            checkPrtsAuthnoByAjax();
-        }
-        return true; */
-    }
-
-    // 인증번호 입력하세요 란
-    function checkPrtsAuthnoByAjax() {
-      /*   var pname = $("#pname").val();
-        var pForeign;
-        if($("#pforeign").val() == 0) {
-            pForeign = "N";
-        } else {
-            pForeign = "Y";
-        }
-        var pGender;
-        if( $("#pgender").val() == 0) {
-            pGender = "M";
-        } else {
-            pGender = "F";
-        }
-        var pbirthday = $("#pbirthday").val();
-        var ptelecom = $("#ptelecom").val();
-        var pphoneNo = $("#pphoneNo").val();
-        var pauthNo = $("#pauthNo").val();
-        var key = $("#token_sjoin").val();
-        var oMsg = $("#pauthNoMsg");
-        var oBox = $("#pauthNoBox");
-        var oCode = $("#pauthNoCode");
-
-        $.ajax({
-            type:"GET",
-            url: "/user2/joinAjax?m=checkPrtsAuthno&psex=" + pGender + "&pForeign=" + pForeign
-                                        + "&pbirthday=" + pbirthday + "&ptelecom=" + ptelecom
-                                        + "&pmobno=" + pphoneNo
-                                        + "&pauthno=" + pauthNo
-                                        + "&key=" + key + "&pnm=" + escape(encodeURIComponent(pname)) ,
-            success : function(data) {
-                var result = data.substr(4);
-                if (result == "S") {
-                    showSuccessMsg(oMsg,"인증이 성공했습니다.");
-                    showAuthSuccessBox(oBox, oCode, "일치");
-                    $("#pphoneNoMsg").hide();
-                    authFlag = true;
-                } else if (result == "Cnt") {
-                    showErrorMsg(oMsg,"인증을 다시 진행해주세요.");
-                    showAuthErrorBox(oBox, oCode, "불일치");
-                } else {
-                    showErrorMsg(oMsg,"인증번호를 다시 확인해주세요.");
-                    showAuthErrorBox(oBox, oCode, "불일치");
-                }
-            }
-        });
-        return true; */
-    }
-    //endregion
-
-    
-/* 여기서부터 인증번호 받기 전에 아이핀인지 뭔지 따지는거 */    
-    
-    //region joinPrtsIpin
-    function checkIpinAgree() {
-     /*    var oMsg = $("#iagreeMsg");
-        if (!$("#iagree_all").is(":checked")) {
-            showErrorMsg(oMsg, "동의사항에 체크해 주세요.");
-            return false;
-        }
-        hideMsg(oMsg);
-        return true; */
-    }
-
-    function openIpinPopup() {
-        /* var ua = window.navigator.userAgent.toLowerCase();
-
-        if ((/crios/.test(ua) || (navigator.userAgentData && navigator.userAgentData.platform.indexOf('iOS') !== -1 && (navigator.userAgentData.brands.some(function(v) { return /Chrome/i.test(v.brand) })))) && /ipad/.test(ua)) {
-            alert("접속하신 브라우저에서는 아이핀 인증이 진행되지 않습니다.");
-            return false;
-        }
-
-        winOpenAtCenter('', 'popup', 448, 500, "auto");
-        document.form_ipin.target = "popup";
-        document.form_ipin.action = "https://cert.vno.co.kr/ipin.cb";
-        document.form_ipin.submit();
-        return true; */
-    }
-
-    function checkIpinPopup() {
-      /*   var ipinFlag = $("#ipinFlag").val();
-        var oMsg = $("#ipopupMsg");
-
-        if(ipinFlag != "Y") {
-            showErrorMsg(oMsg, "아이핀 인증이 필요합니다.");
-            return false;
-        }
-        hideMsg(oMsg);
-        return true; */
-    }
-
-    function checkIpinPhoneNo() {
-       /*  var phoneNo = $("#iphoneNo").val();
-        var oMsg = $("#iphoneNoMsg");
-
-        if (phoneNo == "") {
-            showErrorMsg(oMsg,"필수 정보입니다.");
-            return false;
-        }
-        hideMsg(oMsg);
-        return true; */
-    }
-
-    function sendIpinSmsButton() {
-/*         var nationNo = "82";
-        var phoneNo = $("#iphoneNo").val();
-        var key = $("#token_sjoin").val();
-        var oMsg = $("#iphoneNoMsg");
-        var lang = "ko_KR";
-
-        phoneNo = phoneNo.replace(/ /gi, "").replace(/-/gi, "");
-        $("#iphoneNo").val(phoneNo);
-        authFlag = false;
-
-        $("#iauthNoMsg").hide();
-        if(nationNo == "82" && !isCellPhone(phoneNo)) {
-            showErrorMsg(oMsg,"형식에 맞지 않는 번호입니다.");
-            return false;
-        }
-        $.ajax({
-            type:"GET",
-            url: "/user2/joinAjax?m=sendAuthno&nationNo=" + nationNo + "&mobno=" + phoneNo + "&lang=" + lang + "&key=" + key ,
-            success : function(data) {
-                var result = data.substr(4);
-                if (result == "S") {
-                    showSuccessMsg(oMsg,"인증번호를 발송했습니다.(유효시간 30분)<br>인증번호가 오지 않으면 입력하신 정보가 정확한지 확인하여 주세요.<br>이미 가입된 번호이거나, 가상전화번호는 인증번호를 받을 수 없습니다.");
-                    $("#iauthNo").attr("disabled", false);
-                    var oBox = $("#iauthNoBox");
-                    var oCode = $("#iauthNoCode");
-                    showAuthDefaultBox(oBox, oCode);
-                } else {
-                    showErrorMsg(oMsg,"전화번호를 다시 확인해주세요.");
-                }
-            }
-        });
-        return true; */
-    }
-
-    function checkIpinAuthNo() {
-      /*   var authNo = $("#iauthNo").val();
-        var oMsg = $("#iauthNoMsg");
-        var oBox = $("#iauthNoBox");
-        var oCode = $("#iauthNoCode");
-
-        if (authNo == "") {
-            showErrorMsg(oMsg,"인증이 필요합니다.");
-            return false;
-        }
-
-        if(authFlag) {
-            showSuccessMsg(oMsg,"인증이 성공했습니다.");
-            showAuthSuccessBox(oBox, oCode, "일치");
-            hideMsg(oMsg);
-            return true;
-        } else {
-            checkIpinAuthnoByAjax();
-        }
-        return true; */
-    }
-
-    function checkIpinAuthnoByAjax() {
-      /*   var authNo = $("#iauthNo").val();
-        var key = $("#token_sjoin").val();
-        var oMsg = $("#iauthNoMsg");
-        var oBox = $("#iauthNoBox");
-        var oCode = $("#iauthNoCode");
-
-        $.ajax({
-            type:"GET",
-            url: "/user2/joinAjax?m=checkAuthno&authno=" + authNo + "&key=" + key ,
-            success : function(data) {
-                var result = data.substr(4);
-                if (result == "S") {
-                    showSuccessMsg(oMsg,"인증이 성공했습니다.");
-                    showAuthSuccessBox(oBox, oCode, "일치");
-                    $("#iphoneNoMsg").hide();
-                    authFlag = true;
-                } else if (result == "Cnt") {
-                    showErrorMsg(oMsg,"인증을 다시 진행해주세요.");
-                    showAuthErrorBox(oBox, oCode, "불일치");
-                } else {
-                    showErrorMsg(oMsg,"인증번호를 다시 확인해주세요.");
-                    showAuthErrorBox(oBox, oCode, "불일치");
-                }
-            }
-        });
-        return true; */
-    }
-
-    function setIpinFlag(val) {
-      /*   var oMsg = $("#ipopupMsg");
-
-        $("#ipinFlag").val(val);
-        if (val == "Y") {
-            showSuccessMsg(oMsg,"인증이 성공했습니다.");
-            return true;
-        } else {
-            showErrorMsg(oMsg,"인증에 실패했습니다.");
-            return false;
-        } */
-    }
-    //endregion
-
-
-
-   
-
-    function submitClose() { // 가입하기 누르고 mainsubmit 보내고
-        submitFlag = true;
-        $("#btnJoin").attr("disabled",true);
-    }
-
-    function submitOpen() { //뭐 창을 여나본데
-        $("#btnJoin").attr("disabled",false);
-    }
-
-
-
-   
-
-    function showAuthDefaultBox(oBox, oCode) { //인증번호받기 박스
-      /*   oBox.attr("class", "ps_box");
-        oCode.html("");
-        oCode.hide(); */
-    }
-
-    function showAuthSuccessBox(oBox, oCode, msg) { //인증 성공
-      /*   oBox.attr("class", "ps_box accord");
-        oCode.html(msg);
-        oCode.show(); */
-    }
-
-    function showAuthErrorBox(oBox, oCode, msg) { //인증 실패
-        /* oBox.attr("class", "ps_box discord");
-        oCode.html(msg);
-        oCode.show(); */
-    }
-
-  
-
-    
-    
-
-    /*================ 기타 계산 로직 ================*/
-    
-
-   
-	//나이 계산하는 함수
-    function calcAge(birth) {
-        var date = new Date();
-        var year = date.getFullYear();
-        var month = (date.getMonth() + 1);
-        var day = date.getDate();
-        if (month < 10)
-            month = '0' + month;
-        if (day < 10)
-            day = '0' + day;
-        var monthDay = month + '' + day;
-
-        birth = birth.replace('-', '').replace('-', '');
-        var birthdayy = birth.substr(0, 4);
-        var birthdaymd = birth.substr(4, 4);
-
-        var age = monthDay < birthdaymd ? year - birthdayy - 1 : year - birthdayy;
-        return age;
-    }
-	
-	
-	
-	//날짜 유효성
-    function isValidDate(param) {
-        try {
-            param = param.replace(/-/g, '');
-
-            // 자리수가 맞지않을때
-            if (isNaN(param) || param.length != 8) {
-                return false;
-            }
-
-            var year = Number(param.substring(0, 4));
-            var month = Number(param.substring(4, 6));
-            var day = Number(param.substring(6, 8));
-
-            if (month < 1 || month > 12) {
-                return false;
-            }
-
-            var maxDaysInMonth = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
-            var maxDay = maxDaysInMonth[month - 1];
-
-            // 윤년 체크
-            if (month == 2 && (year % 4 == 0 && year % 100 != 0 || year % 400 == 0)) {
-                maxDay = 29;
-            }
-
-            if (day <= 0 || day > maxDay) {
-                return false;
-            }
-            return true;
-
-        } catch (err) {
-            return false;
-        }
-        ;
-    }
-
-	
-	//휴대폰 번호 유효성검사
-    function isCellPhone(p) {
-        var regPhone = /^((01[1|6|7|8|9])[1-9][0-9]{6,7})$|(010[1-9][0-9]{7})$/;
-        return regPhone.test(p);
-    }
-
-    function winOpenAtCenter(sURL, sWindowName, w, h, sScroll) {
-        // 화면 중앙으로 Popup 띄우기.. 스크롤바는 옵션..
-        // ex)
-        // openWin("test.asp", "winTest", 400, 300); ☞ 스크롤바 없음
-        // openWin("test.asp", "winTest", 400, 300, "yes"); ☞ 스크롤바 있음
-        // openWin("test.asp", "winTest", 400, 300, "auto"); ☞ 스크롤바 자동
-
-        var x = (screen.width - w) / 2;
-        var y = (screen.height - h) / 2;
-
-        if (sScroll == null)
-            sScroll = "no";
-
-        var sOption = "";
-        sOption = sOption + "toolbar=no, channelmode=no, location=no, directories=no, resizable=no, menubar=no";
-        sOption = sOption + ", scrollbars=" + sScroll + ", left=" + x + ", top=" + y + ", width=" + w + ", height=" + h;
-
-        var win = window.open(sURL, sWindowName, sOption);
-        return win;
-    }
-    //endregion
-    
-    
-    
-    /* 모바일들 관련사항 같음 */
-    
     function hideJuniverTab() {
         $("#joinMode").val("unreal");
         $("#mobDiv").show();
@@ -2653,67 +1805,666 @@ $(document).ready(function() {
         checkPrtsAgree();
         return true;
     }
-    
-/* ===========================================================================================
-    //region define, setter
-    var idFlag = false;
-    var pwFlag = false;
-    var authFlag = false;
-    var submitFlag = false;
 
-    var properties = {
-        keyboard: [{id:"id"}, {id:"pswd1", secureMode:true}, {id:"pswd2", secureMode:true}],
-        modeProperties: {
-            mode: 4
+    function checkPrtsName() {
+        var pname = $("#pname").val();
+        var oMsg = $("#pnameMsg");
+        if (pname == "") {
+            showErrorMsg(oMsg,"필수 정보입니다.");
+            return false;
         }
-    };
-    var desk = new sofa.Koop(properties);
+        hideMsg(oMsg);
+        return true;
+    }
 
+    function checkPrtsBirthday() {
+        var birthday = $("#birthday").val();
+        var pyy = $("#pyy").val();
+        var pmm = $("#pmm").val();
+        var pdd = $("#pdd").val();
+        var oMsg = $("#pbirthdayMsg");
 
+        if (pyy == "" && pmm == "" && pdd == "") {
+            showErrorMsg(oMsg,"필수 정보입니다.");
+            return false;
+        }
+        if (pyy == "" || pmm == "" || pdd == "" || pdd.indexOf('e') != -1 || pdd.indexOf('E') != -1) {
+            showErrorMsg(oMsg,"생년월일을 다시 확인해주세요.");
+            return false;
+        }
+        if (pmm.length == 1) {
+            pmm = "0" + pmm;
+        }
+        if (pdd.length == 1) {
+            pdd = "0" + pdd;
+        }
 
+        var pbirthday = pyy + pmm + pdd;
+        if (!isValidDate(pbirthday)) {
+            showErrorMsg(oMsg,"생년월일을 다시 확인해주세요.");
+            return false;
+        }
+        $("#pbirthday").val(pbirthday);
 
+        var age = calcAge(birthday);
+        var page = calcAge(pbirthday);
+        if (page < 0) {
+            showErrorMsg(oMsg,"미래에서 오셨군요. ^^");
+            return false;
+        } else if (page >= 100) {
+            showErrorMsg(oMsg,"정말이세요?");
+            return false;
+        } else if (page - age < 19) {
+            showErrorMsg(oMsg,"보호자(법정대리인) 동의 기준이 맞지 않습니다.");
+            return false;
+        } else {
+            hideMsg(oMsg);
+            return true;
+        }
+        return true;
+    }
 
-    
+    function checkPrtsGender() {
+        var pgender = $("#pgender").val();
+        var oMsg = $("#pgenderMsg");
 
-   
+        if (pgender == "") {
+            showErrorMsg(oMsg,"필수 정보입니다.");
+            return false;
+        }
+        hideMsg(oMsg);
+        return true;
+    }
 
- 
+    function checkPrtsPhoneNo() {
+        var pphoneNo = $("#pphoneNo").val();
+        var oMsg = $("#pphoneNoMsg");
+        if (pphoneNo == "") {
+            showErrorMsg(oMsg,"필수 정보입니다.");
+            return false;
+        }
+        hideMsg(oMsg);
+        return true;
+    }
 
+    function sendPrtsSmsButton() {
+        var pname = $("#pname").val();
+        var pForeign;
+        if($("#pforeign").val() == 0) {
+            pForeign = "N";
+        } else {
+            pForeign = "Y";
+        }
+        var pGender;
+        if( $("#pgender").val() == 0) {
+            pGender = "M";
+        } else {
+            pGender = "F";
+        }
+        var pbirthday = $("#pbirthday").val();
+        var ptelecom = $("#ptelecom").val();
+        var pphoneNo = $("#pphoneNo").val();
+        var key = $("#token_sjoin").val();
+        var oMsg = $("#pphoneNoMsg");
 
+        $("#pauthNoMsg").hide();
+        $.ajax({
+            type:"GET",
+            url: "/user2/joinAjax?m=sendPrtsAuthno&psex=" + pGender + "&pForeign=" + pForeign
+                                    + "&pbirthday=" + pbirthday + "&ptelecom=" + ptelecom
+                                    + "&pmobno=" + pphoneNo
+                                    + "&key=" + key + "&pnm=" + escape(encodeURIComponent(pname)) ,
+            success : function(data) {
+                var result = data.substr(4);
+                if (result == "S") {
+                    showSuccessMsg(oMsg,"인증번호를 발송했습니다.(유효시간 30분)<br>인증번호가 오지 않으면 입력하신 정보가 정확한지 확인하여 주세요.<br>이미 가입된 번호이거나, 가상전화번호는 인증번호를 받을 수 없습니다.");
+                    $("#pauthNo").attr("disabled", false);
+                    var oBox = $("#pauthNoBox");
+                    var oCode = $("#pauthNoCode");
+                    showAuthDefaultBox(oBox, oCode);
+                } else {
+                    showErrorMsg(oMsg,"전화번호를 다시 확인해주세요.");
+                }
+            }
+        });
+        return false;
+    }
 
-    
+    function checkPrtsAuthNo() {
+        var pauthNo = $("#pauthNo").val();
+        var oMsg = $("#pauthNoMsg");
+        var oBox = $("#pauthNoBox");
+        var oCode = $("#pauthNoCode");
 
- 
-    
-  */
+        if (pauthNo == "") {
+            showErrorMsg(oMsg,"인증이 필요합니다.");
+            return false;
+        }
+
+        if(authFlag) {
+            showSuccessMsg(oMsg,"인증이 성공했습니다.");
+            showAuthSuccessBox(oBox, oCode, "일치");
+            $("#pphoneNoMsg").hide();
+            return true;
+        } else {
+            checkPrtsAuthnoByAjax();
+        }
+        return true;
+    }
+
+    function checkPrtsAuthnoByAjax() {
+        var pname = $("#pname").val();
+        var pForeign;
+        if($("#pforeign").val() == 0) {
+            pForeign = "N";
+        } else {
+            pForeign = "Y";
+        }
+        var pGender;
+        if( $("#pgender").val() == 0) {
+            pGender = "M";
+        } else {
+            pGender = "F";
+        }
+        var pbirthday = $("#pbirthday").val();
+        var ptelecom = $("#ptelecom").val();
+        var pphoneNo = $("#pphoneNo").val();
+        var pauthNo = $("#pauthNo").val();
+        var key = $("#token_sjoin").val();
+        var oMsg = $("#pauthNoMsg");
+        var oBox = $("#pauthNoBox");
+        var oCode = $("#pauthNoCode");
+
+        $.ajax({
+            type:"GET",
+            url: "/user2/joinAjax?m=checkPrtsAuthno&psex=" + pGender + "&pForeign=" + pForeign
+                                        + "&pbirthday=" + pbirthday + "&ptelecom=" + ptelecom
+                                        + "&pmobno=" + pphoneNo
+                                        + "&pauthno=" + pauthNo
+                                        + "&key=" + key + "&pnm=" + escape(encodeURIComponent(pname)) ,
+            success : function(data) {
+                var result = data.substr(4);
+                if (result == "S") {
+                    showSuccessMsg(oMsg,"인증이 성공했습니다.");
+                    showAuthSuccessBox(oBox, oCode, "일치");
+                    $("#pphoneNoMsg").hide();
+                    authFlag = true;
+                } else if (result == "Cnt") {
+                    showErrorMsg(oMsg,"인증을 다시 진행해주세요.");
+                    showAuthErrorBox(oBox, oCode, "불일치");
+                } else {
+                    showErrorMsg(oMsg,"인증번호를 다시 확인해주세요.");
+                    showAuthErrorBox(oBox, oCode, "불일치");
+                }
+            }
+        });
+        return true;
+    }
+    //endregion
+
+    //region joinPrtsIpin
+    function checkIpinAgree() {
+        var oMsg = $("#iagreeMsg");
+        if (!$("#iagree_all").is(":checked")) {
+            showErrorMsg(oMsg, "동의사항에 체크해 주세요.");
+            return false;
+        }
+        hideMsg(oMsg);
+        return true;
+    }
+
+    function openIpinPopup() {
+        var ua = window.navigator.userAgent.toLowerCase();
+
+        if ((/crios/.test(ua) || (navigator.userAgentData && navigator.userAgentData.platform.indexOf('iOS') !== -1 && (navigator.userAgentData.brands.some(function(v) { return /Chrome/i.test(v.brand) })))) && /ipad/.test(ua)) {
+            alert("접속하신 브라우저에서는 아이핀 인증이 진행되지 않습니다.");
+            return false;
+        }
+
+        winOpenAtCenter('', 'popup', 448, 500, "auto");
+        document.form_ipin.target = "popup";
+        document.form_ipin.action = "https://cert.vno.co.kr/ipin.cb";
+        document.form_ipin.submit();
+        return true;
+    }
+
+    function checkIpinPopup() {
+        var ipinFlag = $("#ipinFlag").val();
+        var oMsg = $("#ipopupMsg");
+
+        if(ipinFlag != "Y") {
+            showErrorMsg(oMsg, "아이핀 인증이 필요합니다.");
+            return false;
+        }
+        hideMsg(oMsg);
+        return true;
+    }
+
+    function checkIpinPhoneNo() {
+        var phoneNo = $("#iphoneNo").val();
+        var oMsg = $("#iphoneNoMsg");
+
+        if (phoneNo == "") {
+            showErrorMsg(oMsg,"필수 정보입니다.");
+            return false;
+        }
+        hideMsg(oMsg);
+        return true;
+    }
+
+    function sendIpinSmsButton() {
+        var nationNo = "82";
+        var phoneNo = $("#iphoneNo").val();
+        var key = $("#token_sjoin").val();
+        var oMsg = $("#iphoneNoMsg");
+        var lang = "ko_KR";
+
+        phoneNo = phoneNo.replace(/ /gi, "").replace(/-/gi, "");
+        $("#iphoneNo").val(phoneNo);
+        authFlag = false;
+
+        $("#iauthNoMsg").hide();
+        if(nationNo == "82" && !isCellPhone(phoneNo)) {
+            showErrorMsg(oMsg,"형식에 맞지 않는 번호입니다.");
+            return false;
+        }
+        $.ajax({
+            type:"GET",
+            url: "/user2/joinAjax?m=sendAuthno&nationNo=" + nationNo + "&mobno=" + phoneNo + "&lang=" + lang + "&key=" + key ,
+            success : function(data) {
+                var result = data.substr(4);
+                if (result == "S") {
+                    showSuccessMsg(oMsg,"인증번호를 발송했습니다.(유효시간 30분)<br>인증번호가 오지 않으면 입력하신 정보가 정확한지 확인하여 주세요.<br>이미 가입된 번호이거나, 가상전화번호는 인증번호를 받을 수 없습니다.");
+                    $("#iauthNo").attr("disabled", false);
+                    var oBox = $("#iauthNoBox");
+                    var oCode = $("#iauthNoCode");
+                    showAuthDefaultBox(oBox, oCode);
+                } else {
+                    showErrorMsg(oMsg,"전화번호를 다시 확인해주세요.");
+                }
+            }
+        });
+        return true;
+    }
+
+    function checkIpinAuthNo() {
+        var authNo = $("#iauthNo").val();
+        var oMsg = $("#iauthNoMsg");
+        var oBox = $("#iauthNoBox");
+        var oCode = $("#iauthNoCode");
+
+        if (authNo == "") {
+            showErrorMsg(oMsg,"인증이 필요합니다.");
+            return false;
+        }
+
+        if(authFlag) {
+            showSuccessMsg(oMsg,"인증이 성공했습니다.");
+            showAuthSuccessBox(oBox, oCode, "일치");
+            hideMsg(oMsg);
+            return true;
+        } else {
+            checkIpinAuthnoByAjax();
+        }
+        return true;
+    }
+
+    function checkIpinAuthnoByAjax() {
+        var authNo = $("#iauthNo").val();
+        var key = $("#token_sjoin").val();
+        var oMsg = $("#iauthNoMsg");
+        var oBox = $("#iauthNoBox");
+        var oCode = $("#iauthNoCode");
+
+        $.ajax({
+            type:"GET",
+            url: "/user2/joinAjax?m=checkAuthno&authno=" + authNo + "&key=" + key ,
+            success : function(data) {
+                var result = data.substr(4);
+                if (result == "S") {
+                    showSuccessMsg(oMsg,"인증이 성공했습니다.");
+                    showAuthSuccessBox(oBox, oCode, "일치");
+                    $("#iphoneNoMsg").hide();
+                    authFlag = true;
+                } else if (result == "Cnt") {
+                    showErrorMsg(oMsg,"인증을 다시 진행해주세요.");
+                    showAuthErrorBox(oBox, oCode, "불일치");
+                } else {
+                    showErrorMsg(oMsg,"인증번호를 다시 확인해주세요.");
+                    showAuthErrorBox(oBox, oCode, "불일치");
+                }
+            }
+        });
+        return true;
+    }
+
+    function setIpinFlag(val) {
+        var oMsg = $("#ipopupMsg");
+
+        $("#ipinFlag").val(val);
+        if (val == "Y") {
+            showSuccessMsg(oMsg,"인증이 성공했습니다.");
+            return true;
+        } else {
+            showErrorMsg(oMsg,"인증에 실패했습니다.");
+            return false;
+        }
+    }
+    //endregion
+
+    //region 공통 함수
+    function getLenChar(texts) {
+        texts = texts + '';
+        return String.fromCharCode(texts.length);
+    }
+
+    function createRsaKey() {
+        var rsa = new RSAKey();
+        var sessionKey = "BQs5aa36X7cgQNa4";
+        var keyName = "100018022";
+        var eValue = "b4d3685d473739ce581a0db6ae8406425084d1195987907b9ed755c1e659860278055966a956391928ecf34943809cc69f8bac64a6ecd703d9c38c59a5987399df1baffcc76a78f33dad44cd6654e108993af57a98e7e81fe260d35acff04d3d453c31c2a87cc21b4ea2fa207b9a1dd5e480208c0a53af979503aa83951a093b";
+        var nValue = "010001";
+
+        var id = $("#id").val();
+        var pw = $("#pswd1").val();
+        rsa.setPublic(eValue, nValue);
+
+        var comVal = getLenChar(sessionKey) + sessionKey + getLenChar(id) + id;
+        $("#encPswd").val(rsa.encrypt(comVal + getLenChar(pw) + pw));
+        $("#encKey").val(keyName);
+    }
+
+    function checkSpace(str) {
+        if (str.search(/\s/) != -1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function isValidPasswd(str) {
+        var cnt = 0;
+        if (str == "") {
+            return false;
+        }
+
+        /* check whether input value is included space or not */
+        var retVal = checkSpace(str);
+        if (retVal) {
+            return false;
+        }
+        if (str.length < 8) {
+            return false;
+        }
+        for (var i = 0; i < str.length; ++i) {
+            if (str.charAt(0) == str.substring(i, i + 1))
+                ++cnt;
+        }
+        if (cnt == str.length) {
+            return false;
+        }
+
+        var isPW = /^[A-Za-z0-9`\-=\\\[\];',\./~!@#\$%\^&\*\(\)_\+|\{\}:"<>\?]{8,16}$/;
+        if (!isPW.test(str)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    var isShift = false;
+    function checkShiftUp(e) {
+        if (e.which && e.which == 16) {
+            isShift = false;
+        }
+    }
+
+    function checkShiftDown(e) {
+        if (e.which && e.which == 16) {
+            isShift = true;
+        }
+    }
+
+    function checkCapslock(e) {
+        var myKeyCode = 0;
+        var myShiftKey = false;
+        if (window.event) { // IE
+            myKeyCode = e.keyCode;
+            myShiftKey = e.shiftKey;
+        } else if (e.which) { // netscape ff opera
+            myKeyCode = e.which;
+            myShiftKey = isShift;
+        }
+
+        var oMsg = $("#pswd1Msg");
+        if ((myKeyCode >= 65 && myKeyCode <= 90) && !myShiftKey) {
+            showErrorMsg(oMsg,"Caps Lock이 켜져 있습니다.");
+        } else if ((myKeyCode >= 97 && myKeyCode <= 122) && myShiftKey) {
+            showErrorMsg(oMsg,"Caps Lock이 켜져 있습니다.");
+        } else {
+            hideMsg(oMsg);
+        }
+    }
+
+    function checkCapslock2(e) {
+        var myKeyCode = 0;
+        var myShiftKey = false;
+        if (window.event) { // IE
+            myKeyCode = e.keyCode;
+            myShiftKey = e.shiftKey;
+        } else if (e.which) { // netscape ff opera
+            myKeyCode = e.which;
+            myShiftKey = isShift;
+        }
+
+        var oMsg = $("#pswd2Msg");
+        if ((myKeyCode >= 65 && myKeyCode <= 90) && !myShiftKey) {
+            showErrorMsg(oMsg,"Caps Lock이 켜져 있습니다.");
+        } else if ((myKeyCode >= 97 && myKeyCode <= 122) && myShiftKey) {
+            showErrorMsg(oMsg,"Caps Lock이 켜져 있습니다.");
+        } else {
+            hideMsg(oMsg);
+        }
+    }
+
+    function defaultScript() {
+        $('.ps_box').click(function() {
+            $(this).children('input').focus();
+            $(this).addClass('focus');
+        }).focusout(function() {
+            var welInputText = $('.ps_box');
+            welInputText.removeClass('focus');
+        });
+    }
+
+    function submitClose() {
+        submitFlag = true;
+        $("#btnJoin").attr("disabled",true);
+    }
+
+    function submitOpen() {
+        $("#btnJoin").attr("disabled",false);
+    }
+
+    function setFocusToInputObject(obj) {
+        if(submitFlag) {
+            submitFlag = false;
+            obj.focus();
+        }
+    }
+
+    function showErrorMsg(obj, msg) {
+        obj.attr("class", "error_next_box");
+        obj.html(msg);
+        obj.show();
+    }
+
+    function showSuccessMsg(obj, msg) {
+        obj.attr("class", "error_next_box green");
+        obj.html(msg);
+        obj.show();
+    }
+
+    function showAuthDefaultBox(oBox, oCode) {
+        oBox.attr("class", "ps_box");
+        oCode.html("");
+        oCode.hide();
+    }
+
+    function showAuthSuccessBox(oBox, oCode, msg) {
+        oBox.attr("class", "ps_box accord");
+        oCode.html(msg);
+        oCode.show();
+    }
+
+    function showAuthErrorBox(oBox, oCode, msg) {
+        oBox.attr("class", "ps_box discord");
+        oCode.html(msg);
+        oCode.show();
+    }
+
+    function hideMsg(obj) {
+        obj.hide();
+    }
+
+    function showPasswd1ImgByStep(oImg, oSpan, step) {
+        if("IE8" == "") {
+            return false;
+        }
+        if(step == 1) {
+            oImg.attr("class", "ps_box int_pass_step1");
+            oSpan.attr("class", "step_txt txt_red");
+            oSpan.html("사용불가");
+        } else if(step == 2) {
+            oImg.attr("class", "ps_box int_pass_step2");
+            oSpan.attr("class", "step_txt txt_orange");
+            oSpan.html("위험");
+        } else if(step == 3) {
+            oImg.attr("class", "ps_box int_pass_step3");
+            oSpan.attr("class", "step_txt txt_yellow");
+            oSpan.html("보통");
+        } else if(step == 4) {
+            oImg.attr("class", "ps_box int_pass_step4");
+            oSpan.attr("class", "step_txt txt_green");
+            oSpan.html("안전");
+        } else {
+            oImg.attr("class", "ps_box int_pass");
+            oSpan.attr("class", "step_txt");
+            oSpan.html("");
+        }
+    }
+
+    function showPasswd2ImgByDiff(oImg, diff) {
+        if("IE8" == "") {
+            return false;
+        }
+        if(diff == false) {
+            oImg.attr("class", "ps_box int_pass_check");
+        } else {
+            oImg.attr("class", "ps_box int_pass_check2");
+        }
+    }
+
+    function calcAge(birth) {
+        var date = new Date();
+        var year = date.getFullYear();
+        var month = (date.getMonth() + 1);
+        var day = date.getDate();
+        if (month < 10)
+            month = '0' + month;
+        if (day < 10)
+            day = '0' + day;
+        var monthDay = month + '' + day;
+
+        birth = birth.replace('-', '').replace('-', '');
+        var birthdayy = birth.substr(0, 4);
+        var birthdaymd = birth.substr(4, 4);
+
+        var age = monthDay < birthdaymd ? year - birthdayy - 1 : year - birthdayy;
+        return age;
+    }
+
+    function isValidDate(param) {
+        try {
+            param = param.replace(/-/g, '');
+
+            // 자리수가 맞지않을때
+            if (isNaN(param) || param.length != 8) {
+                return false;
+            }
+
+            var year = Number(param.substring(0, 4));
+            var month = Number(param.substring(4, 6));
+            var day = Number(param.substring(6, 8));
+
+            if (month < 1 || month > 12) {
+                return false;
+            }
+
+            var maxDaysInMonth = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
+            var maxDay = maxDaysInMonth[month - 1];
+
+            // 윤년 체크
+            if (month == 2 && (year % 4 == 0 && year % 100 != 0 || year % 400 == 0)) {
+                maxDay = 29;
+            }
+
+            if (day <= 0 || day > maxDay) {
+                return false;
+            }
+            return true;
+
+        } catch (err) {
+            return false;
+        }
+        ;
+    }
+
+    function isCellPhone(p) {
+        var regPhone = /^((01[1|6|7|8|9])[1-9][0-9]{6,7})$|(010[1-9][0-9]{7})$/;
+        return regPhone.test(p);
+    }
+
+    function winOpenAtCenter(sURL, sWindowName, w, h, sScroll) {
+        // 화면 중앙으로 Popup 띄우기.. 스크롤바는 옵션..
+        // ex)
+        // openWin("test.asp", "winTest", 400, 300); ☞ 스크롤바 없음
+        // openWin("test.asp", "winTest", 400, 300, "yes"); ☞ 스크롤바 있음
+        // openWin("test.asp", "winTest", 400, 300, "auto"); ☞ 스크롤바 자동
+
+        var x = (screen.width - w) / 2;
+        var y = (screen.height - h) / 2;
+
+        if (sScroll == null)
+            sScroll = "no";
+
+        var sOption = "";
+        sOption = sOption + "toolbar=no, channelmode=no, location=no, directories=no, resizable=no, menubar=no";
+        sOption = sOption + ", scrollbars=" + sScroll + ", left=" + x + ", top=" + y + ", width=" + w + ", height=" + h;
+
+        var win = window.open(sURL, sWindowName, sOption);
+        return win;
+    }
+    //endregion
 </script>
+
+	<!-- footer -->
+	<div id="footer" role="contentinfo">
+		<ul>
+			<li><a href="http://policy.naver.com/rules/service.html">이용약관</a></li>
+			<li><strong><a href="http://policy.naver.com/policy/privacy.html">개인정보처리방침</a></strong></li>
+			<li><a href="http://policy.naver.com/rules/disclaimer.html">책임의 한계와 법적고지</a></li>
+			<li><a href="https://help.naver.com/support/alias/membership/p.membership/p.membership_26.naver" target="_blank" >회원정보 고객센터 </a></li>
+		</ul>
+		<address>
+			<em><a href="https://www.navercorp.com/" target="_blank" class="logo"><span class="blind">naver</span></a></em>
+			<em class="copy">Copyright</em>
+			<em class="u_cri">&copy;</em>
+			<a href="https://www.navercorp.com/" target="_blank" class="u_cra">NAVER Corp.</a>
+			<span class="all_r">All Rights Reserved.</span>
+		</address>
+	</div>
+	<!-- //footer -->
+</div>
 </body>
-
-<!-- ------------------- 메모 부분 ------------------- 
-
-
-1. 라벨값은 id 값과 같은걸 쓴다. label for=
-2. DB와 소통하는 것은 name값이다.
-3. 아이디 입력란에는 키보드 입력시 발생하는 onkeydown 이벤트를 추가했다. 
-이 이벤트를 사용하는 것은 만약 사용자가 중복체크를 하고 난 뒤 아이디 입력란에 사용 가능한 아이디를 지우고 
-새로운 아이디를 입력했을 경우에 대처하기 위함이다. 이렇게 하면 중복체크가 되지 않은 것으로 처리되도록 한다.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  ------------------- 메모 부분 ------------------- -->
-
 </html>
