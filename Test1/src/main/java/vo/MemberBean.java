@@ -3,6 +3,9 @@ package vo;
 public class MemberBean {
 	
 	//사용할 변수들 선언
+	private int MEM_NO;
+	
+	
 	private String MEMBER_ID;
 	private String MEMBER_PW;
 	private String MEMBER_NAME;
@@ -15,8 +18,17 @@ public class MemberBean {
 	
 	
 	//그 후 source > getter,setter
+	
+	
 	public String getMEMBER_ID() {
 		return MEMBER_ID;
+	}
+	public int getMEM_NO() {
+		return MEM_NO;
+	}
+	public void setMEM_NO(int mEM_NO) {
+		MEM_NO = mEM_NO;
+		
 	}
 	public void setMEMBER_ID(String mEMBER_ID) {
 		MEMBER_ID = mEMBER_ID;
