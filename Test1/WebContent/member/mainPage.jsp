@@ -60,7 +60,7 @@
                           
                           <div class="small text-muted">${postList.POST_UPLOADTIME}</div>
                             <h2 class="card-title">${postList.POST_TITLE} -----  ${postList.MEM_NO}</h2>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
+                            <p class="card-text">${postList.POST_CONTENT}</p>
                             <a class="btn btn-primary" href="#!">Read more →</a>
                         </div>
                     </div>

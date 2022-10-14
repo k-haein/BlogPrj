@@ -70,7 +70,18 @@ public class PostDAO {
 					pb.setPOST_TITLE(rs.getString("POST_TITLE")); //DB 컬럼 이름 쓰기
 					pb.setPOST_THUMBNAIL(rs.getString("POST_THUMBNAIL")); //DB 컬럼 이름 쓰기
 					pb.setPOST_VIDEO(rs.getString("POST_VIDEO")); //DB 컬럼 이름 쓰기
-					pb.setPOST_CONTENT(rs.getString("POST_CONTENT")); //DB 컬럼 이름 쓰기
+					
+					
+					//내용 가져와서 15자만 보여주기.------------------
+					String preStr=rs.getString("POST_CONTENT"); 
+					if(preStr.length()>30){ 
+						preStr=preStr.substring(0,15)+"...";
+					};
+					System.out.println("다른가?"+preStr);
+					pb.setPOST_CONTENT(preStr); //DB 컬럼 이름 쓰기
+					//----------------------------------------
+					
+					
 					pb.setVisit_cnt(rs.getInt("Visit_cnt")); //DB 컬럼 이름 쓰기
 					pb.setPOST_UPLOADTIME(rs.getString("POST_UPLOADTIME")); //DB 컬럼 이름 쓰기
 					//조회된 결과 중, 첫 번째 회원에 해당하는 아이디를 가져와서 Member객체에 저장.
