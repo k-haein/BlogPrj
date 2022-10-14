@@ -16,7 +16,7 @@ import action.MemberListAction;
 import action.MemberLoginAction;
 import action.MemberPwdCheckAction;
 import action.MemberViewAction;
-import action.PostViewAction;
+import action.PostListAction;
 import vo.ActionForward;
 
 
@@ -228,8 +228,8 @@ extends javax.servlet.http.HttpServlet{ // HttpServelet 클래스를 상속받�
 		//-------------------- 로그인이 된 후 게시글 목록 보여주는 PostListAction 페이지 생성 ---------------------------
 				//메인 포스트 페이지에 정보만 띄워준다.
 				
-				 else if (command.equals("/member/postViewAction.me")) {
-						action = new PostViewAction();
+				 else if (command.equals("/member/postListAction.me")) {
+						action = new PostListAction();
 						// PostListAction, 로그인 후의 메인 포스트 페이지 표시.
 						try {
 							forward = action.execute(req, resp);

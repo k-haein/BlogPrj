@@ -1,15 +1,17 @@
 package action;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import svc.PostViewService;
+import svc.PostListService;
 import vo.ActionForward;
 import vo.PostBean;
 
 /* 인터페이스를 함께 추가했다. 메인페이지 처리를 위한 클래스이다.*/
-public class PostViewAction implements Action { //Action을 implements 해줌
+public class PostListAction implements Action { //Action을 implements 해줌
 
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
@@ -30,14 +32,18 @@ public class PostViewAction implements Action { //Action을 implements 해줌
 			forward.setRedirect(true);
 			forward.setPath("./memberLogin.me");
 
-		//2. 게시글 목록 보여짐
+		//2. 게시글 목록 보여짐	
 		} else {
-			// 회원의 게시글 목록 표시.
+			// 모든 게시글 목록 표시.
 			forward = new ActionForward();
-			String viewId = req.getParameter("id"); //id가 쓴 게시글
-			PostViewService postViewService = new PostViewService();
-			PostBean postList = postViewService.getPost(viewId);
+			PostListService postListService = new PostListService();
+			ArrayList<PostBean> postList = postListService.getPostList();
 			req.setAttribute("postList", postList);
+			
+
+			System.out.println("postList");
+			System.out.println(postList);
+			
 			forward.setPath("./mainPage.jsp");
 		}
 

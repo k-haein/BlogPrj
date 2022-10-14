@@ -5,6 +5,7 @@ import static db.JdbcUtil.close;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
@@ -40,37 +41,53 @@ public class PostDAO {
 		this.con = con;
 	}
 
-	//=========================== 회원상세정보를 가져와 보여주는 SQL로직 ===============================
-	// MemberViewService에서 회원상세정보를 볼때 DB와 JSP를 연결할 때 인자로 쓰임.
-	public PostBean selectPost(String id) {
-		// 디비에 저장된 모든 한 회원정보를 확인하는 SQL문(DB 이름 확인하기***)
-		String sql ="select * from post_info where MEM_ID=?";
-		PostBean pb=null;
-		
-		try {
-			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1,id);
-			rs=pstmt.executeQuery();
+	//=========================== 로그인된 후 회원정보리스트를 가져와 보여주는 SQL로직 ===============================
+	// MemberListService에서 로그인한 후 DB와 JSP를 연결해서 회원정보리스트를 배열로 가져와 저장할 때 인자로 쓰임.
+	public ArrayList<PostBean> selectPostList() {
+		// 객체 배열 비슷, 컬렉션 프로임워크
+		// 여러 명의 회원 정보를 저장한다.
 
-			System.out.println("여긴 왔니?");
-			if(rs.next()) {
-				
-				pb = new PostBean();
-			
-				//고객 1명의 정보를 저장할 수 있는 MemberBean 객체 생성.
-				pb.setPOST_TITLE(rs.getString("POST_TITLE")); //DB 컬럼 이름 쓰기
-				//조회된 결과 중, 첫 번째 회원에 해당하는 아이디를 가져와서
-				//Member객체에 저장.
-				pb.setPOST_TITLE(rs.getString("POST_TITLE")); //DB 컬럼 이름 쓰기
+		// 디비에 저장된 모든 회원정보를 확인하는 SQL문(DB 이름 확인하기***)
+		String sql = "select * from post_info";
+		// 모든 회원 정보 가져오기.
+
+		ArrayList<PostBean> postList = new ArrayList<PostBean>();
+		PostBean pb = null;
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery(); //executeQuery : resultSet 객체 반환
+			//select는 executeQuery()를 사용한다.
+			//쿼리문 처리결과 ResultSet의 객체인 rs에 저장.
+
+			if (rs.next()) {
+				//조회된 결과가 있다면 아래 문장 수행.
+				do {//한 번 수행하고 또 수행할 게 있으면 수행.
+					pb = new PostBean();
+					//고객 1명의 정보를 저장할 수 있는 MemberBean 객체 생성.
+					pb.setPOST_NO(rs.getInt("POST_NO")); //DB 컬럼 이름 쓰기
+					pb.setMEM_NO(rs.getInt("MEM_NO")); //DB 컬럼 이름 쓰기
+					pb.setPOST_TITLE(rs.getString("POST_TITLE")); //DB 컬럼 이름 쓰기
+					pb.setPOST_THUMBNAIL(rs.getString("POST_THUMBNAIL")); //DB 컬럼 이름 쓰기
+					pb.setPOST_VIDEO(rs.getString("POST_VIDEO")); //DB 컬럼 이름 쓰기
+					pb.setPOST_CONTENT(rs.getString("POST_CONTENT")); //DB 컬럼 이름 쓰기
+					pb.setVisit_cnt(rs.getInt("Visit_cnt")); //DB 컬럼 이름 쓰기
+					pb.setPOST_UPLOADTIME(rs.getString("POST_UPLOADTIME")); //DB 컬럼 이름 쓰기
+					//조회된 결과 중, 첫 번째 회원에 해당하는 아이디를 가져와서 Member객체에 저장.
+					postList.add(pb);
+					//저장하면서 생성된 것을 이제 List에 담아냄.(어레이리스트)
+					//반복문이 실행될 때마다 1명씩 누적 시킴.
+				} while (rs.next());
+				//rs.next때문에 어레이 리스트 다음 값으로 넘어간다.(차례차례 읽어옴)
 			}
-		}catch(Exception ex){
-			System.out.println("getSelectMember 에러: " + ex);
-			
-		}finally {
+		} catch (Exception ex) {
+			System.out.println("getDetailPost 에러 : " + ex);
+		} finally {
 			close(rs);
 			close(pstmt);
 		}
-		return pb;
+		return postList;
+
 	}
 	
 }

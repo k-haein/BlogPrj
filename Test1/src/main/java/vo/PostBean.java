@@ -12,7 +12,7 @@ public class PostBean {
 	private String POST_VIDEO;
 	private String POST_CONTENT;
 	private int visit_cnt;
-	private String RECIPE_UPLOADTIME;
+	private String POST_UPLOADTIME;
 	
 	
 	public int getPOST_NO() {
@@ -57,11 +57,11 @@ public class PostBean {
 	public void setVisit_cnt(int visit_cnt) {
 		this.visit_cnt = visit_cnt;
 	}
-	public String getRECIPE_UPLOADTIME() {
-		return RECIPE_UPLOADTIME;
+	public String getPOST_UPLOADTIME() {
+		return POST_UPLOADTIME;
 	}
-	public void setRECIPE_UPLOADTIME(String rECIPE_UPLOADTIME) {
-		RECIPE_UPLOADTIME = rECIPE_UPLOADTIME;
+	public void setPOST_UPLOADTIME(String pOST_UPLOADTIME) {
+		POST_UPLOADTIME = pOST_UPLOADTIME;
 	}
 	
 	//그 후 source > getter,setter
