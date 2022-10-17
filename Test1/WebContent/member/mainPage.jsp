@@ -8,7 +8,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
     <head>
     <!-- 부트스트랩 출처 : https://startbootstrap.com/template/blog-home -->
         <meta charset="utf-8" />

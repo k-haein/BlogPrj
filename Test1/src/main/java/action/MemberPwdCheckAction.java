@@ -40,7 +40,6 @@ public class MemberPwdCheckAction implements Action { // Action을 implements �
 
 		} 
 
-		// result = "3";
 		System.out.println(result);
 		out.write(result); // 얘는 마지막에만 선언해줘야지 if문이나 else 등에서 여러번 못쓴다.
 		// --> ajax 결과값인 result가 됨

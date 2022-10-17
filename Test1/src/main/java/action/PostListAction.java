@@ -37,13 +37,11 @@ public class PostListAction implements Action { //Action을 implements 해줌
 			// 모든 게시글 목록 표시.
 			forward = new ActionForward();
 			PostListService postListService = new PostListService();
-			ArrayList<PostBean> postList = postListService.getPostList();
+			//배열로 게시글목록을 가져온다.
+			ArrayList<PostBean> postList = postListService.getPostList(); 
 			req.setAttribute("postList", postList);
 			
-
-			System.out.println("postList");
-			System.out.println(postList);
-			
+			//mainPage로 게시글 목록을 던져준다.
 			forward.setPath("./mainPage.jsp");
 		}
 

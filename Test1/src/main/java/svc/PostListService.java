@@ -1,13 +1,8 @@
 package svc;
-
-
 import static db.JdbcUtil.close;
-
 import static db.JdbcUtil.getConnection;
-
 import java.sql.Connection;
 import java.util.ArrayList;
-
 import DAO.PostDAO;
 import vo.PostBean;
 
@@ -24,12 +19,12 @@ public class PostListService {
 		// import static db.JdbcUtil.*;
 		postDAO.setConnection(con);
 		// 얻어온 커넥션 저장. -> 연결해서 할일 함.
-		ArrayList<PostBean> postList = postDAO.selectPostList(); //selectMemberList는 MemberDAO에서 받아온다.
-		//커넥션으로 DB에서 회원정보 받아서 배열에 저장
+		ArrayList<PostBean> postList = postDAO.selectPostList(); //selectPostList는 PostDAO에서 받아온다.
+		//커넥션으로 DB에서 게시글 목록 받아서 배열에 저장
 
 		close(con);
 		// 사용을 마친 커넥션 반환
 		return postList;
-		// 회원 목록 리턴.
+		// 게시글 목록 리턴.
 	}
 }

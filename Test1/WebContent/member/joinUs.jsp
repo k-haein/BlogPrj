@@ -1486,7 +1486,7 @@ $(document).ready(function() {
         return true; */
         
         
-     // 추가) ajax 통신으로 DB 데이터 조회해서 중복확인하기!!!(post 방식) 
+     // 추가) ajax 통신으로 컨트롤러단에서 비밀번호 유효성검사하기!(post 방식) 
         pwFlag = false; //검사 flag
         let userPwd = $('input[name=MEMBER_PW]').val(); // input_id에 입력되는 값
         console.log("입력한 Pwd값 : " + userPwd);
