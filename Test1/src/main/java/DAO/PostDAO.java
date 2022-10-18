@@ -96,4 +96,42 @@ public class PostDAO {
 
 	}
 	
+	//=========================== 게시글 상세보기를 가져와 보여주는 SQL로직 ===============================
+	// PostViewService에서 게시글 상세보기정보를 볼때 DB와 JSP를 연결할 때 인자로 쓰임.
+	public PostBean selectPost(int postNo) {
+		String sql ="select * from post_info where POST_NO=?";
+		PostBean pb=null;
+		
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1,postNo);
+			rs=pstmt.executeQuery();
+
+			System.out.println("postNo로 게시글 검색");
+			if(rs.next()) {
+				
+				pb=new PostBean();
+			
+				//게시글 1개의 정보를 저장할 수 있는 PostBean 객체 생성.
+				pb.setPOST_NO(rs.getInt("POST_NO")); //게시글번호
+				pb.setMEM_NO(rs.getInt("MEM_NO")); //회원번호
+				pb.setPOST_TITLE(rs.getString("POST_TITLE")); //게시글제목
+				pb.setPOST_THUMBNAIL(rs.getString("POST_THUMBNAIL")); //게시글섬네일
+				pb.setPOST_VIDEO(rs.getString("POST_VIDEO")); //게시글비디오
+				pb.setPOST_CONTENT(rs.getString("POST_CONTENT")); //게시글 내용
+				pb.setVisit_cnt(rs.getInt("Visit_cnt")); //게시글조회수
+				pb.setPOST_UPLOADTIME(rs.getString("POST_UPLOADTIME")); //게시글업로드타임
+			}
+		}catch(Exception ex){
+			System.out.println("getSelectPost 에러: " + ex);
+			
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return pb;
+	}
+	
+	
+	
 }

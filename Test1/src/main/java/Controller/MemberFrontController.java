@@ -17,6 +17,7 @@ import action.MemberLoginAction;
 import action.MemberPwdCheckAction;
 import action.MemberViewAction;
 import action.PostListAction;
+import action.PostViewAction;
 import vo.ActionForward;
 
 
@@ -239,7 +240,18 @@ extends javax.servlet.http.HttpServlet{ // HttpServelet 클래스를 상속받�
 						}
 					}
 		
-		
+		//-------------------- 게시글 상세보기 postViewAction 페이지 생성 ---------------------------				
+				 else if (command.equals("/member/postViewAction.me")) {
+						action = new PostViewAction();
+						// PostViewAction, 게시글 상세보기 페이지 표시.
+						try {
+							forward = action.execute(req, resp);
+							System.out.println("게시글 상세보기 표시");
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				
 		
 		
 		
