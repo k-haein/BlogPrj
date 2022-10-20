@@ -21,12 +21,12 @@ public class PostListAction implements Action { //Action을 implements 해줌
 		HttpSession session = req.getSession();
 		// 로그인할 때는 setSession해서 가져오고
 		// 여기 리스트에서는 get으로 뿌린다
-		String id = (String) session.getAttribute("id");
+		String sessionId = (String) session.getAttribute("id");
 		ActionForward forward = null; //어디로 갈지?
 
 		
 		//1. 로그인 상태인지 확인
-		if (id == null) {
+		if (sessionId == null) {
 			// 세션에 저장된 아이디가 없다면~
 			forward = new ActionForward();
 			forward.setRedirect(true);
@@ -38,7 +38,8 @@ public class PostListAction implements Action { //Action을 implements 해줌
 			forward = new ActionForward();
 			PostListService postListService = new PostListService();
 			//배열로 게시글목록을 가져온다.
-			ArrayList<PostBean> postList = postListService.getPostList(); 
+			ArrayList<PostBean> postList = postListService.getPostList(sessionId);
+
 			req.setAttribute("postList", postList);
 			
 			//mainPage로 게시글 목록을 던져준다.

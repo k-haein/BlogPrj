@@ -10,7 +10,7 @@ import DAO.PostDAO;
 import vo.PostBean;
 
 
-/* 회원정보를 띄울 시 DB와 JSP를 연결해주는 역할을 담당하는 클래스(Service) */
+/* 게시글 상세페이지를 띄울 시 DB와 JSP를 연결해주는 역할을 담당하는 클래스(Service) */
 public class PostViewService {
 	
 	public PostBean getPostinfo(int postNo) {
@@ -21,7 +21,7 @@ public class PostViewService {
 		// DB와 jsp간의 연결을 해주는 것을 담당함.
 		postDAO.setConnection(con);
 		
-		PostBean post = postDAO.selectPost(postNo); //selectPost는 MemberDAO에서 받아온다.
+		PostBean post = postDAO.selectPost(postNo); //selectPost는 postDAO에서 받아온다.
 
 		close(con); //커넥션풀 닫음
 

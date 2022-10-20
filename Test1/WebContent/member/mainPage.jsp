@@ -41,8 +41,8 @@
         <header class="py-5 bg-light border-bottom mb-4">
             <div class="container">
                 <div class="text-center my-5">
-                    <h1 class="fw-bolder"> ${postList[0].MEM_NO}회원님의 블로그 홈에 오신걸 환영합니다!</h1>
-                    <p class="lead mb-0">여기는 블로그 홈페이지입니다.배경사진 넣을꺼임.</p>
+                    <h1 class="fw-bolder"> ${sessionScope.id} 회원님! 블로그 메인홈에 오신걸 환영합니다!</h1>
+                    <p class="lead mb-0">이곳에서는 나를 제외한 모든 블로거들의 글을 볼 수 있습니다.</p>
                 </div>
             </div>
         </header>

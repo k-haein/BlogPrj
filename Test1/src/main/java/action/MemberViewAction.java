@@ -48,7 +48,7 @@ public class MemberViewAction implements Action {
 			//서비스 svc에서 만들어준다. 아래에 회원정보 표시를 해주자.
 			MemberBean member = memberViewService.getMember(viewId);
 			//getMember가 찾으려는 ID를 이용하여
-			//회원정보를 찾고 member객체 리턴.
+			//회원정보를 찾고 member 객체 리턴.
 			req.setAttribute("member", member);
 			//요청값(req)에 회원정보를 저장.
 			forward.setPath("./member_info.jsp");

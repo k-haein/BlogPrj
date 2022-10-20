@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-    <!-- 부트스트랩 출처 : https://startbootstrap.com/template/blog-home -->
+    <!-- 부트스트랩 출처 : https://startbootstrap.com/template/blog-post -->
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
+import vo.MemberBean;
 import vo.PostBean;
 
 public class PostDAO {
@@ -43,21 +44,32 @@ public class PostDAO {
 
 	//=========================== 로그인된 후 게시글 목록을 가져와 보여주는 SQL로직 ===============================
 	// selectPostList : PostListService에서 DB와 JSP를 연결해서 게시글 목록을 배열로 가져와 저장할 때 인자로 쓰임.
-	public ArrayList<PostBean> selectPostList() {
+	public ArrayList<PostBean> selectPostList(String sessionId) {
 		// ArrayList: 객체 배열 비슷, 컬렉션 프로임워크
 		// 여러 개의 게시글 정보를 저장한다.
 
 		// 디비에 저장된 모든 게시글 목록을 확인하는 SQL문(DB 이름 확인하기***)
-		String sql = "select * from post_info";
-
+		//String sql = "select * from post_info";
+		
+		//디비에 저장된 "나를 제외한 나머지 사람들의" 게시글 목록을 확인하는 SQL문(DB 이름 확인하기***)
+		String sql = "select * from post_info p join memberinfo m on p.mem_no = m.mem_no where m.mem_id != ?";
+		
+		
 		ArrayList<PostBean> postList = new ArrayList<PostBean>();
 		PostBean pb = null; //Bean(vo)은 그릇이다. 뭘 가져올지는 vo에 목록이 있다.
+		
 
 		try {
 			pstmt = con.prepareStatement(sql);
+			
+			//세션 id값 가져와서 SQL 문에 넣어줌.
+			pstmt.setString(1, sessionId);
+			System.out.println("sessionId : "+sessionId);
+			
 			rs = pstmt.executeQuery(); //executeQuery : resultSet 객체 반환
 			//select는 executeQuery()를 사용한다.
 			//쿼리문 처리결과 ResultSet의 객체인 rs에 저장.
+			
 
 			if (rs.next()) {//조회된 결과가 있다면 아래 문장 수행.
 				do {//한 번 수행하고 또 수행할 게 있으면 수행.
