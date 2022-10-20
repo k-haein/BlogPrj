@@ -23,6 +23,7 @@ public class MemberListAction implements Action { //Action을 implements 해줌
 		// 로그인할 때는 setSession해서 가져오고
 		// 여기 리스트에서는 get으로 뿌린다
 		String id = (String) session.getAttribute("id");
+		System.out.println("id" + id);
 		ActionForward forward = null; //어디로 갈지?
 
 		

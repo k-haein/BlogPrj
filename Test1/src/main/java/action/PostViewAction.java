@@ -18,15 +18,8 @@ public class PostViewAction implements Action {
 		
 		//session을 써서 서버 생성함.
 		HttpSession session = req.getSession();
-		
-
-		Integer postN2o = (Integer) session.getAttribute("postno");
-		//session에 분명 postno를 get으로 던져주는데 Action에서 그 값만 받아오면 될 것 같은데....
-
-		System.out.println("여기2"+postN2o);
-
 		PostBean post = new PostBean();
-		//post.getPOST_NO();
+		
 		
 
 		/*post.setPOST_NO(Integer.parseInt(req.getParameter("POST_NO")));
@@ -67,14 +60,16 @@ public class PostViewAction implements Action {
 
 			forward = new ActionForward();
 			System.out.println("여기333");
-			//int postNo = Integer.parseInt(req.getParameter("POST_NO"));
-			int postNo = post.getPOST_NO();
 			
+
+			int ClickPostNo = Integer.parseInt(req.getParameter("postno"));
+			//URL 주소 뒤에 붙은 쿼리스트링은 getParameter로 가져온다.
+			System.out.println("클릭한 포스트 번호: "+ClickPostNo);
 
 		
 			PostViewService postViewService = new PostViewService();
 			//서비스 svc에서 만들어준다. 아래에 게시글상세정보 표시를 해주자.
-			PostBean postObj = postViewService.getPostinfo(postNo);
+			PostBean postObj = postViewService.getPostinfo(ClickPostNo);
 			//getMember가 찾으려는 ID를 이용하여
 			//회원정보를 찾고 member객체 리턴.
 			req.setAttribute("postObj", postObj);
