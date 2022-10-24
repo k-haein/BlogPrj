@@ -29,20 +29,20 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link" href="myBlog.jsp">MyBlog</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">MyBlog</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
         <!-- Page header with logo and tagline-->
-        <header class="py-5 bg-light border-bottom mb-4">
+        <header class="py-5 bg-light border-bottom mb-4" style="background-image: url('https://www.urbanbrush.net/web/wp-content/uploads/edd/2022/01/urbanbrush-20220105101328484351.jpg')">
             <div class="container">
                 <div class="text-center my-5">
-                    <h1 class="fw-bolder"> ${sessionScope.id} 회원님! 블로그 메인홈에 오신걸 환영합니다!</h1>
-                    <p class="lead mb-0">이곳에서는 나를 제외한 모든 블로거들의 글을 볼 수 있습니다.</p>
+                    <h1 class="fw-bolder"> ${sessionScope.id} 회원님의 블로그입니다.</h1>
+                    <p class="lead mb-0">내가 쓴 글을 볼 수 있습니다.</p>
                 </div>
             </div>
         </header>
@@ -50,8 +50,49 @@
         <div class="container">
        
             <div class="row">
+            <!-- Side widgets-->
+                <div class="col-lg-3">
+                <!-- Side widget-->
+                    <div class="card mb-4">
+                    	<img class="card-img-top" src="http://artmug.kr/image/up_img/detail/goods_5091/KakaoTalk_20190802_200029203_Re.jpg" alt="..." />
+                        <div class="card-header">${sessionScope.id}</div>
+                        <div class="card-body">블로그 소개글 쓰는 곳.맛집을 좋아하는 ㅇㅇ의 블로그입니다! 이미지는 일단 고정으로 박아뒀지롱...</div>
+                    </div>
+                    <!-- Categories widget-->
+                    <div class="card mb-4">
+                        <div class="card-header">카테고리?</div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <ul class="list-unstyled mb-0">
+                                        <li><a href="postEdit.jsp">내 블로그</a></li>
+                                        <li><a href="#">오늘 ??명 방문 ></a></li>
+                                        <li></li>
+                                    </ul>
+                                </div>
+                                <div class="col-sm-6">
+                                    <ul class="list-unstyled mb-0">
+                                        <li><a href="postEdit.jsp">새글작성</a></li>
+                                        <li><a href="#">로그아웃</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Search widget-->
+                    <div class="card mb-4">
+                        <div class="card-header">내 블로그에서 검색</div>
+                        <div class="card-body">
+                            <div class="input-group">
+                                <input class="form-control" type="text" placeholder="검색어를 입력하세요" aria-label="Enter search term..." aria-describedby="button-search" />
+                                <button class="btn btn-primary" id="button-search" type="button">검색</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!-- Blog entries-->
-                <div class="col-lg-8">
+                <div class="col-lg-9">
                         <c:forEach var="postList" items="${postList}">
                     <!-- Featured blog post -->
                     <div class="card mb-4">
@@ -65,55 +106,9 @@
                         </div>
                     </div>
                     </c:forEach>
-                    
-                    <!-- Pagination-->
-                    <nav aria-label="Pagination">
-                        <hr class="my-0" />
-                        <ul class="pagination justify-content-center my-4">
-                            <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Newer</a></li>
-                            <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#!">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#!">3</a></li>
-                            <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
-                            <li class="page-item"><a class="page-link" href="#!">15</a></li>
-                            <li class="page-item"><a class="page-link" href="#!">Older</a></li>
-                        </ul>
-                    </nav>
+
                 </div>
-                <!-- Side widgets-->
-                <div class="col-lg-4">
-                    <!-- Categories widget-->
-                    <div class="card mb-4">
-                        <div class="card-header">${sessionScope.id} 님</div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <ul class="list-unstyled mb-0">
-                                        <li><a class="btn btn-primary" href="myBlog.jsp">내 블로그</a></li>
-                                        <li><a href="myBlog.jsp">오늘 ??명 방문 ></a></li>
-                                        <li></li>
-                                    </ul>
-                                </div>
-                                <div class="col-sm-6">
-                                    <ul class="list-unstyled mb-0">
-                                        <li><a class="btn btn-primary" href="postEdit.jsp">새 게시물 작성</a></li>
-                                        <li><a href="#">로그아웃</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Search widget-->
-                    <div class="card mb-4">
-                        <div class="card-header">블로그 전체 검색</div>
-                        <div class="card-body">
-                            <div class="input-group">
-                                <input class="form-control" type="text" placeholder="검색어를 입력하세요" aria-label="Enter search term..." aria-describedby="button-search" />
-                                <button class="btn btn-primary" id="button-search" type="button">검색</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
            
         </div>
