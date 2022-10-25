@@ -15,7 +15,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Blog Home</title>
+        <title>myBlog</title>
         <!-- Favicon-->
       <!--   <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />  -->
         <!-- Core theme CSS (includes Bootstrap)-->
@@ -93,16 +93,16 @@
                 </div>
                 <!-- Blog entries-->
                 <div class="col-lg-9">
-                        <c:forEach var="postList" items="${postList}">
+                        <c:forEach var="myPostList" items="${myPostList}">
                     <!-- Featured blog post -->
                     <div class="card mb-4">
                         <div class="card-body">
-                           <a href="#!"><img class="card-img-top" src="../resources/img/thumbnail/${postList.POST_THUMBNAIL}" alt="..." /></a>
+                           <a href="#!"><img class="card-img-top" src="../resources/img/thumbnail/${myPostList.POST_THUMBNAIL}" alt="..." /></a>
                           
-                          <div class="small text-muted">${postList.POST_UPLOADTIME}</div>
-                            <h2 class="card-title">${postList.POST_TITLE} -----  ${postList.MEM_NO}</h2>
-                            <p class="card-text">${postList.POST_CONTENT}</p>
-                            <a class="btn btn-primary" href="postViewAction.me?postno=${postList.POST_NO}">Read more →</a>
+                          <div class="small text-muted">${myPostList.POST_UPLOADTIME}</div>
+                            <h2 class="card-title">${myPostList.POST_TITLE} -----  ${myPostList.MEM_NO}</h2>
+                            <p class="card-text">${myPostList.POST_CONTENT}</p>
+                            <a class="btn btn-primary" href="postViewAction.me?postno=${myPostList.POST_NO}">Read more →</a>
                         </div>
                     </div>
                     </c:forEach>

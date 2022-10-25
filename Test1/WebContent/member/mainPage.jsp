@@ -32,7 +32,7 @@
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link" href="myBlog.jsp">MyBlog</a></li>
+                        <li class="nav-item"><a class="nav-link" href="myBlogAction.me?id=${sessionScope.id}">MyBlog</a></li>
                     </ul>
                 </div>
             </div>
@@ -89,7 +89,7 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <ul class="list-unstyled mb-0">
-                                        <li><a class="btn btn-primary" href="myBlog.jsp">내 블로그</a></li>
+                                        <li><a class="btn btn-primary" href="myBlogAction.me?id=${sessionScope.id}">내 블로그</a></li>
                                         <li><a href="myBlog.jsp">오늘 ??명 방문 ></a></li>
                                         <li></li>
                                     </ul>

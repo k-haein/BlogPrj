@@ -16,6 +16,7 @@ import action.MemberListAction;
 import action.MemberLoginAction;
 import action.MemberPwdCheckAction;
 import action.MemberViewAction;
+import action.MyBlogAction;
 import action.PostListAction;
 import action.PostViewAction;
 import vo.ActionForward;
@@ -253,6 +254,17 @@ extends javax.servlet.http.HttpServlet{ // HttpServelet 클래스를 상속받�
 					}
 				
 		
+		//-------------------- 내 블로그 페이지를 보여주는 myBlogAction 페이지 생성 ---------------------------
+				 else if (command.equals("/member/myBlogAction.me")) {
+						action = new MyBlogAction();
+						// MyBlogAction, 내 블로그 페이지 표시.
+						try {
+							forward = action.execute(req, resp);
+							System.out.println("내 블로그 페이지 표시");
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}		
 		
 		
 		
