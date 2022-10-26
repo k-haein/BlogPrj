@@ -56,8 +56,8 @@
                 <div class="col-lg-3">
                 <!-- Side widget-->
                     <div class="card mb-4">
-                    	<img class="card-img-top" src="http://artmug.kr/image/up_img/detail/goods_5091/KakaoTalk_20190802_200029203_Re.jpg" alt="..." />
-                        <div class="card-header">${postObj.MEM_NO}</div>
+                    	<img class="card-img-top" src="../resources/img/blog/${postObj.MEM_PIC}" alt="..." />
+                        <div class="card-header">${postObj.MEM_ID}</div>
                         <div class="card-body">블로그 소개글 쓰는 곳.맛집을 좋아하는 ㅇㅇ의 블로그입니다! 이미지는 일단 고정으로 박아뒀지롱...</div>
                     </div>
                     <!-- Categories widget-->
@@ -101,7 +101,7 @@
                             <!-- Post title-->
                             <h1 class="fw-bolder mb-1">${postObj.POST_TITLE}</h1>
                             <!-- Post meta content-->
-                            <div class="text-muted fst-italic mb-2">${postObj.POST_UPLOADTIME} by ${postObj.MEM_NO}</div>
+                            <div class="text-muted fst-italic mb-2">${postObj.POST_UPLOADTIME} by ${postObj.MEM_ID}</div>
                             <!-- Post categories-->
                             <a class="badge bg-secondary text-decoration-none link-light" href="#!">Web Design</a>
                             <a class="badge bg-secondary text-decoration-none link-light" href="#!">Freebies</a>

@@ -78,3 +78,7 @@ insert into post_info values(17,1,'게시글17제목','게시글17섬네일','','게시글17내
 insert into post_info values(18,1,'게시글18제목','게시글18섬네일','','게시글18내용게시글18내용게시글18내용게시글18내용게시글18내용게시글18내용게시글18내용게시글18내용',1,'');
 insert into post_info values(19,2,'게시글19제목','게시글19섬네일','','게시글19내용게시글19내용게시글19내용게시글19내용게시글19내용게시글19내용게시글19내용게시글19내용',0,'');
 insert into post_info values(20,1,'게시글20제목','게시글20섬네일','','게시글20내용게시글20내용게시글20내용게시글20내용게시글20내용게시글20내용게시글20내용게시글20내용',1,'');
+
+
+-- 블로그 포스팅 글에 왼쪽에 게시글 쓴 멤버의 블로그 프로필 정보를 가져오기 위해 join하는 sql문
+select p.*, m.mem_id from post_info p left join memberinfo m on p.mem_no = m.mem_no where POST_NO=2;

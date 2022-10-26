@@ -136,6 +136,11 @@ public class PostDAO {
 				pb.setPOST_CONTENT(rs.getString("POST_CONTENT")); //게시글 내용
 				pb.setVisit_cnt(rs.getInt("Visit_cnt")); //게시글조회수
 				pb.setPOST_UPLOADTIME(rs.getString("POST_UPLOADTIME")); //게시글업로드타임
+				
+				
+
+				pb.setMEM_id(rs.getString("MEM_ID")); //게시글 쓴 회원 id
+				pb.setMEM_PIC(rs.getString("MEM_PIC")); //게시글 쓴 회원 사진
 			}
 		}catch(Exception ex){
 			System.out.println("getSelectPost 에러: " + ex);

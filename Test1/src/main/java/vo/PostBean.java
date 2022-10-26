@@ -5,7 +5,27 @@ public class PostBean {
 	//사용할 변수들 선언
 	private int POST_NO;
 	private int MEM_NO;
+	
+	
+	//블로그 게시글 네비에 표시하기 위해 추가
+	private String MEM_ID;
+	private String MEM_PIC;
 
+	
+	public String getMEM_ID() {
+		return MEM_ID;
+	}
+	public void setMEM_id(String mEM_ID) {
+		MEM_ID = mEM_ID;
+	}
+	public String getMEM_PIC() {
+		return MEM_PIC;
+	}
+	public void setMEM_PIC(String mEM_PIC) {
+		MEM_PIC = mEM_PIC;
+	}
+	
+	
 	
 	private String POST_TITLE;
 	private String POST_THUMBNAIL;
