@@ -49,6 +49,8 @@ extends javax.servlet.http.HttpServlet{ // HttpServelet 클래스를 상속받�
 		
 		//super.doGet(req, resp); //이건 주석처리 해주고
 		doProcess(req,resp);
+		//doProcess 라는 메서드를 만들어서 request와 response를 매개변수로 path를 구할 수 있는 메서드를 만든다.
+//		/doGet과 doPost에 모두 doProcess라는 메서드를 실행해준다.
 		//Request : 요청
 		//Response : 응답
 	}
@@ -57,8 +59,11 @@ extends javax.servlet.http.HttpServlet{ // HttpServelet 클래스를 상속받�
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		//super.doPost(req, resp); //주석처리 해주고
-		req.setCharacterEncoding("UTF-8"); //post에서 언어set 지정
-
+		req.setCharacterEncoding("UTF-8"); 
+		//doPost에는 .setCharacterEncodint("UTF-8")을 넣어서 한글출력에 문제없도록 설정한다.
+		/*글등록, 글수정 작업시 한글이 깨지지 않을 수 있다.
+		이렇게 처리해주면 앞으로 인코딩은 Servlet에서 담당하므로 따로 처리하지 않아도된다.
+		추후 다른 인코딩으로 변경을 원하면 Servlet에서 변경하면 된다.*/
 		doProcess(req,resp); //얘도 이동해야함.
 	}
 	//post로 요청하면 여기서 처리.
@@ -85,7 +90,9 @@ extends javax.servlet.http.HttpServlet{ // HttpServelet 클래스를 상속받�
 		
 		//=============== 여기서부터 화원가입/로그인 페이지 연결해줌.  ===============
 		
-		ActionForward forward = null; // 가도 되는 지, 주소
+		ActionForward forward = null; 
+		// Action이 모든 작업을 끝내고서 이동하는 위치을 가상적으로 지정한 것이 ActionForward이다.
+		//ActionForward를 null로 리턴하면 이미 response에 응답을 끝냈다는 의미가 된다. 다른 어떤 페이지로도 이동하지 않는다.
 		Action action = null; // execute라는 실행 메소드 return.
 
 		//-------------------- 로그인 버튼 누르면 로그인 페이지로 이동 ---------------------------

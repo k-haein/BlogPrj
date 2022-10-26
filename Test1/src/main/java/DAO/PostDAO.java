@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
-import vo.MemberBean;
 import vo.PostBean;
 
 public class PostDAO {
@@ -198,7 +197,8 @@ public class PostDAO {
 			return myPostList;
 
 		}
-	
-	
+		
+
+		
 	
 }

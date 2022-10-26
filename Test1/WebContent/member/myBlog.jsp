@@ -93,20 +93,25 @@
                 </div>
                 <!-- Blog entries-->
                 <div class="col-lg-9">
-                        <c:forEach var="myPostList" items="${myPostList}">
+                
+                <!-- 여기 블로그 글 목록만 글자로 띄운다. -->
+                 <c:forEach var="myPostList" items="${myPostList}">
                     <!-- Featured blog post -->
                     <div class="card mb-4">
                         <div class="card-body">
-                           <a href="#!"><img class="card-img-top" src="../resources/img/thumbnail/${myPostList.POST_THUMBNAIL}" alt="..." /></a>
-                          
                           <div class="small text-muted">${myPostList.POST_UPLOADTIME}</div>
-                            <h2 class="card-title">${myPostList.POST_TITLE} -----  ${myPostList.MEM_NO}</h2>
-                            <p class="card-text">${myPostList.POST_CONTENT}</p>
-                            <a class="btn btn-primary" href="postViewAction.me?postno=${myPostList.POST_NO}">Read more →</a>
+                            <a href="postViewAction.me?postno=${myPostList.POST_NO}">${myPostList.POST_TITLE} /조회수 : ${myPostList.Visit_cnt}</a>
+                     
                         </div>
                     </div>
                     </c:forEach>
-
+					
+					
+					
+					
+					
+					
+					
                 </div>
                 
             </div>
