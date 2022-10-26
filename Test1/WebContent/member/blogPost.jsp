@@ -37,10 +37,63 @@
                 </div>
             </div>
         </nav>
+        
+                <!-- 블로그 헤더 및 블로그 배경화면 -->
+        <header class="py-5 bg-light border-bottom mb-4" style="background-image: url('https://www.urbanbrush.net/web/wp-content/uploads/edd/2022/01/urbanbrush-20220105101328484351.jpg')">
+            <div class="container">
+                <div class="text-center my-5">
+                    <h1 class="fw-bolder"> ${postObj.MEM_NO} 회원님의 블로그입니다.</h1>
+                    <p class="lead mb-0">내가 쓴 글을 볼 수 있습니다.</p>
+                </div>
+            </div>
+        </header>
+        
         <!-- Page content-->
         <div class="container mt-5">
             <div class="row">
-                <div class="col-lg-8">
+            
+            <!-- 왼쪽 블로그 소개 위젯-->
+                <div class="col-lg-3">
+                <!-- Side widget-->
+                    <div class="card mb-4">
+                    	<img class="card-img-top" src="http://artmug.kr/image/up_img/detail/goods_5091/KakaoTalk_20190802_200029203_Re.jpg" alt="..." />
+                        <div class="card-header">${postObj.MEM_NO}</div>
+                        <div class="card-body">블로그 소개글 쓰는 곳.맛집을 좋아하는 ㅇㅇ의 블로그입니다! 이미지는 일단 고정으로 박아뒀지롱...</div>
+                    </div>
+                    <!-- Categories widget-->
+                    <div class="card mb-4">
+                        <div class="card-header">카테고리?</div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <ul class="list-unstyled mb-0">
+                                        <li><a href="postEdit.jsp">내 블로그</a></li>
+                                        <li><a href="#">오늘 ??명 방문 ></a></li>
+                                        <li></li>
+                                    </ul>
+                                </div>
+                                <div class="col-sm-6">
+                                    <ul class="list-unstyled mb-0">
+                                        <li><a href="postEdit.jsp">새글작성</a></li>
+                                        <li><a href="#">로그아웃</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Search widget-->
+                    <div class="card mb-4">
+                        <div class="card-header">내 블로그에서 검색</div>
+                        <div class="card-body">
+                            <div class="input-group">
+                                <input class="form-control" type="text" placeholder="검색어를 입력하세요" aria-label="Enter search term..." aria-describedby="button-search" />
+                                <button class="btn btn-primary" id="button-search" type="button">검색</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9">
                     <!-- Post content-->
                     <article>
                         <!-- Post header-->

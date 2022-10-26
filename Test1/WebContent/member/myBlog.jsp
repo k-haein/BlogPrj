@@ -37,7 +37,7 @@
                 </div>
             </div>
         </nav>
-        <!-- Page header with logo and tagline-->
+        <!-- 블로그 헤더 및 블로그 배경화면 -->
         <header class="py-5 bg-light border-bottom mb-4" style="background-image: url('https://www.urbanbrush.net/web/wp-content/uploads/edd/2022/01/urbanbrush-20220105101328484351.jpg')">
             <div class="container">
                 <div class="text-center my-5">
@@ -50,7 +50,7 @@
         <div class="container">
        
             <div class="row">
-            <!-- Side widgets-->
+            <!-- 왼쪽 블로그 소개 위젯-->
                 <div class="col-lg-3">
                 <!-- Side widget-->
                     <div class="card mb-4">
@@ -91,27 +91,22 @@
                         </div>
                     </div>
                 </div>
-                <!-- Blog entries-->
+                <!-- 오른쪽 Blog 게시글 내용-->
                 <div class="col-lg-9">
-                
-                <!-- 여기 블로그 글 목록만 글자로 띄운다. -->
-                 <c:forEach var="myPostList" items="${myPostList}">
+                        <c:forEach var="myPostList" items="${myPostList}">
                     <!-- Featured blog post -->
                     <div class="card mb-4">
                         <div class="card-body">
+                           <a href="#!"><img class="card-img-top" src="../resources/img/thumbnail/${myPostList.POST_THUMBNAIL}" alt="..." /></a>
+                          
                           <div class="small text-muted">${myPostList.POST_UPLOADTIME}</div>
-                            <a href="postViewAction.me?postno=${myPostList.POST_NO}">${myPostList.POST_TITLE} /조회수 : ${myPostList.Visit_cnt}</a>
-                     
+                            <h2 class="card-title">${myPostList.POST_TITLE} -----  ${myPostList.MEM_NO}</h2>
+                            <p class="card-text">${myPostList.POST_CONTENT}</p>
+                            <a class="btn btn-primary" href="postViewAction.me?postno=${myPostList.POST_NO}">Read more →</a>
                         </div>
                     </div>
                     </c:forEach>
-					
-					
-					
-					
-					
-					
-					
+
                 </div>
                 
             </div>

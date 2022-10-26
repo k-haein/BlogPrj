@@ -34,7 +34,7 @@ public class PostDAO {
 		if (instance == null) {
 			instance = new PostDAO();
 		} // 1개의 객체를 공동으로 사용.
-		return instance;
+		return instance; 
 	}
 
 	public void setConnection(Connection con) {
@@ -110,7 +110,11 @@ public class PostDAO {
 	//=========================== 게시글 상세보기를 가져와 보여주는 SQL로직 ===============================
 	// PostViewService에서 게시글 상세보기정보를 볼때 DB와 JSP를 연결할 때 인자로 쓰임.
 	public PostBean selectPost(int postNo) {
-		String sql ="select * from post_info where POST_NO=?";
+//		String sql ="select * from post_info where POST_NO=?";
+		
+		//post_info 테이블 전부와 mem_id만 가져온다. 여기서 프로필 사진 가져오면 될듯.
+		String sql ="select p.*,m.mem_id,m.mem_pic from post_info p left join memberinfo m on p.mem_no = m.mem_no where POST_NO=?";
+		
 		PostBean pb=null;
 		
 		try {
