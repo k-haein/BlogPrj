@@ -41,7 +41,7 @@
         <header class="py-5 bg-light border-bottom mb-4" style="background-image: url('https://www.urbanbrush.net/web/wp-content/uploads/edd/2022/01/urbanbrush-20220105101328484351.jpg')">
             <div class="container">
                 <div class="text-center my-5">
-                    <h1 class="fw-bolder"> ${sessionScope.id} 회원님의 블로그입니다.</h1>
+                    <h1 class="fw-bolder"> ${myPostList[0].MEM_ID} 회원님의 블로그입니다.</h1>
                     <p class="lead mb-0">내가 쓴 글을 볼 수 있습니다.</p>
                 </div>
             </div>
@@ -54,8 +54,8 @@
                 <div class="col-lg-3">
                 <!-- Side widget-->
                     <div class="card mb-4">
-                    	<img class="card-img-top" src="http://artmug.kr/image/up_img/detail/goods_5091/KakaoTalk_20190802_200029203_Re.jpg" alt="..." />
-                        <div class="card-header">${sessionScope.id}</div>
+                    	<img class="card-img-top" src="../resources/img/blog/${myPostList[0].MEM_PIC}" alt="..." />
+                        <div class="card-header">${myPostList[0].MEM_ID}</div>
                         <div class="card-body">블로그 소개글 쓰는 곳.맛집을 좋아하는 ㅇㅇ의 블로그입니다! 이미지는 일단 고정으로 박아뒀지롱...</div>
                     </div>
                     <!-- Categories widget-->

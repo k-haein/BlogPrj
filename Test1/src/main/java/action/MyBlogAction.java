@@ -36,9 +36,6 @@ public class MyBlogAction implements Action {
 
 		return forward;
 		
-	
-		
 	}
-
 
 }

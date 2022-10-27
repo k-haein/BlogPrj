@@ -15,7 +15,7 @@ public class PostBean {
 	public String getMEM_ID() {
 		return MEM_ID;
 	}
-	public void setMEM_id(String mEM_ID) {
+	public void setMEM_ID(String mEM_ID) {
 		MEM_ID = mEM_ID;
 	}
 	public String getMEM_PIC() {

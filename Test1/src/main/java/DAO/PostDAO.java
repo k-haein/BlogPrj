@@ -138,8 +138,7 @@ public class PostDAO {
 				pb.setPOST_UPLOADTIME(rs.getString("POST_UPLOADTIME")); //게시글업로드타임
 				
 				
-
-				pb.setMEM_id(rs.getString("MEM_ID")); //게시글 쓴 회원 id
+				pb.setMEM_ID(rs.getString("MEM_ID")); //게시글 쓴 회원 id
 				pb.setMEM_PIC(rs.getString("MEM_PIC")); //게시글 쓴 회원 사진
 			}
 		}catch(Exception ex){
@@ -159,7 +158,7 @@ public class PostDAO {
 			// 여러 개의 게시글 정보를 저장한다.
 			
 			//디비에 저장된 내 게시글 목록을 확인하는 SQL문(DB 이름 확인하기***)
-			String sql = "select * from post_info p join memberinfo m on p.mem_no = m.mem_no where m.mem_id = ?";
+			String sql = "select p.*,m.mem_id,m.mem_pic from post_info p join memberinfo m on p.mem_no = m.mem_no where m.mem_id = ?";
 			
 			
 			ArrayList<PostBean> myPostList = new ArrayList<PostBean>();
@@ -186,10 +185,24 @@ public class PostDAO {
 						pb.setMEM_NO(rs.getInt("MEM_NO")); //회원번호
 						pb.setPOST_TITLE(rs.getString("POST_TITLE")); //게시글제목
 						pb.setPOST_THUMBNAIL(rs.getString("POST_THUMBNAIL")); //게시글섬네일
-						pb.setPOST_VIDEO(rs.getString("POST_VIDEO")); //게시글비디오
-						pb.setPOST_CONTENT(rs.getString("POST_CONTENT")); //게시글 내용
+						pb.setPOST_VIDEO(rs.getString("POST_VIDEO")); //게시글비디오					
+						
+						//--- 게시글 내용 가져와서 15자만 미리보기로 보여줌 ---
+						String preStr=rs.getString("POST_CONTENT"); 
+						if(preStr.length()>30){ 
+							preStr=preStr.substring(0,15)+"..."; //자르고 ... 붙이기
+						};
+						pb.setPOST_CONTENT(preStr); //게시글내용 미리보기
+						//----------------------------------------
+						
 						pb.setVisit_cnt(rs.getInt("Visit_cnt")); //게시글조회수
 						pb.setPOST_UPLOADTIME(rs.getString("POST_UPLOADTIME")); //게시글업로드타임
+						
+						
+						//위젯에 띄울 내 회원정보
+						pb.setMEM_ID(rs.getString("MEM_ID")); //게시글 쓴 회원 id
+						pb.setMEM_PIC(rs.getString("MEM_PIC")); //게시글 쓴 회원 사진
+						
 						//조회된 결과를 PostBean객체에 저장.
 						myPostList.add(pb);
 						//저장하면서 생성된 것을 이제 List에 담아냄.(ArrayList)

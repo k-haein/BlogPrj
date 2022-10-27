@@ -101,10 +101,11 @@
                             <!-- Post title-->
                             <h1 class="fw-bolder mb-1">${postObj.POST_TITLE}</h1>
                             <!-- Post meta content-->
-                            <div class="text-muted fst-italic mb-2">${postObj.POST_UPLOADTIME} by ${postObj.MEM_ID}</div>
-                            <!-- Post categories-->
-                            <a class="badge bg-secondary text-decoration-none link-light" href="#!">Web Design</a>
-                            <a class="badge bg-secondary text-decoration-none link-light" href="#!">Freebies</a>
+                            <div class="text-muted fst-italic mb-2">${postObj.POST_UPLOADTIME} by <b id="memId">${postObj.MEM_ID}</b></div>
+                            
+                            <!-- 수정 삭제 버튼 - 내 게시글에만 보이게 -->
+                            <a class="badge bg-secondary text-decoration-none link-light" href="#!" id="post_update">수정</a>
+                            <a class="badge bg-secondary text-decoration-none link-light" href="#!" id="post_delete">삭제</a>
                         </header>
                         <!-- Preview image figure-->
                         <figure class="mb-4"><img class="img-fluid rounded" src="../resources/img/thumbnail/${postObj.POST_THUMBNAIL}" alt="..." /></figure>
@@ -209,6 +210,19 @@
         </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
+        <script>
+        var sessionId = '<%=(String)session.getAttribute("id")%>';
+        var post_writer = document.getElementById('memId').innerText;
+        console.log(typeof(sessionId),typeof(post_writer));
+        
+        if (sessionId != post_writer){
+        	 document.getElementById("post_update").style.display ='none';
+        	 document.getElementById("post_delete").style.display ='none';
+        	 console.log("내 게시글 아님. 수정 불가");
+        };
+		
+        </script>
         <!-- Core theme JS-->
      <!--   <script src="js/scripts.js"></script>-->
     </body>
