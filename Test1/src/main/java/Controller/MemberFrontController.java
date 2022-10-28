@@ -18,6 +18,7 @@ import action.MemberPwdCheckAction;
 import action.MemberViewAction;
 import action.MyBlogAction;
 import action.PostDeleteAction;
+import action.PostInsertAction;
 import action.PostListAction;
 import action.PostViewAction;
 import vo.ActionForward;
@@ -286,7 +287,16 @@ extends javax.servlet.http.HttpServlet{ // HttpServelet 클래스를 상속받�
 						}
 					}
 		
-		
+		//-------------------- 작성한 블로그 포스팅을 저장하는 postInsertAction 페이지 생성 ---------------------------				
+				 else if (command.equals("/member/postInsertAjax")) {
+						action = new PostInsertAction();
+						try {
+							forward = action.execute(req, resp); //받은 action을 뜯어서 SQL로 보내준다.(서버요청)
+						} catch (Exception e) {
+							e.printStackTrace();
+							System.out.println("포스팅 저장 실패");
+						}
+				}
 		
 		
 		

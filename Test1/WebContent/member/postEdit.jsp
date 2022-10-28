@@ -50,10 +50,16 @@
 				    <h3>Naver Smart Editor 2.0</h3>
 				    <form action="insertStudentInfoForm" method="post">
 				      <div id="smarteditor">
+				      
+				      <input type="text" value="1" id="mem">
+				      <input type="text" value="제목을 입력하세요" id="title">
+				      <input type="text" value="일단 썸네일임" id="thumbnail">
 				        <textarea name="editorTxt" id="editorTxt" 
 				                  rows="20" cols="10" 
 				                  placeholder="내용을 입력해주세요"
 				                  style="width: 500px"></textarea>
+				                  
+				      <input type="text" value="일단 조회수임" id="cnt">
 				      </div>
 				      <input type="button" value ="내용콘솔에" onclick="submitPost()"/>
 				    </form>
@@ -100,7 +106,29 @@
 		    oEditors.getById["editorTxt"].exec("FOCUS")
 		    return
 		  } else {
-		    console.log(content)
+		    //console.log(content);
+			 let writePost = {
+			  mem: $("#mem")[0].value
+	          title: $("#title")[0].value
+	          ,thumbnail : $("#thumbnail")[0].value
+	          ,content: $("#content")[0].value
+	          ,cnt : $("#cnt")[0].value
+	        }
+		    //ajax 통신으로 서버로 보내 데이터 저장함
+		    $.ajax({
+	          url: "postInsertAjax"
+	          , data: writePost
+	          , success: function(data) {
+	            console.log('success')
+	            alert('저장하였습니다.')
+	          }
+	          , error: function(jqXHR, textStatus, errorThrown) {
+	            console.log(jqXHR)
+	            alert('오류가 발생하였습니다.')
+	          }
+	        })
+	        
+	        
 		  }
 		}
 	    
