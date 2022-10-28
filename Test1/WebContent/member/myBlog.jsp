@@ -102,7 +102,7 @@
                           <div class="small text-muted">${myPostList.POST_UPLOADTIME}</div>
                             <h2 class="card-title">${myPostList.POST_TITLE} -----  ${myPostList.MEM_NO}</h2>
                             <p class="card-text">${myPostList.POST_CONTENT}</p>
-                            <a class="btn btn-primary" href="postViewAction.me?postno=${myPostList.POST_NO}">Read more →</a>
+                            <a class="btn btn-primary" href="postViewAction.me?&postno=${myPostList.POST_NO}">Read more →</a>
                         </div>
                     </div>
                     </c:forEach>

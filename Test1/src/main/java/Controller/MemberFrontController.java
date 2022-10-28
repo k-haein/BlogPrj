@@ -17,6 +17,7 @@ import action.MemberLoginAction;
 import action.MemberPwdCheckAction;
 import action.MemberViewAction;
 import action.MyBlogAction;
+import action.PostDeleteAction;
 import action.PostListAction;
 import action.PostViewAction;
 import vo.ActionForward;
@@ -273,7 +274,17 @@ extends javax.servlet.http.HttpServlet{ // HttpServelet 클래스를 상속받�
 						}
 					}		
 		
-		
+		//-------------------- 내 게시글을 삭제하는 postDeleteAction 페이지 생성 ---------------------------				
+				 else if (command.equals("/member/postDeleteAction.me")) {
+						action = new PostDeleteAction();
+						// PostDeleteAction, 삭제 후 페이지 표시.
+						try {
+							forward = action.execute(req, resp);
+							System.out.println("게시글 삭제");
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
 		
 		
 		

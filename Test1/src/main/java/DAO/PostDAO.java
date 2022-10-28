@@ -220,6 +220,31 @@ public class PostDAO {
 
 		}
 		
+		
+		
+		//=========================== 게시글을 삭제하는 SQL로직 ===============================
+		// PostDeleteService에서 게시글 삭제 시 DB와 JSP를 연결할 때 인자로 쓰임.
+		public int deletePost(int postNo) { //우클릭 Create method
+			// 해당 게시글을 삭제하는 SQL문(DB 이름 확인하기***)
+			String sql = "delete from post_info where post_No=?";
+		      int deleteCount = 0;
+		      
+		      try {
+		         pstmt = con.prepareStatement(sql);
+		         pstmt.setInt(1, postNo); //가져온 게시글 번호 보내주기
+		        pstmt.executeUpdate();
+		        deleteCount = 1;
+		      }catch(Exception ex) {
+		         System.out.println("삭제 안됨");
+		         deleteCount = 0;
+		      }finally {
+		         close(rs);
+		         close(pstmt);
+		      }
+		      return deleteCount;
+		}
+
+		
 
 		
 	

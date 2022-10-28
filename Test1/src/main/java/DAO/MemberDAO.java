@@ -161,7 +161,7 @@ public class MemberDAO {
 	//=========================== 회원상세정보를 가져와 보여주는 SQL로직 ===============================
 	// MemberViewService에서 회원상세정보를 볼때 DB와 JSP를 연결할 때 인자로 쓰임.
 	public MemberBean selectMember(String id) {
-		// 디비에 저장된 모든 한 회원정보를 확인하는 SQL문(DB 이름 확인하기***)
+		// 디비에 저장된 한 회원의 모든 정보를 확인하는 SQL문(DB 이름 확인하기***)
 		String sql ="select * from memberinfo where MEM_ID=?";
 		MemberBean mb=null;
 		
@@ -193,7 +193,7 @@ public class MemberDAO {
 	//=========================== 회원정보 삭제하는 SQL로직 ===============================
 	// MemberDeleteService에서 회원정보 삭제 시 DB와 JSP를 연결할 때 인자로 쓰임.
 	public int deleteMember(String deleteId) { //우클릭 Create method
-		// 디비에 저장된 모든 한 회원정보를 확인하는 SQL문(DB 이름 확인하기***)
+		// 해당 회원정보를 삭제하는 SQL문(DB 이름 확인하기***)
 		String sql = "delete from memberinfo where MEM_ID=?";
 	      int mb = 0;
 	      

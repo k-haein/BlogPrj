@@ -104,8 +104,8 @@
                             <div class="text-muted fst-italic mb-2">${postObj.POST_UPLOADTIME} by <b id="memId">${postObj.MEM_ID}</b></div>
                             
                             <!-- 수정 삭제 버튼 - 내 게시글에만 보이게 -->
-                            <a class="badge bg-secondary text-decoration-none link-light" href="#!" id="post_update">수정</a>
-                            <a class="badge bg-secondary text-decoration-none link-light" href="#!" id="post_delete">삭제</a>
+                            <a class="badge bg-secondary text-decoration-none link-light" href="postUpdateAction.me?writer=${postObj.MEM_ID}&postno=${postObj.POST_NO}" id="post_update">수정</a>
+                            <a class="badge bg-secondary text-decoration-none link-light" href="postDeleteAction.me?writer=${postObj.MEM_ID}&postno=${postObj.POST_NO}" id="post_delete">삭제</a>
                         </header>
                         <!-- Preview image figure-->
                         <figure class="mb-4"><img class="img-fluid rounded" src="../resources/img/thumbnail/${postObj.POST_THUMBNAIL}" alt="..." /></figure>
@@ -162,46 +162,6 @@
                         </div>
                     </section>
                 </div>
-                <!-- Side widgets-->
-                <div class="col-lg-4">
-                    <!-- Search widget-->
-                    <div class="card mb-4">
-                        <div class="card-header">Search</div>
-                        <div class="card-body">
-                            <div class="input-group">
-                                <input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
-                                <button class="btn btn-primary" id="button-search" type="button">Go!</button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Categories widget-->
-                    <div class="card mb-4">
-                        <div class="card-header">Categories</div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <ul class="list-unstyled mb-0">
-                                        <li><a href="#!">Web Design</a></li>
-                                        <li><a href="#!">HTML</a></li>
-                                        <li><a href="#!">Freebies</a></li>
-                                    </ul>
-                                </div>
-                                <div class="col-sm-6">
-                                    <ul class="list-unstyled mb-0">
-                                        <li><a href="#!">JavaScript</a></li>
-                                        <li><a href="#!">CSS</a></li>
-                                        <li><a href="#!">Tutorials</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Side widget-->
-                    <div class="card mb-4">
-                        <div class="card-header">Side Widget</div>
-                        <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use, and feature the Bootstrap 5 card component!</div>
-                    </div>
-                </div>
             </div>
         </div>
         <!-- Footer-->
@@ -212,9 +172,10 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
         <script>
+        
+        //세션 id와 게시글 작성자 비교해서 수정/삭제권한 부여하기
         var sessionId = '<%=(String)session.getAttribute("id")%>';
         var post_writer = document.getElementById('memId').innerText;
-        console.log(typeof(sessionId),typeof(post_writer));
         
         if (sessionId != post_writer){
         	 document.getElementById("post_update").style.display ='none';
