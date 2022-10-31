@@ -47,7 +47,7 @@ create table post_info (
     post_thumbnail  varchar2(80) not null,
     post_video varchar2(50),
     post_content  varchar2(180) not null,
-    visit_cnt  number(5) not null,
+    visit_cnt  number(5) default 0, --기본값 0 설정
     post_uploadtime  date default sysdate,
     
     foreign key(mem_no) REFERENCES memberinfo(mem_no)
@@ -82,3 +82,26 @@ insert into post_info values(20,1,'게시글20제목','게시글20섬네일','','게시글20내
 
 -- 블로그 포스팅 글에 왼쪽에 게시글 쓴 멤버의 블로그 프로필 정보를 가져오기 위해 join하는 sql문
 select p.*, m.mem_id from post_info p left join memberinfo m on p.mem_no = m.mem_no where POST_NO=2;
+
+--블로그 포스팅 Insert 하는 sql문
+INSERT INTO post_info( 
+                post_no
+               , mem_no
+               , post_title
+               , post_thumbnail
+               , post_content
+               ,visit_cnt
+               ,post_uploadtime
+               )
+         VALUES( (SELECT NVL(MAX(post_no), 0) + 1 FROM post_info)
+               , 2
+               , 'GENT'
+               , 'BLOGGER'
+               , '7839'
+               , 1
+               , TRUNC(SYSDATE)
+               )
+               
+insert into post_info 
+               VALUES( (SELECT NVL(MAX(post_no), 0) + 1 FROM post_info),2,'김2','김','김','김',3,TRUNC(SYSDATE))     
+select * from post_info

@@ -51,15 +51,15 @@
 				    <form action="insertStudentInfoForm" method="post">
 				      <div id="smarteditor">
 				      
-				      <input type="text" value="1" id="mem">
-				      <input type="text" value="제목을 입력하세요" id="title">
-				      <input type="text" value="일단 썸네일임" id="thumbnail">
+				      <input type="hidden" value="1" id="mem" >
+				      <input type="hidden" value="제목을 입력하세요" id="title">
+				      <input type="hidden" value="일단 썸네일임" id="thumbnail">
 				        <textarea name="editorTxt" id="editorTxt" 
 				                  rows="20" cols="10" 
 				                  placeholder="내용을 입력해주세요"
 				                  style="width: 500px"></textarea>
 				                  
-				      <input type="text" value="일단 조회수임" id="cnt">
+				      <input type="hidden" value="1" id="cnt">
 				      </div>
 				      <input type="button" value ="내용콘솔에" onclick="submitPost()"/>
 				    </form>
@@ -97,23 +97,25 @@
 	    
 	    
 	    /* 버튼 클릭 이벤트 */
-	    submitPost = function() {
-		  oEditors.getById["editorTxt"].exec("UPDATE_CONTENTS_FIELD", [])
-		  let content = document.getElementById("editorTxt").value
+	    function submitPost(){
+	 
+		  oEditors.getById["editorTxt"].exec("UPDATE_CONTENTS_FIELD", []);
+		  //content Text 가져오기
+		  let content = document.getElementById("editorTxt").value;
 		
 		  if(content == '') {
 		    alert("내용을 입력해주세요.")
 		    oEditors.getById["editorTxt"].exec("FOCUS")
-		    return
+		    return;
 		  } else {
 		    //console.log(content);
 			 let writePost = {
 			  mem: $("#mem")[0].value
-	          title: $("#title")[0].value
+	          ,title: $("#title")[0].value
 	          ,thumbnail : $("#thumbnail")[0].value
-	          ,content: $("#content")[0].value
-	          ,cnt : $("#cnt")[0].value
+	          ,content: content
 	        }
+			 console.log(writePost);
 		    //ajax 통신으로 서버로 보내 데이터 저장함
 		    $.ajax({
 	          url: "postInsertAjax"

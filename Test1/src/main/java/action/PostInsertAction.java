@@ -22,11 +22,10 @@ public class PostInsertAction implements Action { // Action을 implements 해줌
 		boolean InsertResult = false;
 		
 		//입력 목록 적어주기(vo에서 받아옴.)
-		post.setMEM_ID(req.getParameter("mem"));
+		post.setMEM_NO(Integer.parseInt(req.getParameter("mem")));
 		post.setPOST_TITLE(req.getParameter("title"));
 		post.setPOST_THUMBNAIL(req.getParameter("thumbnail"));
 		post.setPOST_CONTENT(req.getParameter("content"));
-		post.setVisit_cnt(req.getParameter("cnt"));
 		
 
 		PostInsertService postInsertService = new PostInsertService();

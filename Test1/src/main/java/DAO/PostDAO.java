@@ -236,7 +236,7 @@ public class PostDAO {
 		        pstmt.executeUpdate();
 		        deleteCount = 1;
 		      }catch(Exception ex) {
-		         System.out.println("삭제 안됨");
+		         System.out.println("삭제 안됨" + ex);
 		         deleteCount = 0;
 		      }finally {
 		         close(rs);
@@ -249,22 +249,47 @@ public class PostDAO {
 		// PostInsertService에서  게시글 저장할 때 DB와 JSP를 연결할 때 인자로 쓰임.
 		public int insertPost(PostBean post) {
 			//게시글 저장할 때 SQL문(DB 이름 확인하기***)
-			String sql = "insert into post_info values (?,?)";
+			String sql = 
+				"INSERT INTO post_info("
+						+ "post_no,"
+						+ "mem_no,"
+						+ "post_title,"
+						+ "post_thumbnail,"
+						+ "POST_VIDEO,"
+						+ "POST_CONTENT,"
+						+ "VISIT_CNT,"
+						+ "POST_UPLOADTIME"
+				+ ") "
+				+ "VALUES( "
+						+ "(SELECT NVL(MAX(post_no), 0) + 1 FROM post_info),"
+						+ "?," //mem_no
+						+ "?," //post_title
+						+ "?," //post_thumbnail
+						+ "'비디오.avi',"
+						+ "?," //POST_CONTENT
+						+ "0," //VISIT_CNT
+						+ "TRUNC(SYSDATE)"
+				+ ")";
 			
 			int insertCount=0;
 
 			try {
 				pstmt = con.prepareStatement(sql); 
 				//prepareStatement : SQL문 실행하는 기능을 갖는 객체(변수는 ?로, setString으로 아래에 지정함.)
-				pstmt.setString(1, post.getPOST_TITLE());
-				pstmt.setString(2, post.getPOST_CONTENT());
+				pstmt.setInt(1, post.getMEM_NO());
+				pstmt.setString(2, post.getPOST_TITLE());
+				pstmt.setString(3, post.getPOST_THUMBNAIL());
+				//pstmt.setInt(4, post.getPOST_VIDIO());
+				pstmt.setString(4, post.getPOST_CONTENT());
+
 				insertCount=pstmt.executeUpdate(); //executeUpdate : 데이터베이스 변경할 때
 				//select는 executeQuery()를 사용한다.
 				// insert, update, delete는 executeUpdate()를 사용한다.
 				//정상적으로 된다면 insertCount가 1이 된다.
-
+				System.out.println("게시글 저장ㅎ");
 			} catch (Exception ex) {
-				System.out.println("게시글 저장 안됨");
+				System.out.println("게시글 저장 안됨 2" + ex);
+				
 
 			} finally {
 				close(pstmt); // import static db.JdbcUtil.*;
