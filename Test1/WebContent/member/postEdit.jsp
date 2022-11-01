@@ -47,21 +47,21 @@
                     <!-- 포스트 추가하는 곳-->
                     <!-- Naver SmartEditor 2.8.2를 사용하였습니다. -->
                     
-				    <h3>Naver Smart Editor 2.0</h3>
 				    <form action="insertStudentInfoForm" method="post">
-				      <div id="smarteditor">
+				    	<!-- 제목 -->
+				      <input type="text" placeholder="제목을 입력하세요" id="title" style='width: 600px'>
 				      
-				      <input type="hidden" value="1" id="mem" >
-				      <input type="hidden" value="제목을 입력하세요" id="title">
+				      <div id="smarteditor">
+				      <!-- 우선 멤버와 썸네일은 정적으로 데이터를 넣어둠. -->
 				      <input type="hidden" value="일단 썸네일임" id="thumbnail">
+				      
 				        <textarea name="editorTxt" id="editorTxt" 
 				                  rows="20" cols="10" 
-				                  placeholder="내용을 입력해주세요"
-				                  style="width: 500px"></textarea>
+				                  placeholder="내용을 입력하세요"
+				                  style='width: 600px'></textarea>
 				                  
-				      <input type="hidden" value="1" id="cnt">
 				      </div>
-				      <input type="button" value ="내용콘솔에" onclick="submitPost()"/>
+				      <input type="button" value ="저장" onclick="submitPost()"/>
 				    </form>
                     
                 
@@ -110,8 +110,7 @@
 		  } else {
 		    //console.log(content);
 			 let writePost = {
-			  mem: $("#mem")[0].value
-	          ,title: $("#title")[0].value
+	          title: $("#title")[0].value
 	          ,thumbnail : $("#thumbnail")[0].value
 	          ,content: content
 	        }

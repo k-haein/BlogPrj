@@ -13,18 +13,6 @@ public class PostViewAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 
-		/*PostBean post = new PostBean();
-		 * post.setPOST_NO(Integer.parseInt(req.getParameter("POST_NO")));
-		 * post.setMEM_NO(Integer.parseInt(req.getParameter("MEM_NO")));
-		 * post.setPOST_TITLE(req.getParameter("POST_TITLE"));
-		 * post.setPOST_THUMBNAIL(req.getParameter("POST_THUMBNAIL"));
-		 * post.setPOST_VIDEO(req.getParameter("POST_VIDEO"));
-		 * post.setPOST_CONTENT(req.getParameter("POST_CONTENT"));
-		 * post.setVisit_cnt(Integer.parseInt(req.getParameter("Visit_cnt")));
-		 * post.setPOST_UPLOADTIME(req.getParameter("POST_UPLOADTIME"));
-		 */
-		
-
 		ActionForward forward = null; //어디로 갈지?
 
 

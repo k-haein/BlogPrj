@@ -74,7 +74,7 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <ul class="list-unstyled mb-0">
-                                        <li><a href="postEdit.jsp">새글작성</a></li>
+                                        <li><a href="postInsert.me">새글작성</a></li>
                                         <li><a href="#">로그아웃</a></li>
                                     </ul>
                                 </div>
@@ -101,7 +101,7 @@
                             <!-- Post title-->
                             <h1 class="fw-bolder mb-1">${postObj.POST_TITLE}</h1>
                             <!-- Post meta content-->
-                            <div class="text-muted fst-italic mb-2">${postObj.POST_UPLOADTIME} by <b id="memId">${postObj.MEM_ID}</b></div>
+                            <div class="text-muted fst-italic mb-2">${postObj.POST_UPLOADTIME} by <b id="memId">${postObj.MEM_ID}</b> 조회수 : ${postObj.visit_cnt}</div>
                             
                             <!-- 수정 삭제 버튼 - 내 게시글에만 보이게 -->
                             <a class="badge bg-secondary text-decoration-none link-light" href="postUpdateAction.me?writer=${postObj.MEM_ID}&postno=${postObj.POST_NO}" id="post_update">수정</a>

@@ -72,7 +72,7 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <ul class="list-unstyled mb-0">
-                                        <li><a href="postEdit.jsp">새글작성</a></li>
+                                        <li><a href="postInsert.me">새글작성</a></li>
                                         <li><a href="#">로그아웃</a></li>
                                     </ul>
                                 </div>

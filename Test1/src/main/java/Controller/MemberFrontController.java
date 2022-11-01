@@ -287,6 +287,16 @@ extends javax.servlet.http.HttpServlet{ // HttpServelet 클래스를 상속받�
 						}
 					}
 		
+		//-------------------- 새글작성 버튼 누르면 게시글 작성 페이지로 이동 ---------------------------
+				else if(command.equals("/member/postInsert.me")) {
+					//게시글 작성 페이지로 이동함
+					forward = new ActionForward();
+					//객체 생성
+					forward.setRedirect(false);
+					//이동 허락 안함
+					forward.setPath("./postEdit.jsp");
+					//거기 주소는 joinForm.jsp으로 해라.(이동할 주소 저장)
+				}
 		//-------------------- 작성한 블로그 포스팅을 저장하는 postInsertAction 페이지 생성 ---------------------------				
 				 else if (command.equals("/member/postInsertAjax")) {
 						action = new PostInsertAction();

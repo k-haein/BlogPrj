@@ -58,7 +58,7 @@
                         <div class="card-body">
                            <a href="#!"><img class="card-img-top" src="../resources/img/thumbnail/${postList.POST_THUMBNAIL}" alt="..." /></a>
                           
-                          <div class="small text-muted">${postList.POST_UPLOADTIME}</div>
+                          <div class="small text-muted">${postList.POST_UPLOADTIME} / 조회수 : ${postList.visit_cnt}</div>
                             <h2 class="card-title">${postList.POST_TITLE} -----  ${postList.MEM_NO}</h2>
                             <p class="card-text">${postList.POST_CONTENT}</p>
                             <a class="btn btn-primary" href="postViewAction.me?postno=${postList.POST_NO}">Read more →</a>
@@ -96,7 +96,7 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <ul class="list-unstyled mb-0">
-                                        <li><a class="btn btn-primary" href="postEdit.jsp">새 게시물 작성</a></li>
+                                        <li><a class="btn btn-primary" href="postInsert.me">새 게시물 작성</a></li>
                                         <li><a href="#">로그아웃</a></li>
                                     </ul>
                                 </div>

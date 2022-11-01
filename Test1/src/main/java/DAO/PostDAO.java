@@ -5,6 +5,7 @@ import static db.JdbcUtil.close;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.sql.DataSource;
@@ -110,13 +111,15 @@ public class PostDAO {
 	
 	//=========================== 게시글 상세보기를 가져와 보여주는 SQL로직 ===============================
 	// PostViewService에서 게시글 상세보기정보를 볼때 DB와 JSP를 연결할 때 인자로 쓰임.
-	public PostBean selectPost(int postNo) {
-//		String sql ="select * from post_info where POST_NO=?";
+	public PostBean selectPost(int postNo){
+		//String sql ="select * from post_info where POST_NO=?";
 		
 		//post_info 테이블 전부와 mem_id만 가져온다. 여기서 프로필 사진 가져오면 될듯.
 		String sql ="select p.*,m.mem_id,m.mem_pic from post_info p left join memberinfo m on p.mem_no = m.mem_no where POST_NO=?";
 		
+		
 		PostBean pb=null;
+		
 		
 		try {
 			pstmt=con.prepareStatement(sql);
@@ -142,6 +145,7 @@ public class PostDAO {
 				pb.setMEM_ID(rs.getString("MEM_ID")); //게시글 쓴 회원 id
 				pb.setMEM_PIC(rs.getString("MEM_PIC")); //게시글 쓴 회원 사진
 			}
+			
 		}catch(Exception ex){
 			System.out.println("getSelectPost 에러: " + ex);
 			
@@ -151,7 +155,27 @@ public class PostDAO {
 		}
 		return pb;
 	}
-	
+	//=========================== 게시글 조회수를 +1 하는 SQL로직 ===============================
+	public int postVisitCnt(int postNo) { 
+		//게시글 상세보기 할때마다 조회수 +1 하는 업데이트문도 같이 해주자.
+		String sql = "UPDATE post_info SET VISIT_CNT = VISIT_CNT + 1 WHERE POST_NO = ?";
+	      
+		int visitCount = 0;
+	      
+	      try {
+	         pstmt = con.prepareStatement(sql);
+	         pstmt.setInt(1, postNo); //가져온 게시글 번호 보내주기
+	         pstmt.executeUpdate(); //executeUpdate : 데이터베이스 변경할 때
+	         visitCount = 1;
+	      }catch(Exception ex) {
+	         System.out.println("조회수+1 안됨" + ex);
+	         visitCount = 0;
+	      }finally {
+	         close(rs);
+	         close(pstmt);
+	      }
+	      return visitCount;
+	}
 	
 	//=========================== 내 블로그 게시글을 가져와 보여주는 SQL로직 ===============================
 		public ArrayList<PostBean> selectMyPostList(String sessionId) {
@@ -233,7 +257,7 @@ public class PostDAO {
 		      try {
 		         pstmt = con.prepareStatement(sql);
 		         pstmt.setInt(1, postNo); //가져온 게시글 번호 보내주기
-		        pstmt.executeUpdate();
+		         pstmt.executeUpdate(); //executeUpdate : 데이터베이스 변경할 때
 		        deleteCount = 1;
 		      }catch(Exception ex) {
 		         System.out.println("삭제 안됨" + ex);
@@ -261,14 +285,14 @@ public class PostDAO {
 						+ "POST_UPLOADTIME"
 				+ ") "
 				+ "VALUES( "
-						+ "(SELECT NVL(MAX(post_no), 0) + 1 FROM post_info),"
-						+ "?," //mem_no
+						+ "(SELECT NVL(MAX(post_no), 0) + 1 FROM post_info)," //post_no
+						+ "(SELECT mem_no FROM memberinfo WHERE mem_id = ?)," //mem_no 찾기
 						+ "?," //post_title
 						+ "?," //post_thumbnail
 						+ "'비디오.avi',"
 						+ "?," //POST_CONTENT
 						+ "0," //VISIT_CNT
-						+ "TRUNC(SYSDATE)"
+						+ "TRUNC(SYSDATE)" //POST_UPLOADTIME
 				+ ")";
 			
 			int insertCount=0;
@@ -276,7 +300,7 @@ public class PostDAO {
 			try {
 				pstmt = con.prepareStatement(sql); 
 				//prepareStatement : SQL문 실행하는 기능을 갖는 객체(변수는 ?로, setString으로 아래에 지정함.)
-				pstmt.setInt(1, post.getMEM_NO());
+				pstmt.setString(1, post.getMEM_ID()); //sessionId로 mem_no 찾기
 				pstmt.setString(2, post.getPOST_TITLE());
 				pstmt.setString(3, post.getPOST_THUMBNAIL());
 				//pstmt.setInt(4, post.getPOST_VIDIO());
@@ -286,9 +310,9 @@ public class PostDAO {
 				//select는 executeQuery()를 사용한다.
 				// insert, update, delete는 executeUpdate()를 사용한다.
 				//정상적으로 된다면 insertCount가 1이 된다.
-				System.out.println("게시글 저장ㅎ");
+				System.out.println("게시글 저장");
 			} catch (Exception ex) {
-				System.out.println("게시글 저장 안됨 2" + ex);
+				System.out.println("게시글 저장 안됨" + ex);
 				
 
 			} finally {
