@@ -2,9 +2,13 @@ package action;
 
 import java.io.PrintWriter;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import svc.PostInsertService;
 import vo.ActionForward;
@@ -18,9 +22,14 @@ public class PostInsertAction implements Action { // Action을 implements 해줌
 
 		PostBean post = new PostBean(); //vo에 선언한 변수들 import한거.
 		//작성한 게시글 내용을 저장하고 DB로 전달.
+
+		ActionForward forward = null;
+		PrintWriter out = resp.getWriter();
 		
-		//게시글 저장 성공 여부
-		boolean InsertResult = false;
+		//---------------------------------------------
+		
+		
+		//---------------------------------------------		
 		
 		
 		//session을 써서 서버 생성함.
@@ -36,22 +45,28 @@ public class PostInsertAction implements Action { // Action을 implements 해줌
 		
 
 		PostInsertService postInsertService = new PostInsertService();
-		InsertResult = postInsertService.insertPost(post); //vo에서 받은 변수 보내줌.
+		boolean InsertResult = postInsertService.insertPost(post); //vo에서 받은 변수 보내줌.
 		//게시글 저장이 잘 되었는지 여부
 		
-		ActionForward forward = null;
-		if (InsertResult == false) { //게시글 저장 실패 시
-			resp.setContentType("text/html;charset=UTF-8");
-			PrintWriter out = resp.getWriter(); //위에 있음
-			out.println("<script>");
-			out.println("alert('게시글 저장 실패')");
-			out.println("history.back()");
-			out.println("</script>");
-		} else { //게시글 저장 후 내 블로그로 이동
-			forward = new ActionForward();
-			forward.setRedirect(true);
-			forward.setPath("./myBlogAction.me");
-		}
+		//ajax 통신이라 서버에서 안먹히나? 왜 이게 안되지...
+		
+//		System.out.println(InsertResult);
+//		if (InsertResult) { //게시글 저장 후 내 블로그로 이동
+//
+//			resp.setContentType("text/html;charset=UTF-8");
+//			PrintWriter out = resp.getWriter();
+//			out.println("<script>");
+//			out.println("alert('저장되었습니다.')");
+//			out.println("location.href='./myBlogAction.me");
+//			out.println("</script>");
+//		} else { //게시글 저장 실패 시
+//			resp.setContentType("text/html;charset=UTF-8");
+//			PrintWriter out = resp.getWriter(); //위에 있음
+//			out.println("<script>");
+//			out.println("alert('게시글 저장 실패')");
+//			out.println("history.back()");
+//			out.println("</script>");
+//		}
 		
 		return forward;
 	}

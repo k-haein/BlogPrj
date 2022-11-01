@@ -320,7 +320,32 @@ public class PostDAO {
 			}
 			return insertCount;
 		}
+		
 
+		//=========================== 게시글 저장하는 SQL로직 ===============================
+		public int upload(String fileName, String fileRealName) {
+
+			String SQL = "INSERT INTO FILE VALUES (?, ?)";
+
+			try {
+
+				PreparedStatement pstmt = con.prepareStatement(SQL);
+
+				pstmt.setString(1,  fileName);
+
+				pstmt.setString(2,  fileRealName);
+
+				return pstmt.executeUpdate();
+
+			} catch(Exception e) {
+
+				e.printStackTrace();
+
+			}
+
+			return -1;
+
+		}
 		
 	
 }

@@ -46,8 +46,8 @@
             <div class="row">
                     <!-- 포스트 추가하는 곳-->
                     <!-- Naver SmartEditor 2.8.2를 사용하였습니다. -->
-                    
-				    <form action="insertStudentInfoForm" method="post">
+                    <!-- 파일 전송을 위해 encType = "multipart/form-data" -->
+				    <form action="insertStudentInfoForm" method="post" encType = "multipart/form-data">
 				    	<!-- 제목 -->
 				      <input type="text" placeholder="제목을 입력하세요" id="title" style='width: 600px'>
 				      
@@ -57,10 +57,11 @@
 				      
 				        <textarea name="editorTxt" id="editorTxt" 
 				                  rows="20" cols="10" 
-				                  placeholder="내용을 입력하세요"
+				                  placeholder="&#13;&#10;내용을 입력하세요"
 				                  style='width: 600px'></textarea>
 				                  
 				      </div>
+				      <input type="file" name="fileName">
 				      <input type="button" value ="저장" onclick="submitPost()"/>
 				    </form>
                     
@@ -82,7 +83,6 @@
 	    let oEditors = [];
 	
 	    smartEditor = function() {
-	      console.log("Naver SmartEditor")
 	      nhn.husky.EZCreator.createInIFrame({
 	        oAppRef: oEditors,
 	        elPlaceHolder: "editorTxt",
@@ -102,8 +102,8 @@
 		  oEditors.getById["editorTxt"].exec("UPDATE_CONTENTS_FIELD", []);
 		  //content Text 가져오기
 		  let content = document.getElementById("editorTxt").value;
-		
-		  if(content == '') {
+			console.log(content);
+		  if(content == '<p>&nbsp;</p>') { //비어있는 경우
 		    alert("내용을 입력해주세요.")
 		    oEditors.getById["editorTxt"].exec("FOCUS")
 		    return;
@@ -121,14 +121,14 @@
 	          , data: writePost
 	          , success: function(data) {
 	            console.log('success')
-	            alert('저장하였습니다.')
+	            alert('저장되었습니다.')
+	            location.href='./myBlogAction.me'
 	          }
 	          , error: function(jqXHR, textStatus, errorThrown) {
 	            console.log(jqXHR)
 	            alert('오류가 발생하였습니다.')
 	          }
 	        })
-	        
 	        
 		  }
 		}

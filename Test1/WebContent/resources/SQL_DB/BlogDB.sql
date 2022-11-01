@@ -102,6 +102,8 @@ INSERT INTO post_info(
                , TRUNC(SYSDATE)
                )
                
-insert into post_info 
-               VALUES( (SELECT NVL(MAX(post_no), 0) + 1 FROM post_info),2,'±è2','±è','±è','±è',3,TRUNC(SYSDATE))     
-select * from post_info
+-- mem_id·Î mem_no »Ì±â
+select mem_no from MEMBERINFO where mem_id = 'heannim12';
+
+-- °Ô½Ã±Û ÀÐÀ» ¶§¸¶´Ù Á¶È¸¼ö +1 ÇØÁÜ
+UPDATE post_info SET VISIT_CNT = VISIT_CNT + 1 WHERE POST_NO = 2;
