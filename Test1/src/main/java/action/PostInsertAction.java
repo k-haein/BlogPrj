@@ -24,17 +24,15 @@ public class PostInsertAction implements Action { // Action을 implements 해줌
 		//작성한 게시글 내용을 저장하고 DB로 전달.
 
 		ActionForward forward = null;
-	//	PrintWriter out = resp.getWriter();
-		
 
         
   
-		//---------------------------------------------
+		//------- 파일 업로드 구현 --------------------------------------
 	    //업로드 파일 사이즈
         int fileSize = 5*1024*1024;
         
         //업로드될 폴더 경로
-        String uploadPath = req.getServletContext().getRealPath("/resources/img/thumbnail");
+        //String uploadPath = req.getServletContext().getRealPath("/resources/img/thumbnail");
         //C:\Users\User\Desktop\김해인\eclipse\eclipse workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\Test1\
         //경로 여기가 어디야... 일단 내가 아는 project Explorer 경로로 다시 설정해줌.
         
@@ -49,28 +47,20 @@ public class PostInsertAction implements Action { // Action을 implements 해줌
 //        System.out.println("2"+req.getContextPath());
 //        System.out.println("3"+req.getServletPath());
 //        System.out.println("4"+req.getSession().getServletContext());
-//        
-//        
-//        String uploadPath = req.getServletPath()+("/resources/img/thumbnail");
-        
+       
+        String uploadPath = "C:\\Users\\User\\git\\BlogPrj\\Test1\\WebContent\\resources\\img\\thumbnail";
+        //한번 정적으로 때려넣어보자. -> refresh 하니까 잘 들어간다.
 
-        System.out.println("uploadpath는? "+uploadPath);
+        System.out.println("uploadpath는?  "+uploadPath);
         try {
             //파일업로드
             MultipartRequest multi = new MultipartRequest(req, uploadPath, fileSize, "UTF-8", new DefaultFileRenamePolicy());
-            /*HttpServletRequest request = request 객체
-			
-			String saveDirectory =저장될 서버 경로
-			
-			int maxPostSize = 파일 최대 크기
-			
-			String encoding = 인코딩 방식
-			
+            /*HttpServletRequest request = request 객체			
+			String saveDirectory =저장될 서버 경로			
+			int maxPostSize = 파일 최대 크기			
+			String encoding = 인코딩 방식			
 			FileRenamePolicy policy = 같은 이름의 파일명 방지 처리*/
 
-           //System.out.println("여기2"+multi.getContentType("thumbnail"));
-           // System.out.println("여기3"+multi.getContentType("content"));
-            
             //파일 이름 초기화
             String fileName  = "";
             
@@ -85,17 +75,10 @@ public class PostInsertAction implements Action { // Action을 implements 해줌
             
             
             
-         //   PostDAO pDAO = PostDAO.getInstance();
-//            PostBean board = new PostBean();
-            
     		//session을 써서 서버 생성함.
     		HttpSession session = req.getSession();
     		// 세션에서 id값 가지고 있기. -> 이걸로 post_info의 mem_no를 넣어줄 것임.
     		String sessionId = (String) session.getAttribute("id");
-    		
-
-            System.out.println("title : "+multi.getParameter("title"));
-
             System.out.println("sessionId "+sessionId);
     		
     		post.setMEM_ID(sessionId);
@@ -122,14 +105,7 @@ public class PostInsertAction implements Action { // Action을 implements 해줌
     		boolean result = postInsertService.insertPost(post); //vo에서 받은 변수 보내줌.
     		//게시글 저장이 잘 되었는지 여부
             
-//            board.setBoardNum(bDAO.getSeq());
-//            board.setBoardID(multi.getParameter("boardID"));
-//            board.setBoardSubject(multi.getParameter("boardSubject"));
-//            board.setBoardContent(multi.getParameter("boardContent"));
-//            board.setBoardFile(fileName);
-//            
-//            boolean result = bDAO.boardInsert(board);
-            
+//         
             if(result) {
                 forward.setRedirect(true);
                 forward.setPath("myBlogAction.me");
@@ -139,29 +115,7 @@ public class PostInsertAction implements Action { // Action을 implements 해줌
         }
         return forward;
     }
-//		req.setCharacterEncoding("UTF-8"); //한글이 깨질 수 있으므로 추가
-//		String realFolder = ""; 
-//		String filename1 = ""; 
-//		int maxSize = 1024*1024*5; 
-//		String encType = "UTF-8"; 
-//		String savefile = "resources/img/thumbnail"; 
-//		ServletContext scontext = req.getSession().getServletContext(); 
-//		realFolder = scontext.getRealPath(savefile); 
-//
-//
-//		System.out.println("filename1 : "+req.getContentType()); 
-//		try{ 
-//		MultipartRequest multi=new MultipartRequest(req, realFolder, maxSize, encType, new DefaultFileRenamePolicy()); 
-//		Enumeration<?> files = multi.getFileNames(); 
-//		String file1 = (String)files.nextElement(); 
-//		filename1 = multi.getFilesystemName(file1); 
-//		} catch(Exception e) { 
-//		e.printStackTrace();
-//		} 
-//		 
-//		String fullpath = realFolder + "\\" + filename1;
-//		System.out.println("filename1 : "+fullpath);
-		
+
 		//---------------------------------------------		
 		
 		

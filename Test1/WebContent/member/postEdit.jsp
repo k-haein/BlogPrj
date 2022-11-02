@@ -152,7 +152,7 @@
 	          , success: function(data) {
 	            console.log('success')
 	            alert('저장되었습니다.')
-	        //    location.href='./myBlogAction.me'
+	            location.href='./myBlogAction.me'
 	          }
 	          , error: function(jqXHR, textStatus, errorThrown) {
 	            console.log(jqXHR)
