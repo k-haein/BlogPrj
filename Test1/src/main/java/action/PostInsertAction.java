@@ -35,19 +35,26 @@ public class PostInsertAction implements Action { // Action을 implements 해줌
         
         //업로드될 폴더 경로
         String uploadPath = req.getServletContext().getRealPath("/resources/img/thumbnail");
+        //C:\Users\User\Desktop\김해인\eclipse\eclipse workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\Test1\
+        //경로 여기가 어디야... 일단 내가 아는 project Explorer 경로로 다시 설정해줌.
         
-        ServletContext context = req.getSession().getServletContext();
-        String realFolder = context.getRealPath("/resources/img/thumbnail");
+//        ServletContext context = req.getSession().getServletContext();
+//        System.out.println(context);
+//        String realFolder = context.getRealPath("/resources/img/thumbnail");
+//        
+//        
+//        System.out.println("realFolder는? "+realFolder);
+//        
+//        System.out.println("1"+req.getServletContext().getRealPath("/"));
+//        System.out.println("2"+req.getContextPath());
+//        System.out.println("3"+req.getServletPath());
+//        System.out.println("4"+req.getSession().getServletContext());
+//        
+//        
+//        String uploadPath = req.getServletPath()+("/resources/img/thumbnail");
         
-        
+
         System.out.println("uploadpath는? "+uploadPath);
-        System.out.println("realFolder는? "+realFolder);
-        
-        System.out.println("1"+req.getServletContext().getRealPath("/"));
-        System.out.println("2"+req.getContextPath());
-        System.out.println("3"+req.getServletPath());
-        
-        
         try {
             //파일업로드
             MultipartRequest multi = new MultipartRequest(req, uploadPath, fileSize, "UTF-8", new DefaultFileRenamePolicy());
@@ -72,9 +79,8 @@ public class PostInsertAction implements Action { // Action을 implements 해줌
            
             if(names.hasMoreElements()) {
                 String name = names.nextElement();
-              //  fileName = multi.getFilesystemName(name); //리네임 된 이름(숫자가 붙음) 실제 서버상 저장된 이름
+                fileName = multi.getFilesystemName(name); //리네임 된 이름(숫자가 붙음) 실제 서버상 저장된 이름
               //  fileName = multi.getOriginalFileName(name); //오리지날 이름
-                System.out.println("여기 "+multi.getOriginalFileName(name));
             }
             
             
