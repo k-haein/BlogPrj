@@ -1,6 +1,6 @@
 package action;
 
-import java.io.PrintWriter;
+import java.util.Enumeration;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -24,29 +24,156 @@ public class PostInsertAction implements Action { // Action을 implements 해줌
 		//작성한 게시글 내용을 저장하고 DB로 전달.
 
 		ActionForward forward = null;
-		PrintWriter out = resp.getWriter();
+	//	PrintWriter out = resp.getWriter();
 		
+
+        
+  
 		//---------------------------------------------
-		
+	    //업로드 파일 사이즈
+        int fileSize = 5*1024*1024;
+        
+        //업로드될 폴더 경로
+        String uploadPath = req.getServletContext().getRealPath("/resources/img/thumbnail");
+        
+        ServletContext context = req.getSession().getServletContext();
+        String realFolder = context.getRealPath("/resources/img/thumbnail");
+        
+        
+        System.out.println("uploadpath는? "+uploadPath);
+        System.out.println("realFolder는? "+realFolder);
+        
+        System.out.println("1"+req.getServletContext().getRealPath("/"));
+        System.out.println("2"+req.getContextPath());
+        System.out.println("3"+req.getServletPath());
+        
+        
+        try {
+            //파일업로드
+            MultipartRequest multi = new MultipartRequest(req, uploadPath, fileSize, "UTF-8", new DefaultFileRenamePolicy());
+            /*HttpServletRequest request = request 객체
+			
+			String saveDirectory =저장될 서버 경로
+			
+			int maxPostSize = 파일 최대 크기
+			
+			String encoding = 인코딩 방식
+			
+			FileRenamePolicy policy = 같은 이름의 파일명 방지 처리*/
+
+           //System.out.println("여기2"+multi.getContentType("thumbnail"));
+           // System.out.println("여기3"+multi.getContentType("content"));
+            
+            //파일 이름 초기화
+            String fileName  = "";
+            
+            //파일 이름 가져오기
+            Enumeration<String> names = multi.getFileNames();
+           
+            if(names.hasMoreElements()) {
+                String name = names.nextElement();
+              //  fileName = multi.getFilesystemName(name); //리네임 된 이름(숫자가 붙음) 실제 서버상 저장된 이름
+              //  fileName = multi.getOriginalFileName(name); //오리지날 이름
+                System.out.println("여기 "+multi.getOriginalFileName(name));
+            }
+            
+            
+            
+         //   PostDAO pDAO = PostDAO.getInstance();
+//            PostBean board = new PostBean();
+            
+    		//session을 써서 서버 생성함.
+    		HttpSession session = req.getSession();
+    		// 세션에서 id값 가지고 있기. -> 이걸로 post_info의 mem_no를 넣어줄 것임.
+    		String sessionId = (String) session.getAttribute("id");
+    		
+
+            System.out.println("title : "+multi.getParameter("title"));
+
+            System.out.println("sessionId "+sessionId);
+    		
+    		post.setMEM_ID(sessionId);
+    		//입력 목록 적어주기(vo에서 받아옴.)
+    		post.setPOST_TITLE(multi.getParameter("title"));
+//    		post.setPOST_THUMBNAIL(multi.getParameter("thumbnail"));
+    		post.setPOST_THUMBNAIL(fileName);
+    		post.setPOST_CONTENT(multi.getParameter("content"));
+    		
+    		
+    		/*
+    		POST 방식에서 request.getParameter()메서드를
+			WAS에서 알아서 처리할 수 있도록 되어있는 이유는
+			form에서 method가 POST방식일 때는 디폴트값으로
+			enctype="application/x-www-form-urlencoded" 옵션이 설정 되어있기 때문에
+			이를 WAS에서 인식하고 알아서 in/output방식으로 데이터를 처리하기 때문입니다.
+			따라서. 이미지를 위해서 전송하는 경우 enctype가 Multipart로 설정해야하기 때문에
+			request.getParameter()로 데이터를 불러올 수 없게 됩니다.
+    		*/
+    		
+    		
+    
+    		PostInsertService postInsertService = new PostInsertService();
+    		boolean result = postInsertService.insertPost(post); //vo에서 받은 변수 보내줌.
+    		//게시글 저장이 잘 되었는지 여부
+            
+//            board.setBoardNum(bDAO.getSeq());
+//            board.setBoardID(multi.getParameter("boardID"));
+//            board.setBoardSubject(multi.getParameter("boardSubject"));
+//            board.setBoardContent(multi.getParameter("boardContent"));
+//            board.setBoardFile(fileName);
+//            
+//            boolean result = bDAO.boardInsert(board);
+            
+            if(result) {
+                forward.setRedirect(true);
+                forward.setPath("myBlogAction.me");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return forward;
+    }
+//		req.setCharacterEncoding("UTF-8"); //한글이 깨질 수 있으므로 추가
+//		String realFolder = ""; 
+//		String filename1 = ""; 
+//		int maxSize = 1024*1024*5; 
+//		String encType = "UTF-8"; 
+//		String savefile = "resources/img/thumbnail"; 
+//		ServletContext scontext = req.getSession().getServletContext(); 
+//		realFolder = scontext.getRealPath(savefile); 
+//
+//
+//		System.out.println("filename1 : "+req.getContentType()); 
+//		try{ 
+//		MultipartRequest multi=new MultipartRequest(req, realFolder, maxSize, encType, new DefaultFileRenamePolicy()); 
+//		Enumeration<?> files = multi.getFileNames(); 
+//		String file1 = (String)files.nextElement(); 
+//		filename1 = multi.getFilesystemName(file1); 
+//		} catch(Exception e) { 
+//		e.printStackTrace();
+//		} 
+//		 
+//		String fullpath = realFolder + "\\" + filename1;
+//		System.out.println("filename1 : "+fullpath);
 		
 		//---------------------------------------------		
 		
 		
-		//session을 써서 서버 생성함.
-		HttpSession session = req.getSession();
-		// 세션에서 id값 가지고 있기. -> 이걸로 post_info의 mem_no를 넣어줄 것임.
-		String sessionId = (String) session.getAttribute("id");
-		
-		post.setMEM_ID(sessionId);
-		//입력 목록 적어주기(vo에서 받아옴.)
-		post.setPOST_TITLE(req.getParameter("title"));
-		post.setPOST_THUMBNAIL(req.getParameter("thumbnail"));
-		post.setPOST_CONTENT(req.getParameter("content"));
-		
-
-		PostInsertService postInsertService = new PostInsertService();
-		boolean InsertResult = postInsertService.insertPost(post); //vo에서 받은 변수 보내줌.
-		//게시글 저장이 잘 되었는지 여부
+//		//session을 써서 서버 생성함.
+//		HttpSession session = req.getSession();
+//		// 세션에서 id값 가지고 있기. -> 이걸로 post_info의 mem_no를 넣어줄 것임.
+//		String sessionId = (String) session.getAttribute("id");
+//		
+//		post.setMEM_ID(sessionId);
+//		//입력 목록 적어주기(vo에서 받아옴.)
+//		post.setPOST_TITLE(req.getParameter("title"));
+//		post.setPOST_THUMBNAIL(req.getParameter("thumbnail"));
+//		post.setPOST_CONTENT(req.getParameter("content"));
+//		
+//
+//		PostInsertService postInsertService = new PostInsertService();
+//		postInsertService.insertPost(post); //vo에서 받은 변수 보내줌.
+//		//게시글 저장이 잘 되었는지 여부
 		
 		//ajax 통신이라 서버에서 안먹히나? 왜 이게 안되지...
 		
@@ -68,7 +195,7 @@ public class PostInsertAction implements Action { // Action을 implements 해줌
 //			out.println("</script>");
 //		}
 		
-		return forward;
-	}
+//		return forward;
+//	}
 
 }

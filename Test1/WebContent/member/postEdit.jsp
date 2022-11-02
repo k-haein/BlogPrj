@@ -47,13 +47,13 @@
                     <!-- 포스트 추가하는 곳-->
                     <!-- Naver SmartEditor 2.8.2를 사용하였습니다. -->
                     <!-- 파일 전송을 위해 encType = "multipart/form-data" -->
-				    <form action="insertStudentInfoForm" method="post" encType = "multipart/form-data">
+				    <form action="insertStudentInfoForm" id="form"  enctype="multipart/form-data" method="post">
 				    	<!-- 제목 -->
 				      <input type="text" placeholder="제목을 입력하세요" id="title" style='width: 600px'>
 				      
 				      <div id="smarteditor">
-				      <!-- 우선 멤버와 썸네일은 정적으로 데이터를 넣어둠. -->
-				      <input type="hidden" value="일단 썸네일임" id="thumbnail">
+				      <!-- 우선 멤버와 썸네일은 정적으로 데이터를 넣어둠. 
+				      <input type="hidden" value="일단 썸네일임" id="thumbnail">-->
 				      
 				        <textarea name="editorTxt" id="editorTxt" 
 				                  rows="20" cols="10" 
@@ -61,11 +61,10 @@
 				                  style='width: 600px'></textarea>
 				                  
 				      </div>
-				      <input type="file" name="fileName">
+				      <img id="preview" src="" alt="image" style="width:100px" />
+				      <input type="file" name="fileName" id='fileName' onchange="readURL(this);">
 				      <input type="button" value ="저장" onclick="submitPost()"/>
 				    </form>
-                    
-                
               <!-- 포스트 추가하는 곳-->
             </div>
         </div>
@@ -96,13 +95,25 @@
 	    })
 	    
 	    
+	    
+	    //첨부한 파일 내용 전역변수로 가지고 있기
+	    let fileObject = null;
+	    //파일 선택 시 파일 내용 변수에 넣기
+ 	    $(document).ready(function() {
+			$("#fileName").bind('change', function() {
+				fileObject = this.files;
+				//this.files[0].size gets the size of your file.
+				//alert(this.files[0].size);
+			});
+		}); 
+
 	    /* 버튼 클릭 이벤트 */
 	    function submitPost(){
-	 
+
 		  oEditors.getById["editorTxt"].exec("UPDATE_CONTENTS_FIELD", []);
 		  //content Text 가져오기
 		  let content = document.getElementById("editorTxt").value;
-			console.log(content);
+		
 		  if(content == '<p>&nbsp;</p>') { //비어있는 경우
 		    alert("내용을 입력해주세요.")
 		    oEditors.getById["editorTxt"].exec("FOCUS")
@@ -110,19 +121,38 @@
 		  } else {
 		    //console.log(content);
 			 let writePost = {
-	          title: $("#title")[0].value
-	          ,thumbnail : $("#thumbnail")[0].value
-	          ,content: content
+	       //   title: $("#title")[0].value
+	       //   ,thumbnail : document.getElementById("fileName").value
+	      //    ,content: content
 	        }
-			 console.log(writePost);
+			 
+			 
+
+			 
+			 
+			 
+				// 등록할 파일 리스트를 formData로 데이터 입력
+				var form = $('#form');
+				var formData = new FormData(form[0]);
+			//	for (var i = 0; i < uploadFileList.length; i++) {
+					formData.append('files',fileObject[0]);
+					formData.append('title', $("#title")[0].value);
+					formData.append('content', content);
+			//	}
+			 console.log(fileObject[0]);
+			 
 		    //ajax 통신으로 서버로 보내 데이터 저장함
 		    $.ajax({
 	          url: "postInsertAjax"
-	          , data: writePost
+	          , data: formData
+	          , type: 'POST'
+	          , enctype : 'multipart/form-data'
+	          , contentType : false //false 로 선언 시 content-type 헤더가 multipart/form-data로 전송되게 함
+	          , processData : false //false로 선언 시 formData를 string으로 변환하지 않음
 	          , success: function(data) {
 	            console.log('success')
 	            alert('저장되었습니다.')
-	            location.href='./myBlogAction.me'
+	        //    location.href='./myBlogAction.me'
 	          }
 	          , error: function(jqXHR, textStatus, errorThrown) {
 	            console.log(jqXHR)
@@ -132,6 +162,20 @@
 	        
 		  }
 		}
+	    
+	    
+	    /* 이미지 미리보기 */
+	    function readURL(input) {
+		  if (input.files && input.files[0]) {
+		    var reader = new FileReader();
+		    reader.onload = function (e) {
+		      $('#preview')
+		      .attr('src', e.target.result);
+		    };
+		    reader.readAsDataURL(input.files[0]);
+		  }
+		}
+	    
 	    
 	  </script>
      

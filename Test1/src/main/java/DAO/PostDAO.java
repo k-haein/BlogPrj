@@ -306,11 +306,12 @@ public class PostDAO {
 				//pstmt.setInt(4, post.getPOST_VIDIO());
 				pstmt.setString(4, post.getPOST_CONTENT());
 
+				System.out.println("여기니? "+post.getPOST_THUMBNAIL());
 				insertCount=pstmt.executeUpdate(); //executeUpdate : 데이터베이스 변경할 때
 				//select는 executeQuery()를 사용한다.
 				// insert, update, delete는 executeUpdate()를 사용한다.
 				//정상적으로 된다면 insertCount가 1이 된다.
-				System.out.println("게시글 저장");
+				System.out.println("게시글 저장2");
 			} catch (Exception ex) {
 				System.out.println("게시글 저장 안됨" + ex);
 				
