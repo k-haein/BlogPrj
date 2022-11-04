@@ -295,7 +295,7 @@ extends javax.servlet.http.HttpServlet{ // HttpServelet 클래스를 상속받�
 					forward.setRedirect(false);
 					//이동 허락 안함
 					forward.setPath("./postEdit.jsp");
-					//거기 주소는 joinForm.jsp으로 해라.(이동할 주소 저장)
+					//거기 주소는 postEdit.jsp으로 해라.(이동할 주소 저장)
 				}
 		//-------------------- 작성한 블로그 포스팅을 저장하는 postInsertAction 페이지 생성 ---------------------------				
 				 else if (command.equals("/member/postInsertAjax")) {

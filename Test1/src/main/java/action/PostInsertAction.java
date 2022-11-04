@@ -35,18 +35,6 @@ public class PostInsertAction implements Action { // Action을 implements 해줌
         //String uploadPath = req.getServletContext().getRealPath("/resources/img/thumbnail");
         //C:\Users\User\Desktop\김해인\eclipse\eclipse workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\Test1\
         //경로 여기가 어디야... 일단 내가 아는 project Explorer 경로로 다시 설정해줌.
-        
-//        ServletContext context = req.getSession().getServletContext();
-//        System.out.println(context);
-//        String realFolder = context.getRealPath("/resources/img/thumbnail");
-//        
-//        
-//        System.out.println("realFolder는? "+realFolder);
-//        
-//        System.out.println("1"+req.getServletContext().getRealPath("/"));
-//        System.out.println("2"+req.getContextPath());
-//        System.out.println("3"+req.getServletPath());
-//        System.out.println("4"+req.getSession().getServletContext());
        
         String uploadPath = "C:\\Users\\User\\git\\BlogPrj\\Test1\\WebContent\\resources\\img\\thumbnail";
         //한번 정적으로 때려넣어보자. -> refresh 하니까 잘 들어간다.
