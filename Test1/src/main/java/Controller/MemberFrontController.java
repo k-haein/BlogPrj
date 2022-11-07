@@ -18,8 +18,10 @@ import action.MemberPwdCheckAction;
 import action.MemberViewAction;
 import action.MyBlogAction;
 import action.PostDeleteAction;
+import action.PostEditAction;
 import action.PostInsertAction;
 import action.PostListAction;
+import action.PostUpdateAction;
 import action.PostViewAction;
 import vo.ActionForward;
 
@@ -308,8 +310,37 @@ extends javax.servlet.http.HttpServlet{ // HttpServelet 클래스를 상속받�
 						}
 				}
 		
-	
 		
+		//-------------------- 게시글 안에 수정 누르면 게시글 수정 페이지로 이동 ---------------------------
+					else if(command.equals("/member/postUpdateAction.me")) {
+						//게시글 수정 페이지로 이동함
+						forward = new ActionForward();
+						//객체 생성
+						forward.setRedirect(false);
+						//이동 허락 안함
+						forward.setPath("./updateEdit.jsp");
+						//거기 주소는 updateEdit.jsp으로 해라.(이동할 주소 저장)
+						action = new PostEditAction(); //edit 페이지에 기존 정보 출력
+						try {
+							forward = action.execute(req, resp); //받은 action을 뜯어서 SQL로 보내준다.(서버요청)
+						} catch (Exception e) {
+							e.printStackTrace();
+							System.out.println("기존 내용 띄우기 실패");
+						}
+					}
+		
+		//-------------------- 수정한 게시글을 저장하는 PostUpdateAction 페이지 생성 ---------------------------
+				else if(command.equals("/member/postUpdateAjax")) {
+					action = new PostUpdateAction();
+					try {
+						forward = action.execute(req, resp); //받은 action을 뜯어서 SQL로 보내준다.(서버요청)
+					} catch (Exception e) {
+						e.printStackTrace();
+						System.out.println("포스팅 수정 실패");
+					}
+					
+					
+				}
 		
 		
 		

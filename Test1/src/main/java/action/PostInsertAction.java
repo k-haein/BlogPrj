@@ -95,8 +95,8 @@ public class PostInsertAction implements Action { // Action을 implements 해줌
             
 //         
             if(result) {
-                forward.setRedirect(true);
-                forward.setPath("myBlogAction.me");
+             //   forward.setRedirect(true);
+             //   forward.setPath("myBlogAction.me");
             }
         } catch (Exception e) {
             e.printStackTrace();

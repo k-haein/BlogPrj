@@ -321,9 +321,92 @@ public class PostDAO {
 			}
 			return insertCount;
 		}
-		
+		//=========================== 게시글 수정하는 SQL로직 ===============================
+		// postUpdateService에서  게시글 수정할 때 DB와 JSP를 연결할 때 인자로 쓰임.
+		public int updatePost(PostBean post) {
 
+			int updateCount=0;
+			System.out.println("파일첨부"+post.getPOST_THUMBNAIL());
 
+			//파일 이름이 있는 경우 --------------------------------------
+			if (post.getPOST_THUMBNAIL() != null) {
+			String sql = 
+				"UPDATE post_info SET"
+				+ "post_title = ?,"
+				+ "post_thumbnail = ?,"
+				+ "post_content = ?"
+				+ "WHERE POST_NO = ?";
+			
+
+			try {
+				pstmt = con.prepareStatement(sql); 
+				//prepareStatement : SQL문 실행하는 기능을 갖는 객체(변수는 ?로, setString으로 아래에 지정함.)
+				pstmt.setString(1, post.getPOST_TITLE());
+				pstmt.setString(2, post.getPOST_THUMBNAIL());
+				//pstmt.setInt(4, post.getPOST_VIDIO());
+				pstmt.setString(3, post.getPOST_CONTENT());
+				pstmt.setInt(4, post.getPOST_NO()); //파라미터로 가져온 POST_NO 찾기
+				
+				updateCount=pstmt.executeUpdate(); //executeUpdate : 데이터베이스 변경할 때
+				System.out.println("게시글 수정");
+			} catch (Exception ex) {
+				System.out.println("게시글 수정 안됨" + ex);
+			} finally {
+				close(pstmt); // import static db.JdbcUtil.*;
+			}
+			
+			
+			}else {
+				//파일 이름이 없는 경우 --------------------------------------
+				String sql2 = 
+					"UPDATE post_info SET "
+					+ "post_title = ?,"
+				//	+ "post_thumbnail = ?,"
+					+ "post_content = ?"
+					+ "WHERE POST_NO = ?";
+				
+
+				try {
+					pstmt = con.prepareStatement(sql2); 
+					//prepareStatement : SQL문 실행하는 기능을 갖는 객체(변수는 ?로, setString으로 아래에 지정함.)
+					pstmt.setString(1, post.getPOST_TITLE());
+				//	pstmt.setString(2, post.getPOST_THUMBNAIL());
+					//pstmt.setInt(4, post.getPOST_VIDIO());
+					pstmt.setString(2, post.getPOST_CONTENT());
+					pstmt.setInt(3, post.getPOST_NO()); //파라미터로 가져온 POST_NO 찾기
+
+					
+					updateCount=pstmt.executeUpdate(); //executeUpdate : 데이터베이스 변경할 때
+					System.out.println("게시글 수정");
+				} catch (Exception ex) {
+					System.out.println("게시글 수정 안됨" + ex);
+					
+
+				} finally {
+					close(pstmt); // import static db.JdbcUtil.*;
+				}
+			}
+
+			// --------------------------------------
+			return updateCount;
+		}
 		
-	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 }
