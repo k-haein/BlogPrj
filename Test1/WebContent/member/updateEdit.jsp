@@ -49,8 +49,8 @@
                     <!-- 파일 전송을 위해 encType = "multipart/form-data" -->
 				    <form action="insertStudentInfoForm" id="form"  enctype="multipart/form-data" method="post">
 				    	<!-- 제목 -->
-				    	${postinfo.POST_TITLE}
-				      <input type="text" placeholder="제목을 입력하세요" id="title" style='width: 600px' value=${postinfo.POST_TITLE} >
+				    	
+				      <input type="text" placeholder="제목을 입력하세요" id="title" style='width: 600px' value='${postinfo.POST_TITLE}' >
 				      
 				      <div id="smarteditor">
 				      <!-- 우선 멤버와 썸네일은 정적으로 데이터를 넣어둠.-->
@@ -64,8 +64,7 @@
 				      <input type="file" name="fileName" id='fileName' onchange="readURL(this);">
 				      <!-- 파일쪽엔 기본경로 불가(https://okky.kr/articles/260830) -->
 				      
-				      <input type='hidden' id='writer' value=${postinfo.MEM_ID}>
-				      <input type='hidden' id='postno' value=${postinfo.POST_NO}>
+				     <input type='hidden' id='postno' value='${postinfo.POST_NO}' >
 				      <input type="button" value ="저장" onclick="submitPost()"/>
 				    </form>
               <!-- 포스트 추가하는 곳-->
@@ -140,7 +139,6 @@
 
 					console.log($("#title")[0].value)
 					formData.append('content', content);
-					formData.append('writer', $("#writer")[0].value);
 					formData.append('postno', $("#postno")[0].value);
 			
 			

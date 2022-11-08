@@ -107,3 +107,11 @@ select mem_no from MEMBERINFO where mem_id = 'heannim12';
 
 -- 게시글 읽을 때마다 조회수 +1 해줌
 UPDATE post_info SET VISIT_CNT = VISIT_CNT + 1 WHERE POST_NO = 2;
+
+-- 게시글 수정 업데이트 구문
+UPDATE post_info
+SET
+post_title = '삼성전자',
+post_thumbnail = '22',
+post_content = '컨텐츠'
+WHERE POST_NO = 2;

@@ -1,11 +1,9 @@
 package action;
 
-import java.io.PrintWriter;
 import java.util.Enumeration;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -31,10 +29,12 @@ public class PostUpdateAction implements Action { // Action을 implements 해줌
 	    //업로드 파일 사이즈
         int fileSize = 5*1024*1024;
 
-        String uploadPath = "C:\\Users\\User\\git\\BlogPrj\\Test1\\WebContent\\resources\\img\\thumbnail";
-        //한번 정적으로 때려넣어보자. -> refresh 하니까 잘 들어간다.
-
-        System.out.println("uploadpath는?  "+uploadPath);
+        String uploadPath = req.getServletContext().getRealPath("/resources/img/thumbnail");
+        		
+        //git 링크는 이렇지만 실제 소스 경로는 위와 같다.
+        //"C:\\Users\\User\\git\\BlogPrj\\Test1\\WebContent\\resources\\img\\thumbnail";
+        
+        System.out.println("업데이트 할 uploadpath는?  "+uploadPath);
         try {
             //파일업로드
             MultipartRequest multi = new MultipartRequest(req, uploadPath, fileSize, "UTF-8", new DefaultFileRenamePolicy());
@@ -51,35 +51,9 @@ public class PostUpdateAction implements Action { // Action을 implements 해줌
 
     		//---------------------------------------------	
             
-    		//session을 써서 서버 생성함.
-    		HttpSession session = req.getSession();
-    		// 세션에서 id값 가지고 있기. -> 이걸로 post_info의 mem_no를 넣어줄 것임.
-    		String sessionId = (String) session.getAttribute("id");
-            System.out.println("sessionId "+sessionId);
-    		String post_writer = multi.getParameter("writer");
-    		int postNo = Integer.parseInt(multi.getParameter("postno"));
-            System.out.println("postNo "+postNo);
+    		//postEditAction에서 유저가 작성자인지 한번 거르고 이리로 넘어옴.
     		
-
-    		// 로그인 상태인지 확인 -> 아니면 로그인화면 고고
-    		if (sessionId == null) {
-    			forward = new ActionForward();
-    			forward.setRedirect(true);
-    			forward.setPath("./memberLogin.me");
-    			
-    		// 사용자가 작성자가 맞는지 확인 -> 아니면 alert를 띄우고 해당 포스트로 다시 이동
-    		} else if (!sessionId.equals(post_writer)) {
-    			resp.setContentType("text/html;charset=UTF-8");
-    			PrintWriter out = resp.getWriter();
-    			out.println("<script>");
-    			out.println("alert('작성자가 아닌 사람은 게시글을 수정할 수 없습니다.')");
-    			out.println("location.href='./postViewAction.me?postno="+postNo+"'");
-    			out.println("</script>");
-    			
-
-    		//사용자가 작성자면 삭제가 가능하다.
-    		} else {
-
+        		int postNo = Integer.parseInt(multi.getParameter("postno"));
 	    		post.setPOST_NO(postNo);
 	    		//입력 목록 적어주기(vo에서 받아옴.)
 	    		post.setPOST_TITLE(multi.getParameter("title"));
@@ -100,7 +74,7 @@ public class PostUpdateAction implements Action { // Action을 implements 해줌
 	                forward.setRedirect(true);
 	                forward.setPath("myBlogAction.me");
 	            }
-    		}
+    		
 	     } catch (Exception e) {
 	        e.printStackTrace();
 	     }

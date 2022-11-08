@@ -213,8 +213,13 @@ public class PostDAO {
 						pb.setPOST_VIDEO(rs.getString("POST_VIDEO")); //게시글비디오					
 						
 						//--- 게시글 내용 가져와서 15자만 미리보기로 보여줌 ---
-						String preStr=rs.getString("POST_CONTENT"); 
-						if(preStr.length()>30){ 
+						String preStr=rs.getString("POST_CONTENT");
+						System.out.println(preStr);
+						String cpreStr=preStr.replaceAll("<(/)?([a-zA-Z]*)(\\\\s[a-zA-Z]*=[^>]*)?(\\\\s)*(/)?>", "");
+						System.out.println("변경후"+cpreStr);
+				
+						if(preStr.length()>30){
+							
 							preStr=preStr.substring(0,15)+"..."; //자르고 ... 붙이기
 						};
 						pb.setPOST_CONTENT(preStr); //게시글내용 미리보기
@@ -331,7 +336,7 @@ public class PostDAO {
 			//파일 이름이 있는 경우 --------------------------------------
 			if (post.getPOST_THUMBNAIL() != null) {
 			String sql = 
-				"UPDATE post_info SET"
+				"UPDATE post_info SET "
 				+ "post_title = ?,"
 				+ "post_thumbnail = ?,"
 				+ "post_content = ?"
@@ -348,9 +353,9 @@ public class PostDAO {
 				pstmt.setInt(4, post.getPOST_NO()); //파라미터로 가져온 POST_NO 찾기
 				
 				updateCount=pstmt.executeUpdate(); //executeUpdate : 데이터베이스 변경할 때
-				System.out.println("게시글 수정");
+				System.out.println("게시글 수정1");
 			} catch (Exception ex) {
-				System.out.println("게시글 수정 안됨" + ex);
+				System.out.println("게시글 수정1 안됨" + ex);
 			} finally {
 				close(pstmt); // import static db.JdbcUtil.*;
 			}
@@ -377,9 +382,9 @@ public class PostDAO {
 
 					
 					updateCount=pstmt.executeUpdate(); //executeUpdate : 데이터베이스 변경할 때
-					System.out.println("게시글 수정");
+					System.out.println("게시글 수정2");
 				} catch (Exception ex) {
-					System.out.println("게시글 수정 안됨" + ex);
+					System.out.println("게시글 수정2 안됨" + ex);
 					
 
 				} finally {
