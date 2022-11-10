@@ -216,7 +216,7 @@ public class PostDAO {
 						String preStr=rs.getString("POST_CONTENT");
 						System.out.println(preStr);
 						String cpreStr=preStr.replaceAll("<(/)?([a-zA-Z]*)(\\\\s[a-zA-Z]*=[^>]*)?(\\\\s)*(/)?>", "");
-						System.out.println("변경후"+cpreStr);
+						System.out.println("변경후 왜 안잘려"+cpreStr);
 				
 						if(preStr.length()>30){
 							
