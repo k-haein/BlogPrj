@@ -84,9 +84,9 @@ public class PostDAO {
 					
 					//--- 게시글 내용 가져와서 15자만 미리보기로 보여줌 ---
 					String preStr=rs.getString("POST_CONTENT"); 
-					if(preStr.length()>30){ 
-						preStr=preStr.substring(0,15)+"..."; //자르고 ... 붙이기
-					};
+//					if(preStr.length()>30){ 
+//						preStr=preStr.substring(0,15)+"..."; //자르고 ... 붙이기
+//					};
 					pb.setPOST_CONTENT(preStr); //게시글내용 미리보기
 					//----------------------------------------
 					

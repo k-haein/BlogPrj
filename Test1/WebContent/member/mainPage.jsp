@@ -97,7 +97,7 @@
                                 <div class="col-sm-6">
                                     <ul class="list-unstyled mb-0">
                                         <li><a class="btn btn-primary" href="postInsert.me">새 게시물 작성</a></li>
-                                        <li><a href="#">로그아웃</a></li>
+                                        <li><a href="logout">로그아웃</a></li>
                                     </ul>
                                 </div>
                             </div>

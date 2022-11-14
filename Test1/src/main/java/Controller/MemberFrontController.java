@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import action.Action;
 import action.MemberDeleteAction;
@@ -342,7 +343,20 @@ extends javax.servlet.http.HttpServlet{ // HttpServelet 클래스를 상속받�
 					
 				}
 		
-		
+		//-------------------- 로그아웃하면? ---------------------------
+				else if(command.equals("/member/logout")) {
+					try {
+						HttpSession session = req.getSession();
+						session.removeAttribute("id");
+						
+						resp.sendRedirect(req.getContextPath());
+					} catch (Exception e) {
+						e.printStackTrace();
+						System.out.println("로그아웃 실패");
+					}
+					
+					
+				}
 		
 		
 		
