@@ -108,7 +108,7 @@
                         <div class="card-header">블로그 전체 검색</div>
                         <div class="card-body">
                             <div class="input-group">
-                                <input class="form-control" type="text" placeholder="검색어를 입력하세요" aria-label="Enter search term..." aria-describedby="button-search" />
+                                <input class="form-control" type="text" id="searchWord" placeholder="검색어를 입력하세요" aria-label="Enter search term..." aria-describedby="button-search" />
                                 <button class="btn btn-primary" id="button-search" type="button">검색</button>
                             </div>
                         </div>
@@ -125,5 +125,15 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
        <!-- <script src="js/scripts.js"></script> -->
+       
+       <script>
+       //여기서 ajax 통신으로 searchWord 를 찾는 구문을 만들어줄 것임.그러고 페이지 이동해서 다시 찾아줘야할듯?
+    	//기회가 되면 기간 설정도 해보자.
+       
+       
+       
+       </script>
+       
+       
     </body>
 </html>
