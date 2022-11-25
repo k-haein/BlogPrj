@@ -115,3 +115,16 @@ post_title = '»ï¼ºÀüÀÚ',
 post_thumbnail = '22',
 post_content = 'ÄÁÅÙÃ÷'
 WHERE POST_NO = 2;
+
+--´ñ±Û °Ô½ÃÆÇ ¸¸µé±â
+create table comment_info(
+comment_no number(4) Primary key, --´ñ±Û¹øÈ£
+post_no number(4) not null, --°Ô½Ã±Û¹øÈ£
+mem_no varchar2(20) not null, --´ñ±Û¾´È¸¿ø¹øÈ£
+comment_Text varchar(100),
+comment_level int default 0 not null, --¸ð´ñ±ÛÀÌ¸é 0, ´ä±ÛÀÌ¸é 1
+comment_uploadtime  date default sysdate,
+
+foreign key(post_no) REFERENCES post_info(post_no) on delete cascade
+)
+--drop table comment_info CASCADE CONSTRAINTS;
