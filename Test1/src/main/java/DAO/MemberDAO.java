@@ -47,7 +47,41 @@ public class MemberDAO {
 	// MemberJoinService에서 회원가입할 때 DB와 JSP를 연결할 때 인자로 쓰임.
 	public int insertMember(MemberBean member) {
 		//회원가입 시 DB에 member 정보를 넣는 SQL문(DB 이름 확인하기***)
-		String sql = "insert into memberinfo values (?,?,?,?,?,?,?,?,?)";
+		//String sql = "insert into memberinfo() values (?,?,?,?,?,?,?,?,?)";
+		//memberinfo 테이블이 언제 또 추가될지 모르니 따로 넣자.
+		
+		String sql = 
+				"INSERT INTO memberinfo("
+						+ "MEM_NO,"
+						+ "MEM_ID,"
+						+ "MEM_PWD,"
+						+ "MEM_NAME,"
+						+ "MEM_BIR_YY,"
+						+ "MEM_BIR_MM,"
+						+ "MEM_BIR_DD,"
+						+ "MEM_GENDER,"
+						+ "MEM_MAIL,"
+						+ "MEM_PHONE,"
+						+ "MEM_REGDATE,"
+						+ "MEM_PIC"
+				+ ") "
+				+ "VALUES( "
+						+ "(SELECT NVL(MAX(mem_no), 0) + 1 FROM memberinfo)," //MEM_NO
+						+ "?," //MEM_ID
+						+ "?," //MEM_PWD
+						+ "?," //MEM_NAME
+						+ "?," //MEM_BIR_YY
+						+ "?," //MEM_BIR_MM
+						+ "?," //MEM_BIR_DD
+						+ "?," //MEM_GENDER
+						+ "?," //MEM_MAIL
+						+ "?,"//MEM_PHONE
+						+ "TRUNC(SYSDATE)," //MEM_REGDATE
+						+ "'default.jpg'" //MEM_PIC
+				+ ")";
+		
+		
+		
 		int insertCount=0;
 
 		try {

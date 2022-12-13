@@ -33,8 +33,6 @@ public class MemberJoinAction implements Action { //Action을 implements 해줌
 		member.setMEMBER_GENDER(req.getParameter("MEMBER_GENDER"));
 		member.setMEMBER_MAIL(req.getParameter("MEMBER_MAIL"));
 		member.setMEMBER_PHONE(req.getParameter("MEMBER_PHONE"));
-		
-		
 
 		
 
