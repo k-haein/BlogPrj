@@ -127,18 +127,12 @@
 	        }
 			 
 			 
-
-			 
-			 
-			 
 				// 등록할 파일 리스트를 formData로 데이터 입력
 				var form = $('#form');
 				var formData = new FormData(form[0]);
-			//	for (var i = 0; i < uploadFileList.length; i++) {
 					formData.append('files',fileObject[0]);
 					formData.append('title', $("#title")[0].value);
 					formData.append('content', content);
-			//	}
 			 console.log(fileObject[0]);
 			 
 		    //ajax 통신으로 서버로 보내 데이터 저장함

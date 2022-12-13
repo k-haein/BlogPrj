@@ -32,11 +32,11 @@ public class PostInsertAction implements Action { // Action을 implements 해줌
         int fileSize = 5*1024*1024;
         
         //업로드될 폴더 경로
-        //String uploadPath = req.getServletContext().getRealPath("/resources/img/thumbnail");
+        String uploadPath = req.getServletContext().getRealPath("/resources/img/thumbnail");
         //C:\Users\User\Desktop\김해인\eclipse\eclipse workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\Test1\
         //경로 여기가 어디야... 일단 내가 아는 project Explorer 경로로 다시 설정해줌.
        
-        String uploadPath = "C:\\Users\\User\\git\\BlogPrj\\Test1\\WebContent\\resources\\img\\thumbnail";
+       // String uploadPath = "C:\\Users\\User\\git\\BlogPrj\\Test1\\WebContent\\resources\\img\\thumbnail";
         //한번 정적으로 때려넣어보자. -> refresh 하니까 잘 들어간다.
 
         System.out.println("uploadpath는?  "+uploadPath);
