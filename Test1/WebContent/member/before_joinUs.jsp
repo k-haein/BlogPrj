@@ -25,7 +25,7 @@
 		<!-- ------------------ header ------------------ -->
 		<div id="header" role="banner">
 			<h1>
-				<a href="http://www.naver.com" class="h_logo">
+				<a href="" class="h_logo">
 					<span class="blind">NAVER</span>
 				</a>
 			</h1>
@@ -824,20 +824,19 @@
 		<!-- footer -->
 		<div id="footer" role="contentinfo">
 			<ul>
-				<li><a href="http://policy.naver.com/rules/service.html">이용약관</a></li>
+				<li><a href="#">이용약관</a></li>
 				<li><strong><a
-						href="http://policy.naver.com/policy/privacy.html">개인정보처리방침</a></strong></li>
-				<li><a href="http://policy.naver.com/rules/disclaimer.html">책임의
+						href="#">개인정보처리방침</a></strong></li>
+				<li><a href="#">책임의
 						한계와 법적고지</a></li>
 				<li><a
-					href="https://help.naver.com/support/alias/membership/p.membership/p.membership_26.naver"
-					target="_blank">회원정보 고객센터 </a></li>
+					href="#">회원정보 고객센터 </a></li>
 			</ul>
 			<address>
-				<em><a href="https://www.navercorp.com/" target="_blank"
+				<em><a href="#"
 					class="logo"><span class="blind">naver</span></a></em> <em class="copy">Copyright</em>
-				<em class="u_cri">&copy;</em> <a href="https://www.navercorp.com/"
-					target="_blank" class="u_cra">NAVER Corp.</a> <span class="all_r">All
+				<em class="u_cri">&copy;</em> <a href="#"
+					 class="u_cra">NAVER Corp.</a> <span class="all_r">All
 					Rights Reserved.</span>
 			</address>
 		</div>

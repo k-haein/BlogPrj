@@ -19,7 +19,7 @@
 <!-- //스킵네비게이션 -->
 <!-- header -->
 <div id="header" class="join_membership" role="banner">
-    <h1><a href="http://www.naver.com" class="h_logo"><span class="blind">NAVER</span></a></h1>
+    <h1><a href="#" class="h_logo"><span class="blind">NAVER</span></a></h1>
 </div>
 <!-- // header -->
 
@@ -157,9 +157,9 @@
                     <span class="error_next_box" id="genderMsg" style="display:none" aria-live="assertive"></span>
 
                     <div class="join_row join_email">
-                        <h3 class="join_title"><label for="email">본인 확인 이메일<span class="terms_choice">(선택)</span></label></h3>
+                        <h3 class="join_title"><label for="email">본인 확인 이메일<span class="terms_choice"></span></label></h3>
                         <span class="ps_box int_email box_right_space">
-							<input type="text" id="email" name="MEMBER_MAIL" placeholder="선택입력" aria-label="선택입력" class="int" maxlength="100">
+							<input type="text" id="email" name="MEMBER_MAIL" placeholder="이메일" aria-label="이메일" class="int" maxlength="100">
 						</span>
                     </div>
                     <span class="error_next_box" id="emailMsg" style="display:none" aria-live="assertive"></span>
@@ -1035,7 +1035,7 @@
 
                 <div class="btn_area">
                 <!--  type="button" id="btnJoin" 제거함 -->
-                    <button class="btn_type btn_primary" href="javascript:joinUs.submit()"><span>가입하기</span></button>
+                    <button class="btn_type btn_primary" type="button" onclick="emptyCheck()"><span>가입하기</span></button>
                 </div>
             </div>
         </div>
@@ -1052,16 +1052,16 @@
 	<!-- footer -->
 	<div id="footer" role="contentinfo">
 		<ul>
-			<li><a href="http://policy.naver.com/rules/service.html">이용약관</a></li>
-			<li><strong><a href="http://policy.naver.com/policy/privacy.html">개인정보처리방침</a></strong></li>
-			<li><a href="http://policy.naver.com/rules/disclaimer.html">책임의 한계와 법적고지</a></li>
-			<li><a href="https://help.naver.com/support/alias/membership/p.membership/p.membership_26.naver" target="_blank" >회원정보 고객센터 </a></li>
+			<li><a href="#">이용약관</a></li>
+			<li><strong><a href="#">개인정보처리방침</a></strong></li>
+			<li><a href="#">책임의 한계와 법적고지</a></li>
+			<li><a href="#" >회원정보 고객센터 </a></li>
 		</ul>
 		<address>
-			<em><a href="https://www.navercorp.com/" target="_blank" class="logo"><span class="blind">naver</span></a></em>
+			<em><a href="#" class="logo"><span class="blind">naver</span></a></em>
 			<em class="copy">Copyright</em>
 			<em class="u_cri">&copy;</em>
-			<a href="https://www.navercorp.com/" target="_blank" class="u_cra">NAVER Corp.</a>
+			<a href="#" class="u_cra">NAVER Corp.</a>
 			<span class="all_r">All Rights Reserved.</span>
 		</address>
 	</div>
@@ -1075,6 +1075,20 @@
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script type="text/JavaScript">
+//221214 추가) form에 빈값 있는지 확인 : https://do-study.tistory.com/5
+function emptyCheck() {
+	var is_empty = false;
+	for(i=0;i<11;i++){
+		if(joinform[i].value == ''){
+			alert("값을 전부 입력해주세요.")
+			return;
+		}
+	}
+	
+	document.joinform.submit();
+	alert("가입이 완료되었습니다.")
+
+}
 
 //region define, setter
 //필요한 플래그들을 세운다.
@@ -2669,23 +2683,9 @@ $(document).ready(function() {
     };
     var desk = new sofa.Koop(properties);
 
-
-
-
-
-    
-
-   
-
- 
-
-
-
-    
-
- 
-    
   */
+  
+  
 </script>
 </body>
 
