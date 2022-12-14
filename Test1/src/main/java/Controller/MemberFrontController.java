@@ -25,6 +25,7 @@ import action.PostListAction;
 import action.PostUpdateAction;
 import action.PostViewAction;
 import action.SearchWordAction;
+import action.SearchWordMyAction;
 import vo.ActionForward;
 
 
@@ -371,7 +372,20 @@ extends javax.servlet.http.HttpServlet{ // HttpServelet 클래스를 상속받�
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
-					}		
+					}	
+		//-------------------- 내블로그에서 내 게시글 검색하기 ---------------------------
+				 else if (command.equals("/member/searchWordMyAction.me")) {	
+					 	//get 방식으로 던졌고 아래 Action 페이지에서 getParameter로 받을 수 있음.
+					 	//name 값이 있어야 받음. id만 있어서는 못받음.
+						action = new SearchWordMyAction();
+						// SearchWordMyAction, 검색페이지
+						try {
+							forward = action.execute(req, resp);
+							System.out.println("검색 표시");
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}	
 		
 		
 		

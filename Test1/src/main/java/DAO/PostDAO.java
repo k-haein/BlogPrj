@@ -400,9 +400,9 @@ public class PostDAO {
 			// ArrayList: 객체 배열 비슷, 컬렉션 프로임워크
 			
 			String sql = "";
-			
+
+			//메인페이지에서 전체게시글 검색하는 SQL문(DB 이름 확인하기***)
 			if(option == 01) {
-				//메인페이지에서 전체게시글 검색하는 SQL문(DB 이름 확인하기***)
 				sql = "select * from post_info where POST_TITLE like ?";
 				
 			}else if(option == 02) {
@@ -462,7 +462,87 @@ public class PostDAO {
 
 		}
 		
-		
+		//=========================== 내 블로그 게시글을 검색하는 SQL로직 ===============================
+		public ArrayList<PostBean> selectMySearchList(String sessionId, int option, String searchWord) {
+			// ArrayList: 객체 배열 비슷, 컬렉션 프로임워크
+			// 여러 개의 게시글 정보를 저장한다.
+
+			String sql = "";
+			
+			if(option == 01) {
+				sql = "select p.*,m.mem_id,m.mem_pic from post_info p "
+						+ "join memberinfo m on p.mem_no = m.mem_no where m.mem_id = ? AND POST_TITLE like ?";
+				
+			}else if(option == 02) {
+
+				sql = "select p.*,m.mem_id,m.mem_pic from post_info p "
+						+ "join memberinfo m on p.mem_no = m.mem_no where m.mem_id = ? AND POST_CONTENT like ?";
+			}else {}
+			
+			ArrayList<PostBean> mySearchList = new ArrayList<PostBean>();
+			PostBean pb = null; //Bean(vo)은 그릇이다. 뭘 가져올지는 vo에 목록이 있다.
+			
+
+			try {
+				pstmt = con.prepareStatement(sql);
+				
+				//세션 id값 가져와서 SQL 문에 넣어줌.
+				pstmt.setString(1, sessionId);
+				//검색어가 어디에있던지 검색되게끔 앞뒤에 %를 붙여줌.
+				pstmt.setString(2, "%"+searchWord+"%");
+				
+				rs = pstmt.executeQuery(); //executeQuery : resultSet 객체 반환
+				//select는 executeQuery()를 사용한다.
+				//쿼리문 처리결과 ResultSet의 객체인 rs에 저장.
+				
+
+				if (rs.next()) {//조회된 결과가 있다면 아래 문장 수행.
+					do {//한 번 수행하고 또 수행할 게 있으면 수행.
+						pb = new PostBean();
+						//게시글 1개의 정보를 저장할 수 있는 PostBean 객체 생성.
+						pb.setPOST_NO(rs.getInt("POST_NO")); //게시글번호
+						pb.setMEM_NO(rs.getInt("MEM_NO")); //회원번호
+						pb.setPOST_TITLE(rs.getString("POST_TITLE")); //게시글제목
+						pb.setPOST_THUMBNAIL(rs.getString("POST_THUMBNAIL")); //게시글섬네일
+						pb.setPOST_VIDEO(rs.getString("POST_VIDEO")); //게시글비디오					
+						
+						//--- 게시글 내용 가져와서 15자만 미리보기로 보여줌 ---
+						String preStr=rs.getString("POST_CONTENT");
+//						System.out.println(preStr);
+//						String cpreStr=preStr.replaceAll("<(/)?([a-zA-Z]*)(\\\\s[a-zA-Z]*=[^>]*)?(\\\\s)*(/)?>", "");
+//						System.out.println("변경후 왜 안잘려"+cpreStr);
+//				
+//						if(preStr.length()>30){
+//							
+//							preStr=preStr.substring(0,15)+"..."; //자르고 ... 붙이기
+//						};
+						pb.setPOST_CONTENT(preStr); //게시글내용 미리보기
+						//----------------------------------------
+						
+						pb.setVisit_cnt(rs.getInt("Visit_cnt")); //게시글조회수
+						pb.setPOST_UPLOADTIME(rs.getString("POST_UPLOADTIME")); //게시글업로드타임
+						
+						
+						//위젯에 띄울 내 회원정보
+						pb.setMEM_ID(rs.getString("MEM_ID")); //게시글 쓴 회원 id
+						pb.setMEM_PIC(rs.getString("MEM_PIC")); //게시글 쓴 회원 사진
+						
+						//조회된 결과를 PostBean객체에 저장.
+						mySearchList.add(pb);
+						//저장하면서 생성된 것을 이제 List에 담아냄.(ArrayList)
+						//반복문이 실행될 때마다 게시글 1개씩 누적 시킴.
+					} while (rs.next());
+					//rs.next때문에 어레이 리스트 다음 값으로 넘어간다.(차례차례 읽어옴)
+				}
+			} catch (Exception ex) {
+				System.out.println("selectMySearchList 에러 : " + ex);
+			} finally {
+				close(rs);
+				close(pstmt);
+			}
+			return mySearchList;
+
+		}	
 		
 		
 		

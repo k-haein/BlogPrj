@@ -41,8 +41,8 @@
         <header class="py-5 bg-light border-bottom mb-4" style="background-image: url('https://www.urbanbrush.net/web/wp-content/uploads/edd/2022/01/urbanbrush-20220105101328484351.jpg')">
             <div class="container">
                 <div class="text-center my-5">
-                    <h1 class="fw-bolder"> ${myPostList[0].MEM_ID} 회원님의 블로그입니다.</h1>
-                    <p class="lead mb-0">내가 쓴 글을 볼 수 있습니다.</p>
+                    <h1 class="fw-bolder"> 검색결과를 확인합니다.</h1>
+                    <p class="lead mb-0">내 게시글을 검색합니다.</p>
                 </div>
             </div>
         </header>
@@ -54,8 +54,8 @@
                 <div class="col-lg-3">
                 <!-- Side widget-->
                     <div class="card mb-4">
-                    	<img class="card-img-top" src="../resources/img/blog/${myPostList[0].MEM_PIC}" alt="..." />
-                        <div class="card-header">${myPostList[0].MEM_ID}</div>
+                    	<img class="card-img-top" src="../resources/img/blog/${mySearchList[0].MEM_PIC}" alt="..." />
+                        <div class="card-header">${mySearchList[0].MEM_ID}</div>
                         <div class="card-body">블로그 소개글 쓰는 곳.맛집을 좋아하는 ㅇㅇ의 블로그입니다! 이미지는 일단 고정으로 박아뒀지롱...</div>
                     </div>
                     <!-- Categories widget-->
@@ -79,36 +79,30 @@
                             </div>
                         </div>
                     </div>
-                    
-                    <!-- Search widget-->
-                    <div class="card mb-4">
-                        <div class="card-header">내 블로그에서 검색</div>
-                        <div class="card-body">
-	 						<form method="get" action="searchWordMyAction.me">
-	                            <div class="input-group">
-	                            	<select name="option">
-									  <option value="01" selected="selected">제목</option>
-									  <option value="02">내용</option>
-									</select>
-	                                <input class="form-control" type="text" id="searchWord" name="searchWord" placeholder="검색어를 입력하세요" aria-label="Enter search term..." aria-describedby="button-search" />
-	                                <button class="btn btn-primary" id="button-search" type="submit">검색</button>
-	                            </div>
-	                        </form>
-                        </div>
-                    </div>
                 </div>
                 <!-- 오른쪽 Blog 게시글 내용-->
                 <div class="col-lg-9">
-                        <c:forEach var="myPostList" items="${myPostList}">
+                  <form method="get" action="searchWordMyAction.me">
+	                 <div class="input-group">
+	                    <select name="option">
+							<option value="01" selected="selected">제목</option>
+							<option value="02">내용</option>
+						</select>
+	                    <input class="form-control" type="text" id="searchWord" name="searchWord" placeholder="검색어를 입력하세요" aria-label="Enter search term..." aria-describedby="button-search" />
+	                    <button class="btn btn-primary" id="button-search" type="submit">검색</button>
+	                 </div>
+	              </form>
+	        	<br>
+                        <c:forEach var="mySearchList" items="${mySearchList}">
                     <!-- Featured blog post -->
                     <div class="card mb-4">
                         <div class="card-body">
-                           <a href="#!"><img class="card-img-top" src="../resources/img/thumbnail/${myPostList.POST_THUMBNAIL}" alt="..." /></a>
+                           <a href="#!"><img class="card-img-top" src="../resources/img/thumbnail/${mySearchList.POST_THUMBNAIL}" alt="..." /></a>
                           
-                          <div class="small text-muted">${myPostList.POST_UPLOADTIME} / 조회수 : ${myPostList.visit_cnt}</div>
-                            <h2 class="card-title">${myPostList.POST_TITLE} -----  ${myPostList.MEM_NO}</h2>
-                            <p class="card-text"> ${myPostList.POST_CONTENT} </p>
-                            <a class="btn btn-primary" href="postViewAction.me?&postno=${myPostList.POST_NO}">Read more →</a>
+                          <div class="small text-muted">${mySearchList.POST_UPLOADTIME} / 조회수 : ${mySearchList.visit_cnt}</div>
+                            <h2 class="card-title">${mySearchList.POST_TITLE} -----  ${mySearchList.MEM_NO}</h2>
+                            <p class="card-text"> ${mySearchList.POST_CONTENT} </p>
+                            <a class="btn btn-primary" href="postViewAction.me?&postno=${mySearchList.POST_NO}">Read more →</a>
                         </div>
                     </div>
                     </c:forEach>
