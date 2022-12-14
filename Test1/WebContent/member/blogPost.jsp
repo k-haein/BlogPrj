@@ -42,8 +42,8 @@
         <header class="py-5 bg-light border-bottom mb-4" style="background-image: url('https://www.urbanbrush.net/web/wp-content/uploads/edd/2022/01/urbanbrush-20220105101328484351.jpg')">
             <div class="container">
                 <div class="text-center my-5">
-                    <h1 class="fw-bolder"> ${postObj.MEM_NO} 회원님의 블로그입니다.</h1>
-                    <p class="lead mb-0">내가 쓴 글을 볼 수 있습니다.</p>
+                    <h1 class="fw-bolder"> ${postObj.MEM_ID} 회원님의 블로그입니다.</h1>
+                    <p class="lead mb-0">내가 쓴 글을 자세히 볼 수 있습니다.</p>
                 </div>
             </div>
         </header>

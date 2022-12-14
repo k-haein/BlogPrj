@@ -41,27 +41,39 @@
         <header class="py-5 bg-light border-bottom mb-4">
             <div class="container">
                 <div class="text-center my-5">
-                    <h1 class="fw-bolder"> ${sessionScope.id} 회원님! 블로그 메인홈에 오신걸 환영합니다!</h1>
-                    <p class="lead mb-0">이곳에서는 나를 제외한 모든 블로거들의 글을 볼 수 있습니다.</p>
+                    <h1 class="fw-bolder"> 검색결과를 확인합니다.</h1>
+                    <p class="lead mb-0">내 게시글을 포함한 모든 포스팅을 검색합니다.</p>
                 </div>
             </div>
         </header>
         <!-- Page content-->
         <div class="container">
-       
             <div class="row">
                 <!-- Blog entries-->
-                <div class="col-lg-8">
-                        <c:forEach var="postList" items="${postList}">
+                <div class="col-lg-8">	 
+                <br>
+               <form method="get" action="searchWordAction.me">
+                 <div class="input-group">
+                       <select name="option">
+						<option value="01" selected="selected">제목</option>
+						<option value="02">내용</option>
+						</select>
+                        <input class="form-control" type="text" id="searchWord" name="searchWord" placeholder="검색어를 입력하세요" aria-label="Enter search term..." aria-describedby="button-search" />
+                        <button class="btn btn-primary" id="button-search" type="submit">검색</button>
+                 </div>
+                </form>
+	        	
+	        	<br>
+                  <c:forEach var="postSearchList" items="${postSearchList}">
                     <!-- Featured blog post -->
                     <div class="card mb-4">
                         <div class="card-body">
-                           <a href="#!"><img class="card-img-top" src="../resources/img/thumbnail/${postList.POST_THUMBNAIL}" alt="..." /></a>
+                           <a href="#!"><img class="card-img-top" src="../resources/img/thumbnail/${postSearchList.POST_THUMBNAIL}" alt="..." /></a>
                           
-                          <div class="small text-muted">${postList.POST_UPLOADTIME} / 조회수 : ${postList.visit_cnt}</div>
-                            <h2 class="card-title">${postList.POST_TITLE} -----  ${postList.MEM_NO}</h2>
-                            <p class="card-text">${postList.POST_CONTENT}</p>
-                            <a class="btn btn-primary" href="postViewAction.me?postno=${postList.POST_NO}">Read more →</a>
+                          <div class="small text-muted">${postSearchList.POST_UPLOADTIME} / 조회수 : ${postSearchList.visit_cnt}</div>
+                            <h2 class="card-title">${postSearchList.POST_TITLE} -----  ${postSearchList.MEM_NO}</h2>
+                            <p class="card-text">${postSearchList.POST_CONTENT}</p>
+                            <a class="btn btn-primary" href="postViewAction.me?postno=${postSearchList.POST_NO}">Read more →</a>
                         </div>
                     </div>
                     </c:forEach>
@@ -82,6 +94,7 @@
                 </div>
                 <!-- Side widgets-->
                 <div class="col-lg-4">
+                <br>
                     <!-- Categories widget-->
                     <div class="card mb-4">
                         <div class="card-header">${sessionScope.id} 님</div>
@@ -103,22 +116,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Search widget-->
-                    <div class="card mb-4">
-                        <div class="card-header">블로그 전체 검색</div>
-                        <div class="card-body">
-                        <form method="get" action="searchWordAction.me">
-                            <div class="input-group">
-                            	<select name="option">
-								  <option value="01" selected="selected">제목</option>
-								  <option value="02">내용</option>
-								</select>
-                                <input class="form-control" type="text" id="searchWord" name="searchWord" placeholder="검색어를 입력하세요" aria-label="Enter search term..." aria-describedby="button-search" />
-                                <button class="btn btn-primary" id="button-search" type="submit">검색</button>
-                            </div>
-                        </form>
-                        </div>
-                    </div>
                 </div>
             </div>
            
@@ -133,8 +130,10 @@
        <!-- <script src="js/scripts.js"></script> -->
        
        <script>
-       //ajax 통신으로 검색어 입력한 것을 서버로 넘겨주자.
+       //여기서 ajax 통신으로 searchWord 를 찾는 구문을 만들어줄 것임.그러고 페이지 이동해서 다시 찾아줘야할듯?
     	//기회가 되면 기간 설정도 해보자.
+       
+       
        
        </script>
        
