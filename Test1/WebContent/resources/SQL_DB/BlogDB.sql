@@ -128,3 +128,8 @@ comment_uploadtime  date default sysdate,
 foreign key(post_no) REFERENCES post_info(post_no) on delete cascade
 )
 --drop table comment_info CASCADE CONSTRAINTS;
+
+
+-- 키워드 검색하기
+select * from post_info where POST_TITLE like '%제목%'
+select p.*,m.mem_id,m.mem_pic from post_info p join memberinfo m on p.mem_no = m.mem_no where m.mem_id = 'heannim12'  AND POST_TITLE like '%게시글1%'  

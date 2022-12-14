@@ -43,7 +43,7 @@ public class MemberListAction implements Action { //Action을 implements 해줌
 			resp.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = resp.getWriter();
 			out.println("<script>");
-			out.println("alert('관리자가 아닙니다');");
+			out.println("alert('회원으로 로그인하였습니다.');");
 			out.println("location.href='./postListAction.me'"); //관리자가 아니면 메인페이지로 이동
 			out.println("</script>");
 

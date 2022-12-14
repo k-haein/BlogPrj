@@ -13,10 +13,10 @@
 </head>
 <body>
 	<div id="wrap" class="wrap">
-    <div class="u_skip"><a href="https://www.naver.com">본문 바로가기</a></div>
+    <div class="u_skip"><a href="">본문 바로가기</a></div>
     <header class="header" role="banner" >
         <div class="header_inner">
-            <a   href="https://www.naver.com" class="logo">
+            <a   href="#" class="logo">
                 <h1 class="blind">NAVER</h1>
             </a>
             <div class="lang" id="show_locale_switch">
@@ -107,7 +107,7 @@
                                         <label for="keep" class="keep_text">로그인 상태 유지</label>
                                     </div>
                                     <div class="ip_check">
-                                        <a href="/login/ext/help_ip3.html" target="_blank" id="ipguide" title="IP보안"><span class="ip_text">IP보안</span></a>
+                                        <a href="#" id="ipguide" title="IP보안"><span class="ip_text">IP보안</span></a>
                                         <span class="switch">
                                             <input type="checkbox" id="switch"
                                                    class="switch_checkbox" value="off">
@@ -155,11 +155,11 @@
             </div>
             <ul class="find_wrap" id="find_wrap">
 
-                <li><a target="_blank" href="#"
+                <li><a  href="#"
                        class="find_text">비밀번호 찾기</a></li>
-                <li><a target="_blank" href="#"
+                <li><a  href="#"
                        class="find_text">아이디 찾기</a></li>
-                <li><a target="_blank" href="./memberJoin.me" class="find_text">회원가입</a>
+                <li><a  href="./memberJoin.me" class="find_text">회원가입</a>
                 </li>
 
             </ul>
@@ -176,18 +176,18 @@
         <div class="footer_inner">
             <!--[주]고객센터,제휴문의,서비스안내-->
             <ul class="footer_link" id="footer_link">
-                <li><a target="_blank" class="footer_item" href="#"
+                <li><a  class="footer_item" href="#"
                        id="fot.agreement"><span class="text">이용약관</span></a></li>
-                <li><a target="_blank" class="footer_item" href="#"
+                <li><a  class="footer_item" href="#"
                        id="fot.privacy"><span class="text"><strong>개인정보처리방침</strong></span></a></li>
-                <li><a target="_blank" class="footer_item" href="#"
+                <li><a  class="footer_item" href="#"
                        id="fot.disclaimer"><span class="text">책임의 한계와 법적고지</span></a></li>
-                <li><a target="_blank" class="footer_item"
+                <li><a  class="footer_item"
                        href="#" id="fot.help"><span
                                 class="text">회원정보 고객센터</span></a></li>
             </ul>
             <div class="footer_copy">
-                <a id="fot.naver" target="_blank" href="#">
+                <a id="fot.naver"  href="#">
                     <span class="footer_logo"><span class="blind">네이버</span></span>
                 </a>
                 <span class="text">Copyright</span>
