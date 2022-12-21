@@ -173,7 +173,10 @@
 
     <!-- footer -->
     <div class="footer">
-        <div class="footer_inner">
+        <div class="footer_inner"> 
+        <div class="footer_copy">
+             <span class="text">디자인 저작권은 네이버에 있고 저는 따라 만들었습니다.*^_^*</span>
+         </div>
             <!--[주]고객센터,제휴문의,서비스안내-->
             <ul class="footer_link" id="footer_link">
                 <li><a  class="footer_item" href="#"
@@ -194,6 +197,7 @@
                 <span class="corp">© NAVER Corp.</span>
                 <span class="text">All Rights Reserved.</span>
             </div>
+           
         </div>
     </div>
 

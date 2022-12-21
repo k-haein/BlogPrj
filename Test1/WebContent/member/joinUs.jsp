@@ -1049,8 +1049,12 @@
     <input type="hidden" name="enc_data" value="AgEER0Q0NijBa68qzwbPgFHU41bMd0AOfMnULaZopngC3L0vP99NVDcwpU7+LXl1tLkx5LnMBvCt17uIDUrPEcu66CpyIz4qyNlzs1VhI9/FfUp7WxVUUFlilSQZB3tNcIF4QUi03yyW8oSG9K7xNGagQHlpqxbnDeMh7uLAcLJ04XhV/crngCMaIISO3lPtJgke1NY9G8xFn1RvuDUzLzlFEjmcf3OrViOoEbH6BV4v1rh6dGRRPJTJ3ndBhtHOihMh0API0kz/dxOK1ZZhIDMKhUi/8JRW9tcrcmeEgNSji3LMwYoCmzGV8aMl23bsxb2xHCUtMA==">
 </form>
 -->
-	<!-- footer -->
-	<div id="footer" role="contentinfo">
+	<!-- footer -->        
+
+	<div id="footer" role="contentinfo">	
+		<div class="all_r">
+           <span class="text">디자인 저작권은 네이버에 있고 저는 따라 만들었습니다.*^_^*</span>
+         </div>
 		<ul>
 			<li><a href="#">이용약관</a></li>
 			<li><strong><a href="#">개인정보처리방침</a></strong></li>
