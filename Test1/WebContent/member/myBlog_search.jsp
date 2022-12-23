@@ -25,7 +25,7 @@
         <!-- Responsive navbar-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" href="#">N Blog</a>
+                <a class="navbar-brand" href="postListAction.me">N Blog</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -56,29 +56,16 @@
                     <div class="card mb-4">
                     	<img class="card-img-top" src="../resources/img/blog/${mySearchList[0].MEM_PIC}" alt="..." />
                         <div class="card-header">${mySearchList[0].MEM_ID}</div>
+                        <div class="wrap_my_information">
+						    <nav class="menu_my_blog">
+						       <a class="item" alt="글쓰기" href="postInsert.me"><i class="sp_common icon_write"></i>글쓰기</a>
+						       <a class="item" alt="로그아웃" href="logout">로그아웃</a>
+						    </nav>
+               			</div>
                         <div class="card-body">블로그 소개글 쓰는 곳.맛집을 좋아하는 ㅇㅇ의 블로그입니다! 이미지는 일단 고정으로 박아뒀지롱...</div>
+
                     </div>
-                    <!-- Categories widget-->
-                    <div class="card mb-4">
-                        <div class="card-header">카테고리</div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <ul class="list-unstyled mb-0">
-                                        <li><a href="myBlogAction.me?id=${sessionScope.id}">내 블로그</a></li>
-                                        <li><a href="myBlogAction.me?id=${sessionScope.id}">오늘 ??명 방문 ></a></li>
-                                        <li></li>
-                                    </ul>
-                                </div>
-                                <div class="col-sm-6">
-                                    <ul class="list-unstyled mb-0">
-                                        <li><a href="postInsert.me">새 게시물 작성</a></li>
-                                        <li><a href="logout">로그아웃</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
                 <!-- 오른쪽 Blog 게시글 내용-->
                 <div class="col-lg-9">
