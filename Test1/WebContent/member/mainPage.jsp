@@ -20,7 +20,6 @@
       <!--   <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />  -->
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="../resources/css/mainPage.css" rel="stylesheet" />
-       <!-- <link href="../resources/css/mainpage2.css" rel="stylesheet" />-->
     </head>
     <body>
         <!-- Responsive navbar-->
@@ -83,40 +82,23 @@
                 </div>
                 <!-- Side widgets-->
                 <div class="col-lg-4">
-                    <!-- Categories widget-->
-                    <div class="card mb-4">
-                        <div class="card-header">${sessionScope.id} 님</div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <ul class="list-unstyled mb-0">
-                                        <li><a class="btn btn-primary" href="myBlogAction.me?id=${sessionScope.id}">내 블로그</a></li>
-                                        <li><a href="myBlogAction.me?id=${sessionScope.id}">오늘 ??명 방문 ></a></li>
-                                        <li></li>
-                                    </ul>
-                                </div>
-                                <div class="col-sm-6">
-                                    <ul class="list-unstyled mb-0">
-                                        <li><a class="btn btn-primary" href="postInsert.me">새 게시물 작성</a></li>
-                                        <li><a href="logout">로그아웃</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                      <!-- Search widget-->
                     <div class="card mb-4">
                     
                     <div class="wrap_my_information">
-					    <div class="area_my_account" ng-show="loginCtrl.loggedIn &amp;&amp; loginCtrl.hasOpenedBlog">
-					        <a bg-nclick="hmp*p.name" ng-href="https://blog.naver.com/MyBlog.naver" target="_blank" class="name" alt="내 블로그" href="https://blog.naver.com/MyBlog.naver"><span class="thumbnail"><img bg-image="https://blogpfthumb-phinf.pstatic.net/MjAyMDA3MDRfMTYx/MDAxNTkzODQxMTgxMzI2.3OGxFsb_0m1jD2kWsJdOhczxw-bMvQ6Ai9SgDq-7RdIg.vE6eC5r7YYRpQFsQ76rQ9iobKgoPu_Ov0zfBQcmcYfsg.PNG.eriin12/profileImage.png?type=s1" width="46" height="46" alt="프로필" class="" src="https://blogpfthumb-phinf.pstatic.net/MjAyMDA3MDRfMTYx/MDAxNTkzODQxMTgxMzI2.3OGxFsb_0m1jD2kWsJdOhczxw-bMvQ6Ai9SgDq-7RdIg.vE6eC5r7YYRpQFsQ76rQ9iobKgoPu_Ov0zfBQcmcYfsg.PNG.eriin12/profileImage.png?type=s1"></span><span>핸냐</span></a>
-					        <a bg-nclick="hmp*p.visit" bg-need-login="" ng-href="https://admin.blog.naver.com/eriin12/stat/today" target="_blank" class="text_today_guest" alt="방문자수" href="https://admin.blog.naver.com/eriin12/stat/today">오늘 <span class="highlight">293</span>명 방문<i class="sp_common icon_arrow_right"></i></a>
-					        <a bg-nclick="hmp*p.logout" ng-href="https://nid.naver.com/nidlogin.logout?returl=https%3A%2F%2Fsection.blog.naver.com%2FBlogHome.naver" class="button_signout" role="button" alt="로그아웃" href="https://nid.naver.com/nidlogin.logout?returl=https%3A%2F%2Fsection.blog.naver.com%2FBlogHome.naver">로그아웃</a>
+                    
+					    <div class="area_my_account">
+					        <a  class="name" alt="내 블로그" href="myBlogAction.me?id=${sessionScope.id}">
+					        <span class="thumbnail"><img width="46" height="46" alt="프로필" class="" src="../resources/img/thumbnail/post1.jpg">
+					        </span><span>${sessionScope.id}</span></a>
+					        <a class="text_today_guest" alt="방문자수" href="myBlogAction.me?id=${sessionScope.id}">
+					        오늘 <span class="highlight">293</span>명 방문<i class="sp_common icon_arrow_right"></i></a>
+					        <a class="button_signout" role="button" alt="로그아웃" href="logout">로그아웃</a>
 					    </div>
-					    <nav class="menu_my_blog" ng-show="loginCtrl.loggedIn &amp;&amp; loginCtrl.hasOpenedBlog">
-					        <a bg-nclick="hmp*s.myblog" ng-href="https://blog.naver.com/MyBlog.naver" target="_blank" class="item" alt="내 블로그" href="https://blog.naver.com/MyBlog.naver">내 블로그</a>
-					        <a bg-nclick="hmp*s.write" bg-ros-click="" ng-href="https://blog.naver.com/GoBlogWrite.naver" target="_blank" class="item" alt="글쓰기" href="https://blog.naver.com/GoBlogWrite.naver"><i class="sp_common icon_write"></i>글쓰기</a>
+					    <nav class="menu_my_blog">
+					        <a class="item" alt="내 블로그" href="myBlogAction.me?id=${sessionScope.id}">내 블로그</a>
+					        <a class="item" alt="글쓰기" href="postInsert.me"><i class="sp_common icon_write"></i>글쓰기</a>
 					    </nav>
 					    
 					    

@@ -95,26 +95,40 @@
                 <!-- Side widgets-->
                 <div class="col-lg-4">
                 <br>
-                    <!-- Categories widget-->
+                     <!-- Search widget-->
                     <div class="card mb-4">
-                        <div class="card-header">${sessionScope.id} 님</div>
+                    
+                    <div class="wrap_my_information">
+                    
+					    <div class="area_my_account">
+					        <a  class="name" alt="내 블로그" href="myBlogAction.me?id=${sessionScope.id}">
+					        <span class="thumbnail"><img width="46" height="46" alt="프로필" class="" src="../resources/img/thumbnail/post1.jpg">
+					        </span><span>${sessionScope.id}</span></a>
+					        <a class="text_today_guest" alt="방문자수" href="myBlogAction.me?id=${sessionScope.id}">
+					        오늘 <span class="highlight">293</span>명 방문<i class="sp_common icon_arrow_right"></i></a>
+					        <a class="button_signout" role="button" alt="로그아웃" href="logout">로그아웃</a>
+					    </div>
+					    <nav class="menu_my_blog">
+					        <a class="item" alt="내 블로그" href="myBlogAction.me?id=${sessionScope.id}">내 블로그</a>
+					        <a class="item" alt="글쓰기" href="postInsert.me"><i class="sp_common icon_write"></i>글쓰기</a>
+					    </nav>
+					    
+					    
+					    
+					    <div class="card-header">블로그 전체 검색</div>
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <ul class="list-unstyled mb-0">
-                                        <li><a class="btn btn-primary" href="myBlogAction.me?id=${sessionScope.id}">내 블로그</a></li>
-                                        <li><a href="myBlogAction.me?id=${sessionScope.id}">오늘 ??명 방문 ></a></li>
-                                        <li></li>
-                                    </ul>
-                                </div>
-                                <div class="col-sm-6">
-                                    <ul class="list-unstyled mb-0">
-                                        <li><a class="btn btn-primary" href="postInsert.me">새 게시물 작성</a></li>
-                                        <li><a href="logout">로그아웃</a></li>
-                                    </ul>
-                                </div>
+                        <form method="get" action="searchWordAction.me">
+                            <div class="input-group">
+                            	<select name="option">
+								  <option value="01" selected="selected">제목</option>
+								  <option value="02">내용</option>
+								</select>
+                                <input class="form-control" type="text" id="searchWord" name="searchWord" placeholder="검색어를 입력하세요" aria-label="Enter search term..." aria-describedby="button-search" />
+                                <button class="btn btn-primary" id="button-search" type="submit">검색</button>
                             </div>
+                        </form>
                         </div>
+               		</div>
                     </div>
                 </div>
             </div>
